@@ -64,6 +64,30 @@ DATASET_DEFAULT_CONFIG = {
             ],
         ],
     },
+    "TEST": {
+        "raw_dir": "",
+        "database": "provattack25",
+        "database_all_file": "provattack25",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2025-08",
+        "start_end_day_range": (27, 28),
+        "train_files": ["graph_27"],
+        "val_files": ["graph_27"],
+        "test_files": ["graph_27"],
+        "unused_files": [],
+        "ground_truth_relative_path": [
+            "TEST/node_Nginx_Drakon_APT.csv"
+        ],
+        "attack_to_time_window": [
+            ["TEST/node_Nginx_Drakon_APT.csv", "2019-05-16 09:31:00", "2019-05-16 10:12:00"],
+            [
+                "TEST/node_Nginx_Drakon_APT.csv",
+                "2019-05-17 10:15:00",
+                "2019-05-17 15:33:00",
+            ],
+        ],
+    },
     "CADETS_E5": {
         "raw_dir": "",
         "database": "cadets_e5",

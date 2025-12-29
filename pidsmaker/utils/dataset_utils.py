@@ -181,6 +181,33 @@ rel2id_atlasv2 = {
     "ACTION_CONNECTION_CREATE": 33,
 }
 
+rel2id_provattack = {
+    1: "TcpIpAcceptIPV4",
+    "TcpIpAcceptIPV4": 1,
+    2: "TcpIpConnectIPV4",
+    "TcpIpConnectIPV4": 2,
+    3: "TcpIpDisconnectIPV4",
+    "TcpIpDisconnectIPV4": 3,
+    4: "FileIoCreate",
+    "FileIoCreate": 4,
+    5: "FileIoRead",
+    "FileIoRead": 5,
+    6: "FileIoWrite",
+    "FileIoWrite": 6,
+    7: "FileIoFileCreate",
+    "FileIoFileCreate": 7,
+    8: "FileIoDelete",
+    "FileIoDelete": 8,
+    9: "FileIoRenamePath",
+    "FileIoRenamePath": 9,
+    10: "ProcessStart",
+    "ProcessStart": 10,
+    11: "ProcessEnd",
+    "ProcessEnd": 11,
+    12: "ImageLoad",
+    "ImageLoad": 12,
+}
+
 
 def decrement_dict(d):
     return {
@@ -193,8 +220,10 @@ def get_rel2id(cfg, from_zero=False):
         return decrement_dict(rel2id_optc) if from_zero else rel2id_optc
     elif cfg.dataset.name in ATLASv2_DATASETS:
         return rel2id_atlasv2
-    else:
+    elif cfg.dataset.name in TC_DATASETS:
         return decrement_dict(rel2id_darpa_tc) if from_zero else rel2id_darpa_tc
+    else:
+        return decrement_dict(rel2id_provattack) if from_zero else rel2id_provattack
 
 
 def get_node_map(from_zero=False):
@@ -232,6 +261,7 @@ ntype2id = {
     "netflow": 3,
 }
 
+TC_DATASETS = {'THEIA_E5', 'THEIA_E3', 'CADETS_E5', 'CADETS_E3', 'CLEARSCOPE_E5', 'CLEARSCOPE_E3'}
 OPTC_DATASETS = {"optc_h201", "optc_h501", "optc_h051"}
 ATLASv2_DATASETS = {"atlasv2_h1"}
 
