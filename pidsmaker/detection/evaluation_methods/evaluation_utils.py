@@ -282,12 +282,13 @@ def plot_scores_with_paths_node_level(
 
     # Plot each type with a different marker for Label 1
     for t in marker_styles.keys():
-        plt.scatter(
-            scores_1[types_1 == t],
-            [1] * sum(types_1 == t),
-            marker=marker_styles[t],
-            color=[attack_colors.get(c) for c in node2attack[types_1 == t]],
-        )
+        if len(node2attack[types_1 == t]) > 0:
+            plt.scatter(
+                scores_1[types_1 == t],
+                [1] * sum(types_1 == t),
+                marker=marker_styles[t],
+                color=[attack_colors.get(c, 'orange') for c in node2attack[types_1 == t]],
+            )
 
     # Adding labels and title
     plt.xlabel("Scores")
