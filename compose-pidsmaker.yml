@@ -20,6 +20,7 @@ services:
       - ./:/home/pids
       - ${ARTIFACTS_DIR:-/artifacts}:/home/artifacts
       # - /path/to/raw/data:/data
+      - ./rawdata:/rawdata
     entrypoint: bash
     stdin_open: true
     tty: true
