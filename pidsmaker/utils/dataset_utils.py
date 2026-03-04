@@ -24,6 +24,37 @@ exclude_edge_type = set(
     ]
 )
 
+edge_with_d2 = [
+    "FileIoRenamePath",
+]
+
+rel2id_provattack = {
+    1: "TcpIpAcceptIPV4",
+    "TcpIpAcceptIPV4": 1,
+    2: "TcpIpConnectIPV4",
+    "TcpIpConnectIPV4": 2,
+    3: "TcpIpDisconnectIPV4",
+    "TcpIpDisconnectIPV4": 3,
+    4: "FileIoCreate",
+    "FileIoCreate": 4,
+    5: "FileIoRead",
+    "FileIoRead": 5,
+    6: "FileIoWrite",
+    "FileIoWrite": 6,
+    7: "FileIoFileCreate",
+    "FileIoFileCreate": 7,
+    8: "FileIoDelete",
+    "FileIoDelete": 8,
+    9: "FileIoRenamePath",
+    "FileIoRenamePath": 9,
+    10: "ProcessStart",
+    "ProcessStart": 10,
+    11: "ProcessEnd",
+    "ProcessEnd": 11,
+    12: "ImageLoad",
+    "ImageLoad": 12,
+}
+
 rel2id_darpa_tc = {
     1: "EVENT_CONNECT",
     "EVENT_CONNECT": 1,
@@ -86,7 +117,33 @@ possible_events = {
     ],
 }
 # TODO: do the same for optc (different edges)
+possible_events_provattack = {
+    ("subject", "file"): [
+        "FileIoWrite",
+        "FileIoCreate",
+        "FileIoFileCreate",
+        "FileIoDelete",
+        "FileIoRenamePath",
+        "FileIoRead",
+        "ImageLoad",
+        "ProcessStart",
+        "ProcessEnd",
+    ],
+    ("file", "subject"): [
 
+    ],
+    ("subject", "subject"): [
+        "ProcessStart",
+        "ProcessEnd",
+    ],
+    ("subject", "netflow"): [
+        "TcpIpConnectIPV4",
+        "TcpIpAcceptIPV4",
+        "TcpIpDisconnectIPV4",
+    ],
+    # 视你图中是否存在 netflow->subject 的边；没有就留空
+    ("netflow", "subject"): [],
+}
 rel2id_optc = {
     1: "OPEN",
     "OPEN": 1,
@@ -181,33 +238,6 @@ rel2id_atlasv2 = {
     "ACTION_CONNECTION_CREATE": 33,
 }
 
-rel2id_provattack = {
-    1: "TcpIpAcceptIPV4",
-    "TcpIpAcceptIPV4": 1,
-    2: "TcpIpConnectIPV4",
-    "TcpIpConnectIPV4": 2,
-    3: "TcpIpDisconnectIPV4",
-    "TcpIpDisconnectIPV4": 3,
-    4: "FileIoCreate",
-    "FileIoCreate": 4,
-    5: "FileIoRead",
-    "FileIoRead": 5,
-    6: "FileIoWrite",
-    "FileIoWrite": 6,
-    7: "FileIoFileCreate",
-    "FileIoFileCreate": 7,
-    8: "FileIoDelete",
-    "FileIoDelete": 8,
-    9: "FileIoRenamePath",
-    "FileIoRenamePath": 9,
-    10: "ProcessStart",
-    "ProcessStart": 10,
-    11: "ProcessEnd",
-    "ProcessEnd": 11,
-    12: "ImageLoad",
-    "ImageLoad": 12,
-}
-
 
 def decrement_dict(d):
     return {
@@ -220,10 +250,10 @@ def get_rel2id(cfg, from_zero=False):
         return decrement_dict(rel2id_optc) if from_zero else rel2id_optc
     elif cfg.dataset.name in ATLASv2_DATASETS:
         return rel2id_atlasv2
-    elif cfg.dataset.name in TC_DATASETS:
-        return decrement_dict(rel2id_darpa_tc) if from_zero else rel2id_darpa_tc
+    elif cfg.dataset.name in PROVATTACK_DATASETS:
+        return rel2id_provattack
     else:
-        return decrement_dict(rel2id_provattack) if from_zero else rel2id_provattack
+        return decrement_dict(rel2id_darpa_tc) if from_zero else rel2id_darpa_tc
 
 
 def get_node_map(from_zero=False):
@@ -237,8 +267,16 @@ def get_num_edge_type(cfg):
         cfg.dataset.name not in OPTC_DATASETS
         and "edge_type_triplet" in cfg.detection.graph_preprocessing.edge_features
     ):
-        return sum([len(events) for events in possible_events.values()])
+        return sum([len(events) for events in possible_events_provattack.values()])
     return cfg.dataset.num_edge_types
+# def get_num_edge_type(cfg):
+#     if (
+#         cfg.dataset.name not in OPTC_DATASETS
+#         and "edge_type_triplet" in cfg.detection.graph_preprocessing.edge_features
+#     ):
+#         pe = get_possible_events(cfg)
+#         return sum(len(events) for events in pe.values())
+#     return cfg.dataset.num_edge_types
 
 
 def get_rel2id_considering_triplets(cfg):
@@ -246,10 +284,15 @@ def get_rel2id_considering_triplets(cfg):
         return {
             i + 1: e
             for i, e in enumerate(
-                [event for events in possible_events.values() for event in events]
+                [event for events in possible_events_provattack.values() for event in events]
             )
         }
     return get_rel2id(cfg)
+# def get_rel2id_considering_triplets(cfg):
+#     if "edge_type_triplet" in cfg.detection.graph_preprocessing.edge_features:
+#         pe = get_possible_events(cfg)
+#         return {i + 1: e for i, e in enumerate([ev for evs in pe.values() for ev in evs])}
+#     return get_rel2id(cfg)
 
 
 ntype2id = {
@@ -261,12 +304,16 @@ ntype2id = {
     "netflow": 3,
 }
 
-TC_DATASETS = {'THEIA_E5', 'THEIA_E3', 'CADETS_E5', 'CADETS_E3', 'CLEARSCOPE_E5', 'CLEARSCOPE_E3'}
 OPTC_DATASETS = {"optc_h201", "optc_h501", "optc_h051"}
 ATLASv2_DATASETS = {"atlasv2_h1"}
-
+PROVATTACK_DATASETS = {"PROVATTACK25","PROVATTACK15","PROVATTACK18","test123","test100","test105","aa23","alphablackcat","d2test"}
 OPTC_hostname_map = {
     'optc_h051': 'SysClient0051',
     'optc_h201': 'SysClient0201',
     'optc_h501': 'SysClient0501',
 }
+
+def get_possible_events(cfg):
+    if cfg.dataset.name in PROVATTACK_DATASETS:
+        return possible_events_provattack
+    return possible_events
