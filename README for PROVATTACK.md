@@ -16,13 +16,19 @@ To use our dataset, simply follow the guidelines.
    docker exec -it postgres bash
    ```
 
-2. Load database:
+2. Create database:
 
    ```shell
-   pg_restore -U postgres -h localhost -p 5432 -d DATASET_NAME /data/DATASET_NAME.dump
+   psql -U postgres -h localhost -p 5432 -c "CREATE DATABASE {DATASET_NAME};"
    ```
 
-3. Once databases are loaded, we won't need to touch this container anymore:
+3. Load database:
+
+   ```shell
+   pg_restore -U postgres -h localhost -p 5432 -d {DATASET_NAME} /data/{DATASET_NAME}.dump
+   ```
+
+4. Once databases are loaded, we won't need to touch this container anymore:
 
    ```shell
    exit
@@ -61,7 +67,7 @@ To use our dataset, simply follow the guidelines.
 7. To export your database as a dump file for sharing, do:
 
    ```shell
-   PGPASSWORD=postgres pg_dump -U postgres -h postgres -p 5432 -F c -d DATASET_NAME -f DATASET_NAME.dump
+   PGPASSWORD=postgres pg_dump -U postgres -h postgres -p 5432 -F c -d {DATASET_NAME} -f {DATASET_NAME}.dump
    ```
 
 ## Run in pipeline
