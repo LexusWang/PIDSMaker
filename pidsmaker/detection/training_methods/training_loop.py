@@ -1,4 +1,5 @@
 import copy
+import os
 import tracemalloc
 from time import perf_counter as timer
 
@@ -41,6 +42,9 @@ def main(cfg):
         f"Invalid run evaluation {run_evaluation}"
     )
     best_epoch_mode = run_evaluation == "best_epoch"
+
+    models_dir = cfg.detection.gnn_training._trained_models_dir
+    os.makedirs(models_dir, exist_ok=True)
 
     num_epochs = cfg.detection.gnn_training.num_epochs
     tot_loss = 0.0
@@ -193,20 +197,20 @@ def main(cfg):
             model.load_state_dict(best_model)
             model.to_device(device)
 
-        # model_path = os.path.join(gnn_models_dir, f"model_epoch_{epoch}")
-        # save_model(model, model_path, cfg)
-
-        # Test
+        # Val inference + model checkpoint
         if (epoch + 1) % 2 == 0 or epoch == 0:
             test_stats = inference_loop.main(
                 cfg=cfg,
                 model=model,
                 val_data=val_data,
-                test_data=test_data,
+                test_data=[],
                 epoch=epoch,
-                split="all",
+                split="val",
             )
             all_test_stats.append(test_stats)
+
+            model_path = os.path.join(models_dir, f"model_epoch_{epoch}.pt")
+            torch.save({k: v.cpu() for k, v in model.state_dict().items()}, model_path)
 
             wandb.log(
                 {
@@ -215,38 +219,22 @@ def main(cfg):
                     "train_loss": round(tot_loss, 4),
                     "val_score": round(test_stats["val_score"], 4),
                     "val_loss": round(test_stats["val_loss"], 4),
-                    "test_loss": round(test_stats["test_loss"], 4),
                 }
             )
 
-    # After training
-    if best_epoch_mode:
+    # After training: in best_epoch_mode, overwrite the best epoch's checkpoint
+    if best_epoch_mode and best_model is not None:
         model.load_state_dict(best_model)
-        test_stats = inference_loop.main(
-            cfg=cfg,
-            model=model,
-            val_data=val_data,
-            test_data=test_data,
-            epoch=best_epoch,
-            split="test",
-        )
+        model_path = os.path.join(models_dir, f"model_epoch_{best_epoch}.pt")
+        torch.save({k: v.cpu() for k, v in model.state_dict().items()}, model_path)
 
     wandb.log(
         {
             "best_epoch": best_epoch,
-            "train_epoch_time": round(np.mean(epoch_times), 2),
+            "train_epoch_time": round(np.mean(epoch_times), 2) if epoch_times else 0,
             "val_score": round(best_val_score, 5),
             "peak_train_cpu_memory": round(peak_train_cpu_mem, 3),
             "peak_train_gpu_memory": round(peak_train_gpu_mem, 3),
-            "peak_inference_cpu_memory": round(
-                np.max([d["peak_inference_cpu_memory"] for d in all_test_stats]), 3
-            ),
-            "peak_inference_gpu_memory": round(
-                np.max([d["peak_inference_gpu_memory"] for d in all_test_stats]), 3
-            ),
-            "time_per_batch_inference": round(
-                np.mean([d["time_per_batch_inference"] for d in all_test_stats]), 3
-            ),
         }
     )
 

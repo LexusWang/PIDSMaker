@@ -223,6 +223,8 @@ def set_task_paths(cfg, subtask_concat_value=None):
                 subtask_name == "build_graphs"
             ):  # to restart from beginning if train files are changed
                 restart_values += cfg.dataset.train_files
+            if subtask_name == "gnn_inference":  # to re-run inference when test files change
+                restart_values += cfg.dataset.test_files
                 if (
                     cfg._restart_from_scratch
                 ):  # to start from a brand new folder, we generate a random id to add to the hash
@@ -331,6 +333,9 @@ def set_task_paths(cfg, subtask_concat_value=None):
     )
     cfg.detection.gnn_training._edge_losses_dir = os.path.join(
         cfg.detection.gnn_training._task_path, "edge_losses/"
+    )
+    cfg.detection.gnn_inference._edge_losses_dir = os.path.join(
+        cfg.detection.gnn_inference._task_path, "edge_losses/"
     )
     cfg.detection.gnn_training._magic_dir = os.path.join(
         cfg.detection.gnn_training._task_path, "magic/"

@@ -1264,7 +1264,8 @@ TASK_DEPENDENCIES = {
     "feat_inference": ["feat_training"],
     "graph_preprocessing": ["feat_inference"],
     "gnn_training": ["graph_preprocessing"],
-    "evaluation": ["gnn_training"],
+    "gnn_inference": ["gnn_training"],
+    "evaluation": ["gnn_inference"],
     "tracing": ["evaluation"],
 }
 
@@ -1758,6 +1759,7 @@ TASK_ARGS = {
                 },
             },
         },
+        "gnn_inference": {},
         "evaluation": {
             "viz_malicious_nodes": Arg(
                 bool,

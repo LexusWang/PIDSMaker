@@ -305,12 +305,15 @@ def get_possible_triplets(cfg):
     entity_map = get_node_map(from_zero=True)
     event_map = get_rel2id(cfg, from_zero=True)
 
+    possible_events_ = get_possible_events(cfg)
+
     possible_triplets = [
         [entity_map[src_type], entity_map[dst_type], event_map[event]]
-        for (src_type, dst_type), events in possible_events_provattack.items()
+        for (src_type, dst_type), events in possible_events_.items()
         for event in events
     ]
     return torch.tensor(possible_triplets, dtype=torch.long)
+
 # def get_possible_triplets(cfg):
 #     entity_map = get_node_map(from_zero=True)
 #     pe = get_possible_events(cfg)

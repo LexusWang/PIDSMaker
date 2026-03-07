@@ -17,6 +17,7 @@ from pidsmaker.config import (
 )
 from pidsmaker.detection import (
     evaluation,
+    gnn_inference,
     gnn_training,
     graph_preprocessing,
 )
@@ -71,6 +72,10 @@ def get_task_to_module(cfg):
         "gnn_training": {
             "module": gnn_training,
             "task_path": cfg.detection.gnn_training._task_path,
+        },
+        "gnn_inference": {
+            "module": gnn_inference,
+            "task_path": cfg.detection.gnn_inference._task_path,
         },
         "evaluation": {
             "module": evaluation,

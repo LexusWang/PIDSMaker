@@ -27,6 +27,7 @@ def test_edge_level(
     model_epoch_file,
     cfg,
     device,
+    edge_losses_dir=None,
 ):
     model.eval()
 
@@ -68,7 +69,8 @@ def test_edge_level(
         ns_time_to_datetime_US(start_time) + "~" + ns_time_to_datetime_US(edge_df["time"].max())
     )
 
-    logs_dir = os.path.join(cfg.detection.gnn_training._edge_losses_dir, split, model_epoch_file)
+    base_dir = edge_losses_dir or cfg.detection.gnn_training._edge_losses_dir
+    logs_dir = os.path.join(base_dir, split, model_epoch_file)
     os.makedirs(logs_dir, exist_ok=True)
     csv_file = os.path.join(logs_dir, time_interval + ".csv")
 
@@ -84,6 +86,7 @@ def test_node_level(
     model_epoch_file,
     cfg,
     device,
+    edge_losses_dir=None,
 ):
     model.eval()
 
@@ -249,7 +252,8 @@ def test_node_level(
 
     time_interval = ns_time_to_datetime_US(start_time) + "~" + ns_time_to_datetime_US(end_time)
 
-    logs_dir = os.path.join(cfg.detection.gnn_training._edge_losses_dir, split, model_epoch_file)
+    base_dir = edge_losses_dir or cfg.detection.gnn_training._edge_losses_dir
+    logs_dir = os.path.join(base_dir, split, model_epoch_file)
     os.makedirs(logs_dir, exist_ok=True)
     csv_file = os.path.join(logs_dir, time_interval + ".csv")
 
@@ -258,7 +262,7 @@ def test_node_level(
     return losses
 
 
-def main(cfg, model, val_data, test_data, epoch, split, logging=True):
+def main(cfg, model, val_data, test_data, epoch, split, logging=True, edge_losses_dir=None):
     set_seed(cfg)
 
     if split == "all":
@@ -309,6 +313,7 @@ def main(cfg, model, val_data, test_data, epoch, split, logging=True):
                     model_epoch_file=model_epoch_file,
                     cfg=cfg,
                     device=device,
+                    edge_losses_dir=edge_losses_dir,
                 )
                 all_losses.extend(losses)
                 tpb.append(time.time() - s)
