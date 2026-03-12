@@ -1,0 +1,31 @@
+192.168.56.101
+AESTHETIC_PACKET.dll
+VITAL_SQUASH.exe
+{"logType": "NODE", "logData": {"id": "60c27527-60ef-4b32-9848-95031d7232d4", "type": "SUBJECT_PROCESS", "pid": 10560, "ppid": 13040, "cmdLine": "regsvr32  C:\\Users\\victim\\Downloads\\AESTHETIC_PACKET.dll", "processName": "regsvr32.exe"}}
+Atomic Red Team
+arp -a
+Get-Process
+SCHTASKS /Create /SC ONCE /TN spawn /TR C:\\windows\\system32\\cmd.exe /ST 1636
+bcdedit /set safeboot network
+DisableSecuritySettings
+DisableRealtimeMonitoring
+DisableBehaviorMonitoring
+DisableScriptScanning
+DisableBlockAtFirstSeen
+DisableAntiSpyware
+DisableAntiVirus
+DisableIntrusionPreventionSystem
+DisableIOAVProtection
+DisableOnAccessProtection
+DisableRoutinelyTakingAction
+DisableScanOnRealtimeEnable
+DisableEnhancedNotifications
+SpynetReporting
+MpEnablePus
+DisallowExploitProtectionOverride
+TamperProtection
+SubmitSamplesConsent
+PUAProtection
+RemoveDefinitions
+DisableLockWorkstation
+

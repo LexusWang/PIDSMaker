@@ -172,8 +172,9 @@ def gen_edge_fused_tw(indexid2msg, cfg):
 
     log("Building graphs...")
     for day in days:
-        date_start = cfg.dataset.year_month + "-" + str(day) + " 00:00:00"
-        date_stop = cfg.dataset.year_month + "-" + str(day + 1) + " 00:00:00"
+        base = datetime.strptime(cfg.dataset.year_month + "-01", "%Y-%m-%d")
+        date_start = (base + timedelta(days=day - 1)).strftime("%Y-%m-%d") + " 00:00:00"
+        date_stop = (base + timedelta(days=day)).strftime("%Y-%m-%d") + " 00:00:00"
 
         timestamps = [date_start, date_stop]
         test_mode_set_done = False

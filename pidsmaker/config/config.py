@@ -1253,6 +1253,27 @@ DATASET_DEFAULT_CONFIG = {
             ["PROVATTACK/d2test.csv", "2025-08-25 13:21:00", "2025-08-25 13:22:00"],
         ],
     },
+    "aa23_341a": {
+        "raw_dir": "",
+        "database": "aa23_341a",
+        "database_all_file": "aa23_341a",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2026-03",
+        "start_end_day_range": (6,7),
+        "train_files": [
+            "graph_6",
+        ],
+        "val_files": ["graph_6"],
+        "test_files": ["graph_6"],
+        "unused_files": [],
+        "ground_truth_relative_path": [
+            "PROVATTACK/aa23_341a_0_hop.csv",
+        ],
+        "attack_to_time_window": [
+            ["PROVATTACK/aa23_341a_0_hop.csv", "2026-03-06 12:51:39", "2026-03-06 12:54:32"],
+        ],
+    }
 }
 
 # Arguments

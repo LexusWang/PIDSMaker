@@ -1,0 +1,30 @@
+192.168.56.101
+payload.exe
+PLEASANT_ORDINARY.exe
+Atomic Red Team
+arp -a
+Get-Process
+SCHTASKS /Create /SC ONCE /TN spawn /TR C:\\windows\\system32\\cmd.exe /ST 1636
+bcdedit /set safeboot network
+DisableSecuritySettings
+DisableRealtimeMonitoring
+DisableBehaviorMonitoring
+DisableScriptScanning
+DisableBlockAtFirstSeen
+DisableAntiSpyware
+DisableAntiVirus
+DisableIntrusionPreventionSystem
+DisableIOAVProtection
+DisableOnAccessProtection
+DisableRoutinelyTakingAction
+DisableScanOnRealtimeEnable
+DisableEnhancedNotifications
+SpynetReporting
+MpEnablePus
+DisallowExploitProtectionOverride
+TamperProtection
+SubmitSamplesConsent
+PUAProtection
+RemoveDefinitions
+DisableLockWorkstation
+

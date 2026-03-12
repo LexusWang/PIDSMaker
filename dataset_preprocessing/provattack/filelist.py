@@ -153,16 +153,27 @@ test105 = [
     "benign-1-9.jsonl",
 ]
 
-aa23 = [
-    "1_AA23-341A.jsonl",
-]
 
-alphablackcat = [
-    "ALPHABlackcat.jsonl",
-]
+
+
 
 d2test = [
     "d2test.jsonl",
+]
+
+aa23_341a=[
+    "AA23_341A.jsonl",
+]
+
+aa24_046a=[
+    "AA24_046A.jsonl",
+]
+
+alphvblackcat=[
+    "ALPHVBlackcat.jsonl",
+]
+phobosransomware=[
+    "PhobosRansomware.jsonl",
 ]
 
 def get_filelist(dataset_name):
@@ -226,7 +237,13 @@ def get_filelist(dataset_name):
         return test105
     elif dataset_name == "aa23":
         return aa23
-    elif dataset_name == "alphablackcat":
-        return alphablackcat
     elif dataset_name == "d2test":
         return d2test
+    elif dataset_name == "aa23_341a":
+        return aa23_341a
+    elif dataset_name == "aa24_046a":
+        return aa24_046a
+    elif dataset_name == "alphvblackcat":
+        return alphvblackcat
+    elif dataset_name == "phobosransomware":
+        return phobosransomware

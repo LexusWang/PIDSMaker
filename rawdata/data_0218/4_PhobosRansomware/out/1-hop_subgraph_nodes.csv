@@ -1,0 +1,124 @@
+373ffb10-be01-4ab3-a03e-8df873a0dcd5,{'file': '\\Device\\HarddiskVolume1\\Windows\\System32\\winspool.drv'},236
+efc8e9cd-038a-4290-9d7d-6cc4a9e1c702,{'subject': 'C:\\Windows\\Explorer.EXE'},286
+d0bedf01-a23c-439b-8733-62a2eba50520,"{'subject': '""C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"" --no-startup-window'}",341
+b2149f66-e885-4e67-991c-ffb62befc963,"{'subject': '""C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --no-pre-read-main-dll --startup-read-main-dll --metrics-shmem-handle=2380'}",345
+6ceae84c-3624-4b1a-b58a-24c11f0a00db,{'file': 'i:WofCompressedDat'},599
+ea67f9a5-7457-4a87-90ac-bcc5949e685c,{'file': 'C:\\Users\\victim\\Desktop\\desktop.ini'},600
+e02ab5d2-48c2-4dbc-80c8-067e23c8217a,{'file': 'C:\\Users\\victim\\Documents\\desktop.ini'},601
+af2d1fc1-2d41-4006-b65b-5edb2a4783bc,{'file': 'C:\\Users\\victim\\Music\\desktop.ini'},602
+6e1cbe73-19e2-491e-9766-eb025080775f,{'file': 'C:\\Users\\victim\\Pictures\\desktop.ini'},603
+bd87a822-b961-4a2a-9d6e-a9bbfebfa4a9,{'file': 'C:\\Users\\victim\\Videos\\desktop.ini'},604
+a5f1ff09-4240-43be-8c6e-fe9aa85546ae,{'file': 'C:\\Users\\victim\\Downloads\\desktop.ini'},605
+7d14e548-4efd-4bf6-84e7-cd3228eff8ef,{'file': 'C:\\Users\\victim\\OneDrive\\desktop.ini'},606
+ac087386-cc0d-4498-b21f-460c4ece45e7,{'netflow': '192.168.56.102:57292->192.168.56.101:16415'},807
+eb5c9e70-a67d-4db4-874d-1c521d93a081,{'netflow': '192.168.56.102:57548->192.168.56.101:16415'},825
+399d27d1-00ba-4b6f-ae9a-92663a006c3d,{'netflow': '192.168.56.102:57804->192.168.56.101:16415'},826
+f7485dc6-43cf-4065-b20c-f1c1ec3ee6b6,{'netflow': '192.168.56.102:58828->192.168.56.101:16415'},864
+5e74fbff-750d-40f6-8b84-d2c51c71f202,{'netflow': '192.168.56.102:59084->192.168.56.101:16415'},865
+87572acf-85a5-4863-a64a-1a4f9e7a0c0b,{'netflow': '192.168.56.102:59596->192.168.56.101:16415'},869
+96df45e8-4238-4070-a847-6b6a0bf68a6d,{'netflow': '192.168.56.102:59852->192.168.56.101:16415'},870
+0168ec71-b437-4bad-829b-e7a8f9211c4f,{'file': 'C:\\Users\\victim\\Downloads\\未确认 948164.crdownload'},890
+637499a9-c1ff-4436-b763-cc0067cd9010,{'file': 'C:\\Users\\victim\\Downloads\\REASONABLE_GRASS.dll'},915
+e88c4fc3-e73e-4c65-b084-6c5896000bf8,{'file': '\\Device\\Mup\\;VBoxMiniRdr\\'},944
+8eb693dc-6738-4a06-bbbd-af6d9569c698,{'file': 'conhost.exe'},977
+2106ee4f-f2fb-4374-9c8e-c28039c5aa92,{'file': 'cmd.exe'},983
+5307bff3-0cec-4c04-90d4-8aa56d192a4c,{'file': 'C:\\Windows\\System32\\cmd.exe'},984
+064bf9f2-29de-4bcc-baf0-07295ce58a74,{'file': 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'},1645
+cd6f9fcf-18aa-4f42-9761-dbe72a90404b,{'file': 'powershell.exe'},1647
+b2139d89-4a69-4a9d-a4ce-e5e8ccd8a6c0,{'file': 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe.config'},1649
+641fcc54-fb4c-4531-aed9-13cee56cfd27,{'file': 'C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Config\\machine.config'},1650
+05be213e-0691-4ce8-94c2-0cf2cb74063c,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\mscorlib\\6078762b90671c2ff9ba39318e2176d8\\mscorlib.ni.dll.aux'},1651
+2f7bdf8f-4e19-466d-85b0-543e22f5b0da,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\mscorlib\\6078762b90671c2ff9ba39318e2176d8\\mscorlib.ni.dll'},1652
+bc80cfbf-988b-48d8-a5bb-5b0dbf8121b9,{'file': 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe.Config'},1653
+004b26a0-5717-4595-8bde-dfa00e41af25,{'file': 'C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\config\\machine.config'},1654
+9122a9fe-8f82-49cb-ac06-ee737c750436,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\Microsoft.Pb378ec07#\\b544be25f624a3b9d2f98e8788f0acf8\\Microsoft.PowerShell.ConsoleHost.ni.dll.aux'},1655
+2b4f78b1-a167-4646-a7cc-e13abec00dc1,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Manaa57fc8cc#\\65ad3055b627c2179fb80d620e7f835d\\System.Management.Automation.ni.dll.aux'},1657
+83c5a030-6110-4273-918f-fd311d007d38,{'file': 'C:\\Windows\\Microsoft.Net\\assembly\\GAC_MSIL\\System.Management.Automation\\v4.0_3.0.0.0__31bf3856ad364e35\\System.Management.Automation.dll'},1658
+83962e7e-a3a8-46db-9115-885bea69c014,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System\\b187b7f31cee3e87b56c8edca55324e0\\System.ni.dll.aux'},1660
+9226d198-e337-4dc0-8871-f6df63245573,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Core\\570b7aac439a9e98f47d508ba4ab1330\\System.Core.ni.dll.aux'},1662
+9b34f9d5-0fa0-4262-b576-3bf35b621472,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\Microsoft.Mf49f6405#\\b79ea37bb757f47a2487170103f96214\\Microsoft.Management.Infrastructure.ni.dll.aux'},1665
+a61d4d11-8842-4f74-a9c8-5519073c19a2,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Numerics\\ce1e4670373608336100bea63bbc8990\\System.Numerics.ni.dll.aux'},1666
+230d47b5-e1a4-41b2-aac8-0219bd9e9d22,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Xml\\db3df155ec9c0595b0198c4487f36ca1\\System.Xml.ni.dll.aux'},1667
+2f018020-7969-49f0-afd7-caf27993ac19,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Dired13b18a9#\\e9e64b91c0e4559f01e50ac43ffb9a2a\\System.DirectoryServices.ni.dll.aux'},1668
+c3e68a05-03a1-4fa3-891c-b03ce5180820,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Management\\8af759007c012da690062882e06694f1\\System.Management.ni.dll.aux'},1670
+1fe8447d-76aa-4387-876b-cb582beb7f19,{'file': 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\Modules\\Microsoft.PowerShell.Utility\\Microsoft.PowerShell.Utility.psm1'},1672
+11b6f1a4-cff5-42bb-b9b2-c5dbf68de86e,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Data\\81e16f376ae576af01d03f568d0eb7c7\\System.Data.ni.dll.aux'},1675
+02f200ba-4203-4332-b8e1-d4d1bb118c47,{'file': 'C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\clrjit.dll'},1678
+320c34bc-7cf6-4786-b0a7-8cce54e0d50d,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Configuration\\5f4650136157b1ab3ef2655cd0808eee\\System.Configuration.ni.dll.aux'},1681
+10398c9d-3713-495a-ba10-947082300fcf,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\Microsoft.P6f792626#\\e5e6eb1d6846fdcdee4320a83bef1e52\\Microsoft.PowerShell.Security.ni.dll.aux'},1682
+d7588e36-bd31-4514-a32f-d4234db3e9d5,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Transactions\\ce574ae4e11a47e97df21426503a82c9\\System.Transactions.ni.dll.aux'},1683
+c2210e52-a397-4bb1-9c3b-6d4265590cc3,{'file': 'C:\\Users\\victim\\AppData\\Local\\Microsoft\\Windows\\PowerShell\\ModuleAnalysisCache'},1688
+5b712027-eb26-4e03-9328-9a0bc04e4159,{'file': 'C:\\Program Files\\WindowsPowerShell\\Modules\\Microsoft.PowerShell.Operation.Validation\\1.0.1\\Microsoft.PowerShell.Operation.Validation.psd1'},1689
+e3e3bfa3-ba24-489e-9f17-eeac7a206c9c,{'file': 'C:\\Program Files\\WindowsPowerShell\\Modules\\PackageManagement\\1.0.0.1\\PackageManagement.psd1'},1690
+d3d60c0a-d229-453c-a516-57db2d2bbae4,{'file': 'C:\\Program Files\\WindowsPowerShell\\Modules\\Pester\\3.4.0\\Pester.psd1'},1691
+692ae70a-2ffc-44bd-8172-ddaf125b05cb,{'file': 'C:\\Program Files\\WindowsPowerShell\\Modules\\Pester\\3.4.0\\Pester.psm1'},1692
+c76879c9-c889-4299-b757-a5f5d599abee,{'file': 'C:\\Program Files\\WindowsPowerShell\\Modules\\PowerShellGet\\1.0.0.1\\PowerShellGet.psd1'},1694
+50d69d43-3545-4dd1-85fd-09e0299ba01d,{'file': 'C:\\Program Files\\WindowsPowerShell\\Modules\\PowerShellGet\\1.0.0.1\\PSModule.psm1'},1695
+01996f26-6e7b-4296-bdd3-522c043313f5,{'file': 'C:\\Program Files\\WindowsPowerShell\\Modules\\PSReadline\\2.0.0\\PSReadline.psd1'},1696
+d65ae5c6-dc31-4b6f-988a-9c0f11fdd5fa,{'file': 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\Microsoft.PowerShell.Utility\\Microsoft.PowerShell.Utility.psd1'},1697
+48a32b70-9ad1-4c4d-a1be-781881de3f3a,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\Microsoft.P521220ea#\\13ba5d4f4a12b25a15d07feb275cb6f0\\Microsoft.PowerShell.Commands.Utility.ni.dll.aux'},1698
+3fc20111-5745-4560-926c-7c3afdcf67fd,{'file': 'C:\\Windows\\Microsoft.Net\\assembly\\GAC_MSIL\\Microsoft.PowerShell.Commands.Utility\\v4.0_3.0.0.0__31bf3856ad364e35\\Microsoft.PowerShell.Commands.Utility.dll'},1699
+d4f4c13a-35c3-4be0-b642-728259d07143,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Confe64a9051#\\434f871c532673e1359654ad68a1c225\\System.Configuration.Install.ni.dll.aux'},1700
+a57cffd8-a26d-4c62-b6ea-de8b03cece14,{'file': 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\Microsoft.PowerShell.Utility\\Microsoft.PowerShell.Utility.psm1'},1702
+da7bd8ba-8602-4c3f-9470-66c8add515a6,{'file': 'C:\\Users\\victim\\AppData\\Local\\Microsoft\\Windows\\PowerShell\\StartupProfileData-NonInteractive'},1705
+d49621b1-0de0-4f3e-a43b-1e81b305ae81,{'file': 'C:\\Windows\\system32\\regsvr32.exe'},1776
+245d5d4d-88ca-4255-8494-09603689f98c,{'subject': 'regsvr32  C:\\Users\\victim\\Downloads\\REASONABLE_GRASS.dll'},1777
+8221a047-6b06-4327-97e1-40ce8f94f168,{'file': 'C:\\Windows\\System32\\regsvr32.exe'},1779
+75dfaadf-8662-408f-bbb4-4d3e19706b50,{'netflow': '192.168.56.102:63692->192.168.56.101:53764'},1780
+71a7fec3-d768-4498-af92-cd2bce53be4e,{'file': 'C:\\Windows\\system32\\whoami.exe'},1782
+9488880a-04c7-4565-ad9b-e4fbcad31563,{'file': 'whoami.exe'},1784
+a0f4deeb-b266-47e9-a0e8-be7105be62f7,{'netflow': '192.168.56.102:64716->192.168.56.101:16415'},1834
+9ed406b4-d9a4-4d6d-920f-96638b334ec7,{'netflow': '192.168.56.102:64972->192.168.56.101:16415'},1835
+8c6c96a8-3cba-4066-a154-e43e5e9a20a8,{'netflow': '192.168.56.102:65228->192.168.56.101:16415'},1836
+c39a4d78-cdc3-4096-9efd-0cfdd5241649,{'file': 'C:\\Users\\victim\\Downloads\\未确认 23274.crdownload'},2356
+8843fb93-af95-4ba6-941c-6948c292efcd,{'file': 'C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe'},2705
+a46b38b6-90ab-44bf-9615-2e13b648e26b,"{'subject': 'powershell.exe -Command ""New-Item -ItemType Directory -path \\""$env:APPDATA\\Microsoft\\Windows\\Update\\\\\\""""'}",7052
+5174d10d-4944-4cd0-91c3-9f2f9e0934d4,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_m4uphrry.vdu.ps1'},7083
+cbec74a9-1591-44ca-aaec-e0d875161309,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_iwrprqlv.wyg.psm1'},7084
+126ab297-4569-49b3-bf3a-a2ec1177ceef,{'file': 'C:\\Users\\victim\\Desktop\\x64\\powershelloutput\\20260306\\PowerShell_transcript.WIN10-BASIC-TAR.yEDuFSSZ.20260306203019.txt'},7129
+6e90d057-e0cc-4839-885c-c1623ac1e359,{'file': 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\Microsoft.PowerShell.Management\\Microsoft.PowerShell.Management.psd1'},7174
+6267348e-369a-43da-bafc-f734632b0024,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\Microsoft.Pae3498d9#\\540be536249c14bcd4d722f9edf5d2b8\\Microsoft.PowerShell.Commands.Management.ni.dll.aux'},7176
+7569a665-a3ff-4143-8fd2-18efeaa5a442,{'file': 'C:\\Windows\\Microsoft.Net\\assembly\\GAC_MSIL\\Microsoft.PowerShell.Commands.Management\\v4.0_3.0.0.0__31bf3856ad364e35\\Microsoft.PowerShell.Commands.Management.dll'},7177
+4d7de498-6fe8-4881-a9f2-f5e23e62e1a8,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Serv759bfb78#\\e2ca4e2ddffdc0d0bda3f2ca65249790\\System.ServiceProcess.ni.dll.aux'},7180
+92bffa46-d607-4592-9eb3-2e7117285c7f,{'file': 'C:\\Windows\\Microsoft.Net\\assembly\\GAC_MSIL\\System.ServiceProcess\\v4.0_4.0.0.0__b03f5f7f11d50a3a\\System.ServiceProcess.dll'},7181
+c5cdf522-199e-4fe1-8775-6fed96488019,{'file': 'C:\\Windows\\assembly\\NativeImages_v4.0.30319_64\\System.Windows.Forms\\8162fd84baf0b737d3f6b4a159c8fcf0\\System.Windows.Forms.ni.dll.aux'},7184
+d9846f57-9add-4fb6-bc89-b5784b0da435,{'file': 'C:\\Windows\\Microsoft.Net\\assembly\\GAC_MSIL\\System.Windows.Forms\\v4.0_4.0.0.0__b77a5c561934e089\\System.Windows.Forms.dll'},7185
+834e9c5b-9489-47de-b2b5-fe8f4c13a017,"{'subject': 'powershell.exe -Command ""Copy-Item -path \\""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe\\"" -destination \\""$env:APPDATA\\Microsoft\\Windows\\Update\\\\\\""""'}",7209
+6a332abb-2733-4367-9985-d825dc771568,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_pd212v2r.lwk.ps1'},7221
+e407568d-6e7e-4bce-be21-1fd7a0f9714d,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_15kefh5m.ttl.psm1'},7222
+113daecb-6d98-40ef-b071-163a84ca157c,{'file': 'C:\\Users\\victim\\Desktop\\x64\\powershelloutput\\20260306\\PowerShell_transcript.WIN10-BASIC-TAR.+ESFgenD.20260306203021.txt'},7249
+294dcaa6-1435-457b-9af5-97acf918e9ba,{'file': 'e:SmartScreen:$DAT'},7288
+5f214d1b-0199-4b60-8abe-417962bf7a36,{'file': 'e:Zone.Identifier:$DAT'},7289
+9ecc26ac-44c3-4242-bca0-13361763d1f4,"{'subject': 'powershell.exe -Command ""Set-ItemProperty -Path  \\""HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\"" -Name \\""Startup\\"" -Value \\""$env:APPDATA\\Microsoft\\Windows\\Update\\\\\\""""'}",7299
+b7ee74e3-ea08-4fa7-8188-f57c17e8f35f,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_5eykrctl.gp1.ps1'},7309
+ba5a01c7-d583-45e6-800d-b149a73391de,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_5xfklg4y.tnw.psm1'},7310
+a88c9705-5c3a-4945-887b-0063b31d836b,{'file': 'C:\\Users\\victim\\Desktop\\x64\\powershelloutput\\20260306\\PowerShell_transcript.WIN10-BASIC-TAR.YukTKqqD.20260306203022.txt'},7361
+661791d2-3887-475f-90f8-083e6b6dae6c,"{'subject': 'powershell.exe -Command ""New-Item \\""HKCU:\\software\\classes\\ms-settings\\shell\\open\\command\\"" -Force""'}",8087
+c04fd0ab-24a8-4c7b-b181-6be36f4bb09e,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_jyf3mwsg.2pi.ps1'},8099
+0ccfb280-6d05-4a4e-97ef-aa937d7c3627,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_te1m243t.3pk.psm1'},8100
+2fe1035a-1eec-42dd-9770-f35ae855c70d,{'file': 'C:\\Users\\victim\\Desktop\\x64\\powershelloutput\\20260306\\PowerShell_transcript.WIN10-BASIC-TAR.7pFSTsYx.20260306203035.txt'},8136
+d10d9508-dd97-4bc8-b763-3df874e80d7a,"{'subject': 'powershell.exe -Command ""New-ItemProperty \\""HKCU:\\software\\classes\\ms-settings\\shell\\open\\command\\"" -Name \\""DelegateExecute\\"" -Value \\""\\"" -Force""'}",8213
+67ee266f-728f-46f6-b266-54e346233b35,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_ukdc4vb1.0k3.ps1'},8230
+4e976260-3531-434e-9e3e-ac487fdb7749,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_x4sdjc1w.suq.psm1'},8231
+4b8b39b7-d83e-4a15-8391-b35d27981637,{'file': 'C:\\Users\\victim\\Desktop\\x64\\powershelloutput\\20260306\\PowerShell_transcript.WIN10-BASIC-TAR.UH6I4Qev.20260306203036.txt'},8283
+6dacfb76-d4c6-4c60-8435-2cb3e3815b6a,"{'subject': 'powershell.exe -Command ""Set-ItemProperty \\""HKCU:\\software\\classes\\ms-settings\\shell\\open\\command\\"" -Name \\""(default)\\"" -Value \\""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe\\"" -Force""'}",8337
+f2994bb7-0b1a-48ef-8887-2a75d41539ff,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_tdqpbpoz.bkb.ps1'},8350
+4eced36a-d158-4a5f-a871-0e7b0d70d959,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_hbfgd1m5.mny.psm1'},8351
+c631a70c-7e85-4168-bb73-ae984a4f24ae,{'file': 'C:\\Users\\victim\\Desktop\\x64\\powershelloutput\\20260306\\PowerShell_transcript.WIN10-BASIC-TAR.K+IIk4xW.20260306203038.txt'},8396
+7c7166d2-1f53-4421-a16e-ee9a8492baca,"{'subject': 'powershell.exe -Command ""Start-Process \\""C:\\Windows\\System32\\ComputerDefaults.exe\\""""'}",8445
+2e72df17-a225-4366-b8a4-3cb7ba1d6375,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_gidwdefz.5ro.ps1'},8465
+8abf13c5-5947-4e71-9f87-7b3eb714e5e2,{'file': 'C:\\Users\\victim\\AppData\\Local\\Temp\\__PSScriptPolicyTest_h2pf4txf.cyw.psm1'},8466
+055ba94c-b316-4f60-9d76-7c6cc0409c46,{'file': 'C:\\Users\\victim\\Desktop\\x64\\powershelloutput\\20260306\\PowerShell_transcript.WIN10-BASIC-TAR.bkfsuEZZ.20260306203039.txt'},8499
+1be30263-1d13-4310-8567-6ed65a850551,{'file': 'C:\\Windows\\System32\\ComputerDefaults.exe'},8554
+3fb35a1a-8e3d-4e87-941f-bc1571a8ad52,"{'subject': '""C:\\Windows\\System32\\ComputerDefaults.exe"" '}",8555
+e04abbd5-bc0e-4ec3-ad9f-22f8476edfff,{'file': 'ComputerDefaults.exe'},8556
+6bd8f874-a639-4a60-bee1-3699c31d98c1,"{'subject': '""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe"" '}",8568
+0fc879d2-0ed8-412d-9c82-efd8855f9311,{'file': 'PERFECT_AGLET.exe'},8569
+788c01fb-6648-43ee-ad91-bddd1a6cce6d,{'netflow': '192.168.56.102:717->192.168.56.101:10505'},8581
+b085d1af-3c4c-4161-9cb9-ea1c932d0272,{'subject': 'consent.exe 9988 384 000001D65B458520'},10418
+a615f938-7ba2-4c03-b34a-673c878f2b8f,"{'subject': '""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe"" '}",10453
+712f4eeb-c116-47a9-b20b-c1767f7e1cd7,{'netflow': '192.168.56.102:1741->192.168.56.101:10505'},10454
+333e8522-2579-496a-b590-2f07cd47afc5,"{'subject': 'cmd.exe /c ""wmic.exe shadowcopy delete""'}",10645
+1d99b342-14c7-4ca6-a88c-ac5baed5a5d1,{'file': 'C:\\Windows\\System32\\wbem\\WMIC.exe'},10647
+c005f8d8-3c83-41d9-aadf-d92c4b68965b,{'file': 'WMIC.exe'},10649
+27e3daad-c4cf-4c46-9872-5ed5282abb6a,{'file': 'C:\\Windows\\System32\\Wbem\\WMIC.exe'},10650

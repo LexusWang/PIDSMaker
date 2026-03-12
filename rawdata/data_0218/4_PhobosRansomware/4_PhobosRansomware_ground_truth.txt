@@ -1,0 +1,37 @@
+192.168.56.101
+REASONABLE_GRASS.dll
+PERFECT_AGLET.exe
+{"logType": "NODE", "logData": {"id": "245d5d4d-88ca-4255-8494-09603689f98c", "type": "SUBJECT_PROCESS", "pid": 10144, "ppid": 4128, "cmdLine": "regsvr32  C:\\Users\\victim\\Downloads\\REASONABLE_GRASS.dll", "processName": "regsvr32.exe"}}
+New-Item
+Copy-Item
+Set-ItemProperty
+New-ItemProperty
+Set-ItemProperty
+Start-Process
+{"logType": "NODE", "logData": {"id": "333e8522-2579-496a-b590-2f07cd47afc5", "type": "SUBJECT_PROCESS", "pid": 10288, "ppid": 8440, "cmdLine": "cmd.exe /c \"wmic.exe shadowcopy delete\"", "processName": "cmd.exe"}}
+arp -a
+Get-Process
+SCHTASKS /Create /SC ONCE /TN spawn /TR C:\\windows\\system32\\cmd.exe /ST 1636
+bcdedit /set safeboot network
+DisableSecuritySettings
+DisableRealtimeMonitoring
+DisableBehaviorMonitoring
+DisableScriptScanning
+DisableBlockAtFirstSeen
+DisableAntiSpyware
+DisableAntiVirus
+DisableIntrusionPreventionSystem
+DisableIOAVProtection
+DisableOnAccessProtection
+DisableRoutinelyTakingAction
+DisableScanOnRealtimeEnable
+DisableEnhancedNotifications
+SpynetReporting
+MpEnablePus
+DisallowExploitProtectionOverride
+TamperProtection
+SubmitSamplesConsent
+PUAProtection
+RemoveDefinitions
+DisableLockWorkstation
+

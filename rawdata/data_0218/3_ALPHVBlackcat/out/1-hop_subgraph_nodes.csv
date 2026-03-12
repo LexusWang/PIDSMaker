@@ -1,0 +1,39 @@
+0bab7009-bb09-40fc-a3a2-e87c239e4ffd,{'file': '\\Device\\HarddiskVolume1\\Windows\\System32\\winspool.drv'},222
+22f52d2c-ba66-4e65-9e71-d903e1d2d1e0,{'subject': 'C:\\Windows\\Explorer.EXE'},986
+6fb0a986-a9c7-4385-bbf0-959683e1c3ac,"{'subject': '""C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"" --no-startup-window'}",1017
+3ea96664-859b-4e98-9e6c-9aa174024063,"{'subject': '""C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --no-pre-read-main-dll --startup-read-main-dll --metrics-shmem-handle=2380'}",1021
+de7679c5-72f6-4926-9d07-9a189815d7ad,{'file': 'i:WofCompressedDat'},1076
+a0f8d514-ed28-460c-b344-ae3e4c0abb5c,{'file': 'conhost.exe'},1092
+aed7883d-f097-49fc-b3e8-a7eb30222fda,{'netflow': '192.168.56.102:50380->192.168.56.101:16415'},1268
+cbe5aaa0-06e1-4314-ac20-12ded09716a6,{'netflow': '192.168.56.102:50636->192.168.56.101:16415'},1286
+a2097189-efb6-451d-8fd7-a6704e42031e,{'netflow': '192.168.56.102:50892->192.168.56.101:16415'},1287
+e28bdfe5-8b42-4972-9ea4-4f5be3900837,{'netflow': '192.168.56.102:51916->192.168.56.101:16415'},1323
+e750c29f-d4eb-44ae-bfec-79002c56f836,{'netflow': '192.168.56.102:52172->192.168.56.101:16415'},1324
+da053f9e-8065-4e1a-b776-2b94e614852a,{'netflow': '192.168.56.102:52428->192.168.56.101:16415'},1342
+2092b463-132c-414b-8803-b8a4237777fe,{'netflow': '192.168.56.102:52684->192.168.56.101:16415'},1343
+e0381694-372e-4911-a10f-69c6d2c195ba,{'netflow': '192.168.56.102:52940->192.168.56.101:16415'},1346
+288e169a-c905-47f4-ac4e-a2b186df566c,{'file': 'C:\\Users\\victim\\Downloads\\未确认 172669.crdownload'},1354
+5571eec4-a252-4b84-988b-32364547eb9e,{'file': 'C:\\Users\\victim\\Downloads\\AESTHETIC_PACKET.dll'},1375
+02523a28-c90d-4ce5-b9a4-1faf4a7a572a,{'file': 'cmd.exe'},1441
+533d7dfe-496a-4729-9fba-6550263002e0,{'file': 'C:\\Windows\\System32\\cmd.exe'},1442
+6dd113f8-f249-4e03-a4f5-972be02c07fe,{'file': 'C:\\Windows\\Prefetch\\CMD.EXE-89305D47.pf'},2187
+62ad3d2a-5588-48db-9b68-541b737c35d2,{'file': 'C:\\Windows\\system32\\regsvr32.exe'},2195
+60c27527-60ef-4b32-9848-95031d7232d4,{'subject': 'regsvr32  C:\\Users\\victim\\Downloads\\AESTHETIC_PACKET.dll'},2196
+c85821e9-61c8-46fd-81f2-047ddf3b6d0a,{'file': 'C:\\Windows\\System32\\regsvr32.exe'},2198
+3c02884d-ebdd-4235-a0fd-64b2b9c3e08f,{'netflow': '192.168.56.102:56268->192.168.56.101:2586'},2199
+ac032073-7a05-40cd-b5f5-f08e1a8d9719,{'file': 'C:\\Windows\\system32\\whoami.exe'},2204
+e601dd55-52ee-461b-aab9-a58b11ea4247,{'file': 'whoami.exe'},2206
+8f8daa25-b4b1-4e01-9ffe-5d9b74a31624,{'netflow': '192.168.56.102:14797->192.168.56.101:16415'},50694
+9aebbdfd-4b99-40f2-9632-49d254004428,{'netflow': '192.168.56.102:15053->192.168.56.101:16415'},50695
+fa6427ae-452f-48e1-a520-53494724a0ca,{'netflow': '192.168.56.102:15309->192.168.56.101:16415'},50696
+eb604f70-7965-4f3c-9c2c-0d8de80c6332,{'file': 'C:\\Users\\victim\\Downloads\\未确认 530533.crdownload'},50700
+4c233568-ec57-4eb2-a8a4-3ead0ddb1d28,{'file': 'C:\\Users\\victim\\Downloads\\VITAL_SQUASH.exe'},50706
+ac2474bc-8387-4540-b78d-7aa99768570f,"{'subject': 'cmd.exe /c ""REG ADD \\""HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\"" /V \\""Atomic Red Team\\"" /t REG_SZ /F /D \\""C:\\Users\\victim\\Downloads\\VITAL_SQUASH.exe\\""""'}",50712
+74b1343c-0ecb-46bb-a97c-a6e105ecb823,{'file': 'C:\\Windows\\System32\\reg.exe'},50714
+7accf6cc-69f9-4e32-86bb-60462b80f09d,"{'subject': 'REG  ADD \\""HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\"" /V \\""Atomic Red Team\\"" /t REG_SZ /F /D \\""C:\\Users\\victim\\Downloads\\VITAL_SQUASH.exe\\""'}",50715
+00f433cd-a05b-4bce-b54a-2c23734c9554,{'file': 'reg.exe'},50716
+d340553d-3c2d-4528-ba63-3b8bae99af2e,{'file': 'C:\\Windows\\System32\\en-US\\reg.exe.mui'},50717
+65b22e74-2a70-4523-b0f9-e40bcf855c75,{'subject': 'consent.exe 9988 378 000001D65B458BA0'},50742
+edaeab67-db78-465b-a1bc-bf81e810fcdb,"{'subject': '""C:\\Users\\victim\\Downloads\\VITAL_SQUASH.exe"" '}",50744
+7b7b25ac-1f99-44d3-99df-b25d1f0e3f4f,{'file': 'VITAL_SQUASH.exe'},50745
+ada70720-5abd-434f-b6fb-8cef32e6948b,{'netflow': '192.168.56.102:16845->192.168.56.101:2586'},50746

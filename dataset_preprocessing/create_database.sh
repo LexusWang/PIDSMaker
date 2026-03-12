@@ -11,8 +11,8 @@ DATASET_NAME=$(echo "$1" | tr '[:upper:]' '[:lower:]')  # Convert to lowercase
 
 # PostgreSQL commands
 psql -U postgres <<EOF
-CREATE DATABASE $DATASET_NAME;
-\c $DATASET_NAME;
+CREATE DATABASE "$DATASET_NAME";
+\c "$DATASET_NAME";
 
 CREATE TABLE event_table (
     src_node VARCHAR,
