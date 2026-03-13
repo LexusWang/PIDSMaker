@@ -16,6 +16,7 @@ services:
       - ./:/home/pids
       - ${ARTIFACTS_DIR:-/home/artifacts}:/home/artifacts
       # - /path/to/raw/data:/data
+      - ./rawdata:/rawdata
     stdin_open: true
     tty: true
     deploy:

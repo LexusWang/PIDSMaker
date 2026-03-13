@@ -32,6 +32,9 @@ from pidsmaker.utils.dataset_utils import (
     get_num_edge_type,
     get_rel2id,
     possible_events,
+    possible_events_provattack,
+    get_possible_events,
+    get_rel2id_considering_triplets,
 )
 from pidsmaker.utils.utils import get_multi_datasets, log_dataset_stats, log_tqdm
 
@@ -219,8 +222,7 @@ def extract_msg_from_data(
             map(lambda x: x.strip(), selected_node_feats.replace("-", ",").split(","))
         )
 
-    edge_features = list(map(lambda x: x.strip(), cfg.batching.edge_features.split(",")))
-    possible_triplets = get_possible_triplets(cfg) if "edge_type_triplet" in edge_features else None
+    possible_triplets = get_possible_triplets(cfg)
 
     for g in data_set:
         fields = {}
@@ -272,6 +274,9 @@ def extract_msg_from_data(
         else:
             msg = torch.cat([x_src, x_dst, fields["edge_type"]], dim=-1)
 
+        edge_features = list(
+            map(lambda x: x.strip(), cfg.batching.edge_features.split(","))
+        )
         num_edge_types = get_num_edge_type(cfg)
         edge_feats = build_edge_feats(fields, msg, edge_features, possible_triplets, num_edge_types)
 
@@ -307,12 +312,28 @@ def get_possible_triplets(cfg):
     entity_map = get_node_map(from_zero=True)
     event_map = get_rel2id(cfg, from_zero=True)
 
+    possible_events_ = get_possible_events(cfg)
+
     possible_triplets = [
         [entity_map[src_type], entity_map[dst_type], event_map[event]]
-        for (src_type, dst_type), events in possible_events.items()
+        for (src_type, dst_type), events in possible_events_.items()
         for event in events
     ]
     return torch.tensor(possible_triplets, dtype=torch.long)
+
+# def get_possible_triplets(cfg):
+#     entity_map = get_node_map(from_zero=True)
+#     pe = get_possible_events(cfg)
+
+#     rel = get_rel2id_considering_triplets(cfg)      # id -> event_name, id from 1
+#     event_map = {name: idx-1 for idx, name in rel.items()}  # event_name -> id from 0
+
+#     possible_triplets = [
+#         [entity_map[src_type], entity_map[dst_type], event_map[event]]
+#         for (src_type, dst_type), events in pe.items()
+#         for event in events
+#     ]
+#     return torch.tensor(possible_triplets, dtype=torch.long)
 
 
 def get_triplet_edge_types(src_type, dst_type, edge_type, possible_triplets, num_edge_types):

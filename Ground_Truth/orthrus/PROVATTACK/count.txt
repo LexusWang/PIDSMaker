@@ -1,0 +1,443 @@
+Log1
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 21608
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 54480
+TOTAL_EVENT_LINES: 54480
+TOTAL_LINES_READ (approx): 76088
+
+✅ 第一条 EVENT 时间戳: 1751604673219833088
+→ 转换后: 2025-07-04 12:51:13.219833 +0800
+✅ 最后一条 EVENT 时间戳: 17516130790701400
+→ 转换后: 2025-07-04 15:11:19.070140 +0800
+
+Log2
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 3114
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 8570
+TOTAL_EVENT_LINES: 8570
+TOTAL_LINES_READ (approx): 11684
+
+✅ 第一条 EVENT 时间戳: 1751614840251271680
+→ 转换后: 2025-07-04 15:40:40.251272 +0800
+✅ 最后一条 EVENT 时间戳: 1751615929300354048
+→ 转换后: 2025-07-04 15:58:49.300354 +0800
+
+Log3
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 461962
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 987122
+TOTAL_EVENT_LINES: 987122
+TOTAL_LINES_READ (approx): 1449084
+
+✅ 第一条 EVENT 时间戳: 1751793187967965952
+→ 转换后: 2025-07-06 17:13:07.967966 +0800
+✅ 最后一条 EVENT 时间戳: 1751867150934168064
+→ 转换后: 2025-07-07 13:45:50.934168 +0800
+
+Log4
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 17360
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 72286
+TOTAL_EVENT_LINES: 72286
+TOTAL_LINES_READ (approx): 89646
+
+✅ 第一条 EVENT 时间戳: 1751867314919707904
+→ 转换后: 2025-07-07 13:48:34.919708 +0800
+✅ 最后一条 EVENT 时间戳: 1751878706108745216
+→ 转换后: 2025-07-07 16:58:26.108745 +0800
+
+Log5
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 17621
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 52982
+TOTAL_EVENT_LINES: 52982
+TOTAL_LINES_READ (approx): 70603
+
+✅ 第一条 EVENT 时间戳: 1751878794120923136
+→ 转换后: 2025-07-07 16:59:54.120923 +0800
+✅ 最后一条 EVENT 时间戳: 1751891542987866112
+→ 转换后: 2025-07-07 20:32:22.987866 +0800
+
+Log6
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 88387
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 373353
+TOTAL_EVENT_LINES: 373353
+TOTAL_LINES_READ (approx): 461740
+
+✅ 第一条 EVENT 时间戳: 1751891986736421376
+→ 转换后: 2025-07-07 20:39:46.736421 +0800
+✅ 最后一条 EVENT 时间戳: 557304949585
+→ 转换后: 2146-08-09 05:18:15.850000 +0800
+Actually:2025-07-08 12:06:41.071731 +0800
+
+Log7
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 18966
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 53672
+TOTAL_EVENT_LINES: 53672
+TOTAL_LINES_READ (approx): 72638
+
+✅ 第一条 EVENT 时间戳: 1751954076801936896
+→ 转换后: 2025-07-08 13:54:36.801937 +0800
+✅ 最后一条 EVENT 时间戳: 1751961263888123648
+→ 转换后: 2025-07-08 15:54:23.888124 +0800
+
+Log8
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 27294
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 135741
+TOTAL_EVENT_LINES: 135741
+TOTAL_LINES_READ (approx): 163035
+
+✅ 第一条 EVENT 时间戳: 1751961483549760512
+→ 转换后: 2025-07-08 15:58:03.549761 +0800
+✅ 最后一条 EVENT 时间戳: 175198462270175392
+→ 转换后: 2025-07-08 22:23:42.701754 +0800
+
+Log9
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 11999
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 26234
+TOTAL_EVENT_LINES: 26234
+TOTAL_LINES_READ (approx): 38233
+
+✅ 第一条 EVENT 时间戳: 1752045205478982912
+→ 转换后: 2025-07-09 15:13:25.478983 +0800
+✅ 最后一条 EVENT 时间戳: 175204915667481600
+→ 转换后: 2025-07-09 16:19:16.674816 +0800
+
+Log10
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 25154
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 78683
+TOTAL_EVENT_LINES: 78683
+TOTAL_LINES_READ (approx): 103837
+
+✅ 第一条 EVENT 时间戳: 1752057359955458816
+→ 转换后: 2025-07-09 18:35:59.955459 +0800
+✅ 最后一条 EVENT 时间戳: 1752068473667735808
+→ 转换后: 2025-07-09 21:41:13.667736 +0800
+
+Log11
+ESULT_NODE_COUNT (unique node ids from NODE.logData.id): 64212
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 192410
+TOTAL_EVENT_LINES: 192410
+TOTAL_LINES_READ (approx): 256622
+
+✅ 第一条 EVENT 时间戳: 1753699940055619600
+→ 转换后: 2025-07-28 18:52:20.055619 +0800
+✅ 最后一条 EVENT 时间戳: 1753769143143804160
+→ 转换后: 2025-07-29 14:05:43.143804 +0800
+
+Log12
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 4868
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 14219
+TOTAL_EVENT_LINES: 14219
+TOTAL_LINES_READ (approx): 19087
+
+✅ 第一条 EVENT 时间戳: 1753769798113232896
+→ 转换后: 2025-07-29 14:16:38.113233 +0800
+✅ 最后一条 EVENT 时间戳: 1753771642379904000
+→ 转换后: 2025-07-29 14:47:22.379904 +0800
+
+Log13
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 5357
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 14599
+TOTAL_EVENT_LINES: 14599
+TOTAL_LINES_READ (approx): 19956
+
+✅ 第一条 EVENT 时间戳: 1753773622633541888
+→ 转换后: 2025-07-29 15:20:22.633542 +0800
+✅ 最后一条 EVENT 时间戳: 1753774952394794496
+→ 转换后: 2025-07-29 15:42:32.394794 +0800
+
+Log14
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 13570
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 55538
+TOTAL_EVENT_LINES: 55538
+TOTAL_LINES_READ (approx): 69108
+
+✅ 第一条 EVENT 时间戳: 1753777311459126016
+→ 转换后: 2025-07-29 16:21:51.459126 +0800 
+✅ 最后一条 EVENT 时间戳: 175378669244712704
+→ 转换后: 2025-07-29 18:58:12.447127 +0800 
+
+Log15
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 41065
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 87250
+TOTAL_EVENT_LINES: 87250
+TOTAL_LINES_READ (approx): 128315
+
+✅ 第一条 EVENT 时间戳: 1753869485255197400
+→ 转换后: 2025-07-30 17:58:05.255198 +0800
+✅ 最后一条 EVENT 时间戳: 1753879852502526976
+→ 转换后: 2025-07-30 20:50:52.502527 +0800
+
+Log16
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 36402
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 108795
+TOTAL_EVENT_LINES: 108795
+TOTAL_LINES_READ (approx): 145197
+
+✅ 第一条 EVENT 时间戳: 1754273915142510592
+→ 转换后: 2025-08-04 10:18:35.142511 +0800
+✅ 最后一条 EVENT 时间戳: 1754285947623491072
+→ 转换后: 2025-08-04 13:39:07.623491 +0800
+
+Log17
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 17369
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 33966
+TOTAL_EVENT_LINES: 33966
+TOTAL_LINES_READ (approx): 51335
+
+✅ 第一条 EVENT 时间戳: 1754292921875573760
+→ 转换后: 2025-08-04 15:35:21.875574 +0800
+✅ 最后一条 EVENT 时间戳: 1754299459578539008
+→ 转换后: 2025-08-04 17:24:19.578539 +0800
+
+Log18
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 14301
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 27699
+TOTAL_EVENT_LINES: 27699
+TOTAL_LINES_READ (approx): 42000
+
+✅ 第一条 EVENT 时间戳: 1754465779482842112
+→ 转换后: 2025-08-06 15:36:19.482842 +0800
+✅ 最后一条 EVENT 时间戳: 1754466815426883072
+→ 转换后: 2025-08-06 15:53:35.426883 +0800
+
+Log19
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 125563
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 200868
+TOTAL_EVENT_LINES: 200868
+TOTAL_LINES_READ (approx): 326431
+
+✅ 第一条 EVENT 时间戳: 1755499938655988224
+→ 转换后: 2025-08-18 14:52:18.655988 +0800
+✅ 最后一条 EVENT 时间戳: 1755517954983261696
+→ 转换后: 2025-08-18 19:52:34.983262 +0800
+
+Log20
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 362583
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 516880
+TOTAL_EVENT_LINES: 516880
+TOTAL_LINES_READ (approx): 879463
+
+✅ 第一条 EVENT 时间戳: 1755576846800307968
+→ 转换后: 2025-08-19 12:14:06.800308 +0800
+✅ 最后一条 EVENT 时间戳: 1755583034447564544
+→ 转换后: 2025-08-19 13:57:14.447565 +0800
+------------------------------------------------------------------------
+Log21
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 34224
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 66542
+TOTAL_EVENT_LINES: 66542
+TOTAL_LINES_READ (approx): 100766
+
+✅ 第一条 EVENT 时间戳: 1755589196360523600
+→ 转换后: 2025-08-19 15:39:56.360523 +0800
+✅ 最后一条 EVENT 时间戳: 1755596325537113856
+→ 转换后: 2025-08-19 17:38:45.537114 +0800
+
+Techiniques:
+T1005	Data from Local System
+T1018	Remote System Discovery
+T1040	Network Service Discovery
+T1049	System Network Connections Discovery
+T1053.005	Scheduled Task/Job: Scheduled Task
+T1057	Process Discovery
+T1059.001	Command and Scripting Interpreter: PowerShell\n
+T1059.003	Command and Scripting Interpreter: Windows Command Shell\n
+T1069.001	Permission Groups Discovery: Local Groups
+T1069.002	Permission Groups Discovery: Domain Groups
+T1071.001	Application Layer Protocol - Web Protocols
+T1074.001	Data Staged: Local Data Staging
+R1082	System Information Discovery
+T1083	File and Directory Discovery
+T1087.002	Account Discovery: Domain Account
+T1105	Ingress Tool Transfer
+T1106	File System Permissions Modification
+T1112	Modify Registry
+T1113	Screen Capture
+T1124	System Time Discovery
+T1134	Access Token Manipulation
+T1135	Network Share Discovery
+T1203	Exploitation for Client Execution
+T1204.002	User Execution: Malicious File
+T1490	Inhibit System Recovery
+T1543.003	Create or Modify System Process: Windows Service
+T1547.004	Boot or Logon Autostart Execution: Winlogon Helper DLL
+T1548.002	Abuse Elevation Control Mechanism: Bypass User Account Control
+T1562.001	Impair Defenses: Disable or Modify Tools
+T1562.009	Impair Defenses: Safe Mode Boot
+T1566.002	Phishing: Spearphishing Link
+T1620	Reflective Code Loading
+
+Tactics:
+Collection
+Command and Control
+Defense Evasion
+Discovery
+Execution
+Impact
+Initial Access
+Persistence
+Privilege Escalation
+
+------------------------------------------------------------------------
+Log22
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 15936
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 49031
+TOTAL_EVENT_LINES: 49031
+TOTAL_LINES_READ (approx): 64967
+
+✅ 第一条 EVENT 时间戳: 1756188439143845120
+→ 转换后: 2025-08-26 14:07:19.143845 +0800
+✅ 最后一条 EVENT 时间戳: 1756198234803561984
+→ 转换后: 2025-08-26 16:50:34.803562 +0800
+
+Techniques:
+T1005	Data from Local System
+T1053.005	Scheduled Task/Job: Scheduled Task
+T1057	Process Discovery
+T1059.001	Command and Scripting Interpreter: PowerShell
+T1059.003	Command and Scripting Interpreter: Windows Command Shell
+T1071.001	Application Layer Protocol - Web Protocols
+T1074.001	Data Staged: Local Data Staging
+T1087.002	Account Discovery: Domain Account
+T1105	Ingress Tool Transfer
+T1106 	File System Permissions Modification
+T1112	Modify Registry
+T1113	Screen Capture
+T1134	Access Token Manipulation
+T1204.002	User Execution: Malicious File
+T1490	Inhibit System Recovery
+T1547.001	Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder
+T1547.004	Boot or Logon Autostart Execution: Winlogon Helper DLL
+T1548.002	Abuse Elevation Control Mechanism: Bypass User Account Control
+T1562.001	Impair Defenses: Disable or Modify Tools
+T1562.009	Impair Defenses: Safe Mode Boot
+T1566.002	Phishing: Spearphishing Link
+T1620	Reflective Code Loading
+
+Tactics:
+Collection
+Command and Control
+Defense Evasion
+Discovery
+Execution
+Impact
+Initial Access
+Persistence
+Privilege Escalation
+------------------------------------------------------------------------
+Log23
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 664
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 750
+TOTAL_EVENT_LINES: 750
+TOTAL_LINES_READ (approx): 1414
+
+✅ 第一条 EVENT 时间戳: 1756204096146507776
+→ 转换后: 2025-08-26 18:28:16.146508 +0800
+✅ 最后一条 EVENT 时间戳: 1756204096146572544
+→ 转换后: 2025-08-26 18:28:16.146573 +0800
+
+Techniques:
+T1057	Process Discovery
+T1059.001	Command and Scripting Interpreter: PowerShell
+T1059.003	Command and Scripting Interpreter: Windows Command Shell
+T1071.001	Application Layer Protocol - Web Protocols
+T1074.001	Data Staged: Local Data Staging
+T1105	Ingress Tool Transfer
+T1106 	File System Permissions Modification
+T1112	Modify Registry
+T1113	Screen Capture
+T1134	Access Token Manipulation
+T1490	Inhibit System Recovery
+T1547.001	Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder
+T1562.001	Impair Defenses: Disable or Modify Tools
+T1562.009	Impair Defenses: Safe Mode Boot
+T1566.002	Phishing: Spearphishing Link
+T1620	Reflective Code Loading
+
+Tactics:
+Collection
+Command and Control
+Defense Evasion
+Discovery
+Execution
+Impact
+Initial Access
+Persistence
+Privilege Escalation
+------------------------------------------------------------------------
+Log24
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 88182
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 180004
+TOTAL_EVENT_LINES: 180004
+TOTAL_LINES_READ (approx): 268186
+
+✅ 第一条 EVENT 时间戳: 1756262801297448448
+→ 转换后: 2025-08-27 10:46:41.297448 +0800
+✅ 最后一条 EVENT 时间戳: 1756283290073766912
+→ 转换后: 2025-08-27 16:28:10.073767 +0800
+
+Techniques:
+T1005	Data from Local System
+T1018	Remote System Discovery
+T1024.002	User Execution: Malicious File
+T1053.005	Scheduled Task/Job: Scheduled Task
+T1057	Process Discovery
+T1059.001 Command and Scripting Interpreter: PowerShell
+T1059.003 Command and Scripting Interpreter: Windows Command Shell
+T1069.001	Permission Groups Discovery: Local Groups
+T1069.002	Permission Groups Discovery: Domain Groups
+T1071.001	Application Layer Protocol - Web Protocols
+T1074.001	Data Staged: Local Data Staging
+T1082	System Information Discovery
+T1087.001	Account Discovery: Local Account
+T1087.002 Account Discovery: Domain Account
+T1106	File System Permissions Modification
+T1112	Modify Registry
+T1113	Screen Capture
+T1134	Access Token Manipulation
+T1135	Network Share Discovery
+T1203	Exploitation for Client Execution
+T1204.002	User Execution: Malicious File
+T1490	Inhibit System Recovery
+T1547.001	Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder
+T1547.004	Boot or Logon Autostart Execution: Winlogon Helper DLL
+T1548.002	Abuse Elevation Control Mechanism: Bypass User Account Control
+T1562.001	Impair Defenses: Disable or Modify Tools
+T1562.009	Impair Defenses: Safe Mode Boot
+T1566.002 Phishing: Spearphishing Link
+T1620	Reflective Code Loading
+
+Tactics:
+Collection
+Command and Control
+Defense Evasion
+Discovery
+Execution
+Impact
+Initial Access
+Persistence
+Privilege Escalation
+------------------------------------------------------------------------
+log25
+RESULT_NODE_COUNT (unique node ids from NODE.logData.id): 6582
+RESULT_EDGE_COUNT (unique edge ids from EVENT.logData.id): 20158
+TOTAL_EVENT_LINES: 20158
+TOTAL_LINES_READ (approx): 26740
+
+✅ 第一条 EVENT 时间戳: 1756289590177786880
+→ 转换后: 2025-08-27 18:13:10.177787 +0800
+✅ 最后一条 EVENT 时间戳: 1756294700384174080
+→ 转换后: 2025-08-27 19:38:20.384174 +0800
+
+techniques:
+Application Layer Protocol - Web Protocols T1071.001
+Phishing: Spearphishing Link T1566.002
+User Execution: Malicious File	T1204.002
+File and Directory Discovery	T1083
+Command and Scripting Interpreter: Windows Command Shell	T1059.003
+Remote System Discovery	T1018
+Access Token Manipulation	T1134
+Scheduled Task/Job: Scheduled Task	T1053.005
+Command and Scripting Interpreter: PowerShell	T1059.001
+Data from Local System	T1005
+Screen Capture	T1113
+Impair Defenses: Disable or Modify Tools	T1562.001
+Modify Registry	T1112
+Inhibit System Recovery	T1490

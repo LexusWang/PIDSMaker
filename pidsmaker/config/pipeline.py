@@ -217,6 +217,8 @@ def set_task_paths(cfg, subtask_concat_value=None):
                 cfg._restart_from_scratch
             ):  # to start from a brand new folder, we generate a random id to add to the hash
                 restart_values += [cfg._run_random_seed]
+        if task == "gnn_inference":  # to re-run inference when test files change
+            restart_values += cfg.dataset.test_files
         if subtask_concat_value is not None:
             if task == subtask_concat_value["subtask"]:
                 restart_values += [subtask_concat_value["concat_value"]]
@@ -299,6 +301,9 @@ def set_task_paths(cfg, subtask_concat_value=None):
     cfg.training._trained_models_dir = os.path.join(cfg.training._task_path, "trained_models/")
     cfg.training._edge_losses_dir = os.path.join(cfg.training._task_path, "edge_losses/")
     cfg.training._magic_dir = os.path.join(cfg.training._task_path, "magic/")
+    cfg.gnn_inference._edge_losses_dir = os.path.join(
+        cfg.gnn_inference._task_path, "edge_losses/"
+    )
     cfg.evaluation._precision_recall_dir = os.path.join(
         cfg.evaluation._task_path, "precision_recall_dir/"
     )

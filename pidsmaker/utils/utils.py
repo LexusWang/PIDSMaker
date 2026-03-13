@@ -441,28 +441,39 @@ def get_node_to_path_and_type(cfg):
         os.makedirs(out_path, exist_ok=True)
         cur, connect = init_database_connection(cfg)
 
+        # queries = {
+        #     "file": "SELECT index_id, path FROM file_node_table;",
+        #     "netflow": "SELECT index_id, src_addr, dst_addr, src_port, dst_port FROM netflow_node_table;",
+        #     "subject": "SELECT index_id, path, cmd FROM subject_node_table;",
+        # }
         queries = {
-            "file": "SELECT index_id, path FROM file_node_table;",
-            "netflow": "SELECT index_id, src_addr, dst_addr, src_port, dst_port FROM netflow_node_table;",
-            "subject": "SELECT index_id, path, cmd FROM subject_node_table;",
+        "file": "SELECT index_id, node_uuid, path FROM file_node_table;",
+        "netflow": "SELECT index_id, node_uuid, src_addr, dst_addr, src_port, dst_port FROM netflow_node_table;",
+        "subject": "SELECT index_id, node_uuid, path, cmd FROM subject_node_table;",
         }
+
         node_to_path_type = {}
         for node_type, query in queries.items():
             cur.execute(query)
             rows = cur.fetchall()
             for row in rows:
                 if node_type == "netflow":
-                    index_id, src_addr, dst_addr, src_port, dst_port = row
+                    # index_id, src_addr, dst_addr, src_port, dst_port = row
+                    index_id, node_uuid, src_addr, dst_addr, src_port, dst_port = row
                     node_to_path_type[index_id] = {
-                        "path": f"{str(src_addr)}:{str(src_port)}->{str(dst_addr)}:{str(dst_port)}",
+                        "node_uuid": str(node_uuid),
+                        "path": f" {index_id} | {node_uuid} | {str(src_addr)}:{str(src_port)}->{str(dst_addr)}:{str(dst_port)}",
                         "type": node_type,
                     }
                 elif node_type == "file":
-                    index_id, path = row
-                    node_to_path_type[index_id] = {"path": str(path), "type": node_type}
+                    # index_id, path = row
+                    index_id, node_uuid, path = row
+                    node_to_path_type[index_id] = {"node_uuid": str(node_uuid), "path": f"{index_id} | {node_uuid} | {path}", "type": node_type}
                 elif node_type == "subject":
-                    index_id, path, cmd = row
-                    node_to_path_type[index_id] = {"path": str(path), "type": node_type, "cmd": cmd}
+                    # index_id, path, cmd = row
+                    index_id, node_uuid, path, cmd = row
+                    cmd_str = "" if cmd is None else str(cmd)
+                    node_to_path_type[index_id] = {"path": f"{index_id} | {node_uuid} | {cmd_str}", "type": node_type, "cmd": cmd}
 
         torch.save(node_to_path_type, out_file)
         connect.close()

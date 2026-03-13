@@ -342,7 +342,7 @@ def create_queues_kairos(cfg):
     train_node_IDF, num_train_files = cal_idf_kairos(train_feat_files)
     test_node_IDF, num_test_files = cal_idf_kairos(test_feat_files)
 
-    test_losses_dir = os.path.join(cfg.training._edge_losses_dir, "test")
+    test_losses_dir = os.path.join(cfg.gnn_inference._edge_losses_dir, "test")
     for model_epoch_dir in tqdm(listdir_sorted(test_losses_dir), desc="Building queues"):
         log(f"\nEvaluation of model {model_epoch_dir}...")
         test_tw_path = os.path.join(test_losses_dir, model_epoch_dir)
@@ -553,7 +553,7 @@ def create_queues_provnet(cfg):
 
     lof_model = train_lof_model(cfg)
 
-    test_losses_dir = os.path.join(cfg.training._edge_losses_dir, "test")
+    test_losses_dir = os.path.join(cfg.gnn_inference._edge_losses_dir, "test")
     val_losses_dir = os.path.join(cfg.training._edge_losses_dir, "val")
 
     for model_epoch_dir in listdir_sorted(test_losses_dir):
@@ -580,7 +580,7 @@ def create_queues_provnet(cfg):
 
 def predict_queues(cfg):
     # Evaluating the testing set
-    test_losses_dir = os.path.join(cfg.training._edge_losses_dir, "test")
+    test_losses_dir = os.path.join(cfg.gnn_inference._edge_losses_dir, "test")
 
     best_precision, best_stats = 0.0, None
     for model_epoch_dir in listdir_sorted(test_losses_dir):
