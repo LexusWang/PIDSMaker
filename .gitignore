@@ -185,3 +185,6 @@ postgres_data
 
 # tokenizer data
 nltk_data
+
+# Raw data files
+rawdata/
