@@ -1412,10 +1412,10 @@ DATASET_DEFAULT_CONFIG = {
             "graph_8",
         ],
         "val_files": ["graph_5"],
-        "test_files": [],                    # TODO: add attack graph day(s)
+        "test_files": ["graph_65"],                    # TODO: add attack graph day(s)
         "unused_files": [],
-        "ground_truth_relative_path": [],    # TODO: add ground truth path
-        "attack_to_time_window": [],         # TODO: add attack time window
+        "ground_truth_relative_path": ["PROVATTACK/alphvblackcat_0_hop.csv"],    # TODO: add ground truth path
+        "attack_to_time_window": ["PROVATTACK/alphvblackcat_0_hop.csv", "2026-03-06 20:03:00", "2026-03-06 20:10:32"],         # TODO: add attack time window
         "provattack_base_dataset": "training_full",
     },
 
@@ -1434,10 +1434,10 @@ DATASET_DEFAULT_CONFIG = {
             "graph_8",
         ],
         "val_files": ["graph_5"],
-        "test_files": [],                    # TODO: add attack graph day(s)
+        "test_files": ["graph_65"],                    # TODO: add attack graph day(s)
         "unused_files": [],
-        "ground_truth_relative_path": [],    # TODO: add ground truth path
-        "attack_to_time_window": [],         # TODO: add attack time window
+        "ground_truth_relative_path": ["PROVATTACK/phobosransomware_0_hop.csv"],    # TODO: add ground truth path
+        "attack_to_time_window": ["PROVATTACK/phobosransomware_0_hop.csv", "2026-03-06 20:26:44", "2026-03-06 20:31:35"],         # TODO: add attack time window
         "provattack_base_dataset": "training_full",
     },
 }

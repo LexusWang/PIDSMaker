@@ -110,3 +110,4 @@ Added a `PostToolUse` hook that appends a timestamped line to `CHANGES.md` after
 - [2026-03-12 18:42:05] `Edit` → `/home/ziyu/PIDSMaker-1/README for TRAINING_FULL FLOW.md`
 - [2026-03-12 18:42:14] `Edit` → `/home/ziyu/PIDSMaker-1/README for TRAINING_FULL FLOW.md`
 - [2026-03-12 18:42:25] `Edit` → `/home/ziyu/PIDSMaker-1/README for TRAINING_FULL FLOW.md`
+- [2026-03-12 20:17:32] `Write` → `/home/ziyu/PIDSMaker-1/run_pidsmaker.sh`

