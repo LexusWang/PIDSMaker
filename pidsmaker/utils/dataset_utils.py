@@ -306,7 +306,18 @@ ntype2id = {
 
 OPTC_DATASETS = {"optc_h201", "optc_h501", "optc_h051"}
 ATLASv2_DATASETS = {"atlasv2_h1"}
-PROVATTACK_DATASETS = {"PROVATTACK25","PROVATTACK15","PROVATTACK18","test123","test100","test105","aa23","alphablackcat","d2test","aa23_341a", "aa24_046a", "alphablackcat", "phobosransomware"}
+PROVATTACK_DATASETS = {
+    "PROVATTACK25", "PROVATTACK15", "PROVATTACK18",
+    "test123", "test100", "test105",
+    "aa23", "alphablackcat", "d2test",
+    "aa23_341a", "aa24_046a", "alphvblackcat", "phobosransomware",
+    "training",
+    "training_full",
+    "training_full_aa23_341a",
+    "training_full_aa24_046a",
+    "training_full_alphvblackcat",
+    "training_full_phobosransomware",
+}
 OPTC_hostname_map = {
     'optc_h051': 'SysClient0051',
     'optc_h201': 'SysClient0201',

@@ -1,5 +1,6 @@
 import os
 
+import numpy as np
 import torch
 
 from pidsmaker.config import update_cfg_for_multi_dataset
@@ -24,32 +25,42 @@ from .feat_inference_methods import (
 
 
 def feat_inference(indexid2vec, etype2oh, ntype2oh, sorted_paths, out_dir, cfg):
+    # Pre-convert onehot dicts to numpy to avoid creating torch tensors per edge.
+    # gen_relation_onehot stores bidirectional entries (str→tensor AND tensor→str),
+    # so filter to string keys only.
+    ntype2oh_np = {k: v.numpy() for k, v in ntype2oh.items() if isinstance(k, str)}
+    etype2oh_np = {k: v.numpy() for k, v in etype2oh.items() if isinstance(k, str)}
+    zero_etype_np = np.zeros_like(next(iter(etype2oh_np.values())))
+
     for path in log_tqdm(sorted_paths, desc="Computing edge embeddings"):
         graph = torch.load(path)
-        sorted_edges = graph.edges(data=True, keys=True)
+        sorted_edges = list(graph.edges(data=True, keys=True))
 
-        src, dst, msg, t, y = [], [], [], [], []
-        for u, v, k, attr in sorted_edges:
-            src.append(int(u))
-            dst.append(int(v))
-            t.append(int(attr["time"]))
-            y.append(int(attr.get("y", 0)))
+        n_edges = len(sorted_edges)
+        src = np.empty(n_edges, dtype=np.int64)
+        dst = np.empty(n_edges, dtype=np.int64)
+        t = np.empty(n_edges, dtype=np.int64)
+        y = np.empty(n_edges, dtype=np.int64)
+        msg = []
+
+        for i, (u, v, k, attr) in enumerate(sorted_edges):
+            src[i] = int(u)
+            dst[i] = int(v)
+            t[i] = int(attr["time"])
+            y[i] = int(attr.get("y", 0))
 
             # If the graph structure has been changed in transformation, we may loose
             # the edge label
-            if "label" in attr:
-                edge_label = etype2oh[attr["label"]]
-            else:
-                edge_label = torch.zeros_like(etype2oh[list(etype2oh.keys())[0]])
+            edge_label = etype2oh_np[attr["label"]] if "label" in attr else zero_etype_np
 
             # Only types
             if indexid2vec is None:
                 msg.append(
-                    torch.cat(
+                    np.concatenate(
                         [
-                            ntype2oh[graph.nodes[u]["node_type"]],
+                            ntype2oh_np[graph.nodes[u]["node_type"]],
                             edge_label,
-                            ntype2oh[graph.nodes[v]["node_type"]],
+                            ntype2oh_np[graph.nodes[v]["node_type"]],
                         ]
                     )
                 )
@@ -57,23 +68,23 @@ def feat_inference(indexid2vec, etype2oh, ntype2oh, sorted_paths, out_dir, cfg):
             # Types + node embeddings
             else:
                 msg.append(
-                    torch.cat(
+                    np.concatenate(
                         [
-                            ntype2oh[graph.nodes[u]["node_type"]],
-                            torch.from_numpy(indexid2vec[u]),
+                            ntype2oh_np[graph.nodes[u]["node_type"]],
+                            indexid2vec[u],
                             edge_label,
-                            ntype2oh[graph.nodes[v]["node_type"]],
-                            torch.from_numpy(indexid2vec[v]),
+                            ntype2oh_np[graph.nodes[v]["node_type"]],
+                            indexid2vec[v],
                         ]
                     )
                 )
 
         data = CollatableTemporalData(
-            src=torch.tensor(src).to(torch.long),
-            dst=torch.tensor(dst).to(torch.long),
-            t=torch.tensor(t).to(torch.long),
-            msg=torch.vstack(msg).to(torch.float),
-            y=torch.tensor(y).to(torch.long),
+            src=torch.from_numpy(src),
+            dst=torch.from_numpy(dst),
+            t=torch.from_numpy(t),
+            msg=torch.from_numpy(np.vstack(msg)).to(torch.float),
+            y=torch.from_numpy(y),
         )
 
         os.makedirs(out_dir, exist_ok=True)
@@ -115,16 +126,36 @@ def main_from_config(cfg):
     # Here we get a mapping {node_id => embedding vector}
     indexid2vec = get_indexid2vec(cfg)
 
+    base_edge_embeds_dir = getattr(cfg.featurization.feat_inference, "_base_edge_embeds_dir", "")
+
     # Create edges for Train, Val, Test sets
     for split, sorted_paths in split_to_files.items():
-        feat_inference(
-            indexid2vec=indexid2vec,
-            etype2oh=etype2onehot,
-            ntype2oh=ntype2onehot,
-            sorted_paths=sorted_paths,
-            out_dir=os.path.join(cfg.featurization.feat_inference._edge_embeds_dir, f"{split}/"),
-            cfg=cfg,
-        )
+        out_dir = os.path.join(cfg.featurization.feat_inference._edge_embeds_dir, f"{split}/")
+        os.makedirs(out_dir, exist_ok=True)
+
+        paths_to_compute = []
+        for path in sorted_paths:
+            file = path.split("/")[-1]
+            out_file = os.path.join(out_dir, f"{file}.TemporalData.simple")
+            if base_edge_embeds_dir:
+                base_file = os.path.join(
+                    base_edge_embeds_dir, split, f"{file}.TemporalData.simple"
+                )
+                if os.path.exists(base_file) and not os.path.exists(out_file):
+                    os.symlink(base_file, out_file)
+                    continue
+            if not os.path.exists(out_file):
+                paths_to_compute.append(path)
+
+        if paths_to_compute:
+            feat_inference(
+                indexid2vec=indexid2vec,
+                etype2oh=etype2onehot,
+                ntype2oh=ntype2onehot,
+                sorted_paths=paths_to_compute,
+                out_dir=out_dir,
+                cfg=cfg,
+            )
 
 
 def main(cfg):

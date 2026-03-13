@@ -54,6 +54,8 @@ def get_default_cfg(args):
     if cfg._restart_from_scratch:
         cfg._run_random_seed = str(uuid.uuid4())
 
+    cfg._stop_after = args.stop_after
+
     # Database: we simply create variables for all configurations described in the dict
     cfg.database = CN()
     cfg.database.host = args.database_host
@@ -153,6 +155,14 @@ def get_runtime_required_args(return_unknown_args=False, args=None):
         "--test_mode",
         action="store_true",
         help="Whether to run the framework as in functional tests.",
+    )
+    parser.add_argument(
+        "--stop_after",
+        type=str,
+        default="",
+        help="Stop the pipeline after this task completes (e.g. 'gnn_training'). "
+             "Valid tasks: build_graphs, transformation, feat_training, feat_inference, "
+             "graph_preprocessing, gnn_training, gnn_inference, evaluation, tracing",
     )
 
     # Script-specific args
@@ -256,13 +266,26 @@ def set_task_paths(cfg, subtask_concat_value=None):
             final_hash_string = deps_hash + subtask_to_hash[subtask_name]
             final_hash_string = hashlib.sha256(final_hash_string.encode("utf-8")).hexdigest()
 
+            # For PROVATTACK attack variants, redirect feat_training to the base dataset's
+            # path so its existing done.txt is found and it is skipped (~5 min saved).
+            # build_graphs and transformation must NOT be redirected: they need to run
+            # per-variant to build the attack test graph (e.g. graph_65) which the base
+            # dataset never built (its test_files only include benign graphs).
+            TRAINING_ONLY_STAGES = {"feat_training"}
+            base = getattr(cfg.dataset, "provattack_base_dataset", "")
             if task in ["preprocessing", "featurization"]:
+                dataset_name = (
+                    base if (base and subtask_name in TRAINING_ONLY_STAGES) else cfg.dataset.name
+                )
                 subtask_cfg._task_path = os.path.join(
-                    cfg._artifact_dir, task, cfg.dataset.name, subtask_name, final_hash_string
+                    cfg._artifact_dir, task, dataset_name, subtask_name, final_hash_string
                 )
             else:
+                gnn_dataset_name = (
+                    base if (base and subtask_name == "gnn_training") else cfg.dataset.name
+                )
                 subtask_cfg._task_path = os.path.join(
-                    cfg._artifact_dir, task, subtask_name, final_hash_string, cfg.dataset.name
+                    cfg._artifact_dir, task, subtask_name, final_hash_string, gnn_dataset_name
                 )
 
             # The directory to save logs related to the preprocessing task
@@ -322,6 +345,19 @@ def set_task_paths(cfg, subtask_concat_value=None):
     cfg.featurization.feat_inference._model_dir = os.path.join(
         cfg.featurization.feat_inference._task_path, "stored_models/"
     )
+
+    # For PROVATTACK attack variants, point to the base dataset's pre-computed edge embeds
+    # so feat_inference can symlink train/val files instead of recomputing them.
+    base = getattr(cfg.dataset, "provattack_base_dataset", "")
+    if base:
+        base_feat_inf_path = cfg.featurization.feat_inference._task_path.replace(
+            f"/{cfg.dataset.name}/", f"/{base}/"
+        )
+        cfg.featurization.feat_inference._base_edge_embeds_dir = os.path.join(
+            base_feat_inf_path, "edge_embeds/"
+        )
+    else:
+        cfg.featurization.feat_inference._base_edge_embeds_dir = ""
 
     # Detection paths
     cfg.detection.graph_preprocessing._preprocessed_graphs_dir = os.path.join(
@@ -421,6 +457,12 @@ def check_args(args):
     if args.dataset not in available_datasets:
         raise ValueError(
             f"Unknown dataset {args.dataset}. Available datasets are {available_datasets}"
+        )
+
+    all_subtasks = [s for subtasks in TASK_ARGS.values() for s in subtasks.keys()]
+    if args.stop_after and args.stop_after not in all_subtasks:
+        raise ValueError(
+            f"Unknown task '{args.stop_after}' for --stop_after. Valid tasks: {all_subtasks}"
         )
 
 

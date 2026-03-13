@@ -126,13 +126,19 @@ def main(cfg, project=None, exp=None, sweep_id=None, **kwargs):
         return {"time": time.time() - start, "return": return_value}
 
     def run_pipeline(cfg, method=None, iteration=None):
-        tasks = get_task_to_module(cfg).keys()
-        task_results = {task: run_task(task, cfg, method, iteration) for task in tasks}
+        task_results = {}
+        stop_after = getattr(cfg, "_stop_after", "")
 
-        metrics = task_results["evaluation"]["return"] or {}
+        for task in get_task_to_module(cfg).keys():
+            task_results[task] = run_task(task, cfg, method, iteration)
+            if stop_after and task == stop_after:
+                log(f"Stopping pipeline after task '{task}' (--stop_after).")
+                break
+
+        metrics = (task_results.get("evaluation") or {}).get("return") or {}
         metrics = {
             **metrics,
-            "val_score": task_results["gnn_training"]["return"],
+            "val_score": (task_results.get("gnn_training") or {}).get("return"),
         }
 
         times = {

@@ -1259,13 +1259,15 @@ DATASET_DEFAULT_CONFIG = {
         "database_all_file": "aa23_341a",
         "num_node_types": 3,
         "num_edge_types": 12,
-        "year_month": "2026-03",
-        "start_end_day_range": (6,7),
+        "year_month": "2026-01",
+        "start_end_day_range": (4,66),
         "train_files": [
-            "graph_6",
+            "graph_4",
+            "graph_7",
+            "graph_8",
         ],
-        "val_files": ["graph_6"],
-        "test_files": ["graph_6"],
+        "val_files": ["graph_5"],
+        "test_files": ["graph_65"],
         "unused_files": [],
         "ground_truth_relative_path": [
             "PROVATTACK/aa23_341a_0_hop.csv",
@@ -1273,7 +1275,171 @@ DATASET_DEFAULT_CONFIG = {
         "attack_to_time_window": [
             ["PROVATTACK/aa23_341a_0_hop.csv", "2026-03-06 12:51:39", "2026-03-06 12:54:32"],
         ],
-    }
+    },
+    "training": {
+        "raw_dir": "",
+        "database": "training",
+        "database_all_file": "training",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2026-01",
+        "start_end_day_range": (4,9),
+        "train_files": [
+            "graph_4",
+            "graph_6",
+            "graph_7",
+            "graph_8",
+        ],
+        "val_files": ["graph_5"],
+        "test_files": ["graph_5"],
+        "unused_files": [],
+        "ground_truth_relative_path": [
+            "PROVATTACK/aa23_341a_0_hop.csv",
+        ],
+        "attack_to_time_window": [
+            ["PROVATTACK/aa23_341a_0_hop.csv", "2026-03-06 12:51:39", "2026-03-06 12:54:32"],
+        ],
+    },
+
+    # ── Unified two-phase setup: ONE database, ONE training run, FOUR test runs ──
+    #
+    # Database "training_full" contains:
+    #   benign: benign_1_5, benign_1_7, benign_1_8, benign_1_9
+    #   attacks: AA23_341A, AA24_046A, ALPHVBlackcat, PhobosRansomware
+    #
+    # All four *_test configs share the same database + train/val files, so
+    # gnn_training hash is identical across all of them → trained only ONCE.
+    #
+    # Setup:
+    #   docker exec -it postgres bash
+    #   psql -U postgres -c "CREATE DATABASE training_full;"
+    #   exit
+    #   docker exec -it pidsmaker-pids bash
+    #   python -m dataset_preprocessing.provattack.create_database flash training_full
+    #
+    # Phase 1 (train once):
+    #   python pidsmaker/main.py flash training_full
+    #
+    # Phase 2 (test each attack, gnn_training reused automatically):
+    #   python pidsmaker/main.py flash training_full_aa23_341a
+    #   python pidsmaker/main.py flash training_full_aa24_046a
+    #   python pidsmaker/main.py flash training_full_alphvblackcat
+    #   python pidsmaker/main.py flash training_full_phobosransomware
+    # ─────────────────────────────────────────────────────────────────────────
+
+    "training_full": {
+        "raw_dir": "",
+        "database": "training_full",
+        "database_all_file": "training_full",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2026-01",
+        "start_end_day_range": (4, 66),      # covers benign days 4-9 + attack days
+        "train_files": [
+            "graph_4",
+            "graph_6",
+            "graph_7",
+            "graph_8",
+        ],
+        "val_files": ["graph_5"],
+        "test_files": ["graph_5"],           # placeholder; real test done in *_test configs
+        "unused_files": [],
+        "ground_truth_relative_path": [],
+        "attack_to_time_window": [],
+        "provattack_base_dataset": "",       # base dataset: no redirect
+    },
+
+    "training_full_aa23_341a": {
+        "raw_dir": "",
+        "database": "training_full",         # same DB → gnn_training hash matches training_full
+        "database_all_file": "training_full",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2026-01",
+        "start_end_day_range": (4, 66),
+        "train_files": [
+            "graph_4",
+            "graph_6",
+            "graph_7",
+            "graph_8",
+        ],
+        "val_files": ["graph_5"],
+        "test_files": ["graph_65"],
+        "unused_files": [],
+        "ground_truth_relative_path": [
+            "PROVATTACK/aa23_341a_0_hop.csv",
+        ],
+        "attack_to_time_window": [
+            ["PROVATTACK/aa23_341a_0_hop.csv", "2026-03-06 12:51:39", "2026-03-06 12:54:32"],
+        ],
+        "provattack_base_dataset": "training_full",
+    },
+
+    "training_full_aa24_046a": {
+        "raw_dir": "",
+        "database": "training_full",
+        "database_all_file": "training_full",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2026-01",
+        "start_end_day_range": (4, 66),      # TODO: extend upper bound if attack day > 65
+        "train_files": [
+            "graph_4",
+            "graph_6",
+            "graph_7",
+            "graph_8",
+        ],
+        "val_files": ["graph_5"],
+        "test_files": ["graph_65"],                    # TODO: add attack graph day(s)
+        "unused_files": [],
+        "ground_truth_relative_path": ["PROVATTACK/aa24_046a_0_hop.csv"],    # TODO: add ground truth path
+        "attack_to_time_window": [["PROVATTACK/aa24_046a_0_hop.csv", "2026-03-06 14:06:56", "2026-03-06 14:12:51"]],         # TODO: add attack time window
+        "provattack_base_dataset": "training_full",
+    },
+
+    "training_full_alphvblackcat": {
+        "raw_dir": "",
+        "database": "training_full",
+        "database_all_file": "training_full",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2026-01",
+        "start_end_day_range": (4, 66),      # TODO: extend upper bound if attack day > 65
+        "train_files": [
+            "graph_4",
+            "graph_6",
+            "graph_7",
+            "graph_8",
+        ],
+        "val_files": ["graph_5"],
+        "test_files": [],                    # TODO: add attack graph day(s)
+        "unused_files": [],
+        "ground_truth_relative_path": [],    # TODO: add ground truth path
+        "attack_to_time_window": [],         # TODO: add attack time window
+        "provattack_base_dataset": "training_full",
+    },
+
+    "training_full_phobosransomware": {
+        "raw_dir": "",
+        "database": "training_full",
+        "database_all_file": "training_full",
+        "num_node_types": 3,
+        "num_edge_types": 12,
+        "year_month": "2026-01",
+        "start_end_day_range": (4, 66),      # TODO: extend upper bound if attack day > 65
+        "train_files": [
+            "graph_4",
+            "graph_6",
+            "graph_7",
+            "graph_8",
+        ],
+        "val_files": ["graph_5"],
+        "test_files": [],                    # TODO: add attack graph day(s)
+        "unused_files": [],
+        "ground_truth_relative_path": [],    # TODO: add ground truth path
+        "attack_to_time_window": [],         # TODO: add attack time window
+        "provattack_base_dataset": "training_full",
+    },
 }
 
 # Arguments

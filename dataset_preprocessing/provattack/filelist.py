@@ -147,7 +147,7 @@ test100 = [
 
 test105 = [
     "atk105.jsonl",
-    "benign-1-5.jsonl",
+    "benign1-5.jsonl",
     "benign_1_7.jsonl",
     "benign-1-8.jsonl",
     "benign-1-9.jsonl",
@@ -161,8 +161,17 @@ d2test = [
     "d2test.jsonl",
 ]
 
+training = [
+    "benign_1_5.jsonl",
+    "benign_1_8.jsonl",
+    "benign_1_7.jsonl",
+    "benign_1_9.jsonl",
+]
+
 aa23_341a=[
     "AA23_341A.jsonl",
+    "benign_1_5.jsonl",
+    "benign_1_8.jsonl",
 ]
 
 aa24_046a=[
@@ -173,6 +182,19 @@ alphvblackcat=[
     "ALPHVBlackcat.jsonl",
 ]
 phobosransomware=[
+    "PhobosRansomware.jsonl",
+]
+
+# Single unified database: full benign training set + ALL attack files
+# Train once, test on each attack separately using different test_files in config
+training_full = [
+    "benign_1_5.jsonl",
+    "benign_1_7.jsonl",
+    "benign_1_8.jsonl",
+    "benign_1_9.jsonl",
+    "AA23_341A.jsonl",
+    "AA24_046A.jsonl",
+    "ALPHVBlackcat.jsonl",
     "PhobosRansomware.jsonl",
 ]
 
@@ -247,3 +269,7 @@ def get_filelist(dataset_name):
         return alphvblackcat
     elif dataset_name == "phobosransomware":
         return phobosransomware
+    elif dataset_name == "training":
+        return training
+    elif dataset_name == "training_full":
+        return training_full

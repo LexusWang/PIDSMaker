@@ -1,5 +1,6 @@
 import math
 import os
+import pickle
 
 import numpy as np
 import torch
@@ -49,6 +50,32 @@ def main(cfg):
     log_start(__file__)
 
     trained_w2v_dir = cfg.featurization.feat_training._model_dir
+    cache_path = os.path.join(trained_w2v_dir, "indexid2vec.pkl")
+
+    if os.path.exists(cache_path):
+        import logging
+
+        logging.getLogger(__name__).info(f"Loading cached node embeddings from {cache_path}")
+        with open(cache_path, "rb") as f:
+            indexid2vec = pickle.load(f)
+
+        # For PROVATTACK attack variants the cache was built on train/val only (base dataset).
+        # Compute embeddings for any test-split nodes not yet in the cache (e.g. graph_65).
+        node2corpus_test = get_node2corpus(cfg, splits=["test"])
+        new_nodes = {
+            nid: corpus for nid, corpus in node2corpus_test.items() if nid not in indexid2vec
+        }
+        if new_nodes:
+            w2vmodel = Word2Vec.load(
+                os.path.join(trained_w2v_dir, "word2vec_model_final.model")
+            )
+            w2v_vector_size = cfg.featurization.feat_training.emb_dim
+            encoder = PositionalEncoder(w2v_vector_size)
+            for indexid, corpus in log_tqdm(new_nodes.items(), desc="Embedding new nodes"):
+                indexid2vec[indexid] = infer(corpus, w2vmodel, encoder)
+
+        return indexid2vec
+
     w2vmodel = Word2Vec.load(os.path.join(trained_w2v_dir, "word2vec_model_final.model"))
     w2v_vector_size = cfg.featurization.feat_training.emb_dim
 
@@ -56,5 +83,8 @@ def main(cfg):
     indexid2vec = {}
     for indexid, corpus in log_tqdm(node2corpus.items(), desc="Embeding all nodes in the dataset"):
         indexid2vec[indexid] = infer(corpus, w2vmodel, PositionalEncoder(w2v_vector_size))
+
+    with open(cache_path, "wb") as f:
+        pickle.dump(indexid2vec, f)
 
     return indexid2vec

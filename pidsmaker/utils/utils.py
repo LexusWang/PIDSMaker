@@ -373,7 +373,7 @@ def tokenize_label(node_label, node_type):
 
 def tokenize_arbitrary_label(sentence):
     new_sentence = re.sub(r"\\+", "/", sentence)
-    return word_tokenize(new_sentence.replace("/", " / ").replace(":", " : ").replace(".", " . "))
+    return new_sentence.replace("/", " / ").replace(":", " : ").replace(".", " . ").split()
 
 
 def log(msg: str, return_line=False, pre_return_line=False, *args, **kwargs):
