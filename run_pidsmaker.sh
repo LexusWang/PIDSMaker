@@ -2,7 +2,7 @@
 set -e
 
 LOG_DIR=./log/training_full
-SYSTEMS=(velox flash orthrus kairos magic nodlink orthrus rcaid threatrace)
+SYSTEMS=(velox flash orthrus kairos magic nodlink rcaid threatrace)
 ATTACKS=(training_full_aa23_341a training_full_aa24_046a training_full_alphvblackcat training_full_phobosransomware)
 
 mkdir -p "${LOG_DIR}"
