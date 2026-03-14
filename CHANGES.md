@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-03-13 — Fix missing val losses in evaluation
+
+`gnn_inference` now runs val inference alongside test inference (split="all"), writing val edge losses to `gnn_inference._edge_losses_dir/val/`. `evaluation.py` and `queue_evaluation.py` updated to read val losses from `gnn_inference._edge_losses_dir` instead of `gnn_training._edge_losses_dir`, fixing a `FileNotFoundError` when gnn_training was already cached and val losses were absent.
+
+**Files changed:**
+- `pidsmaker/detection/gnn_inference.py` — load val_data, run split="all" to produce val+test losses
+- `pidsmaker/detection/evaluation.py` — val_losses_dir now points to gnn_inference path
+- `pidsmaker/detection/evaluation_methods/queue_evaluation.py` — same fix
+
 ## 2026-03-12 — Eliminate PROVATTACK stage redundancy
 
 Redirect `feat_training` and `gnn_training` for PROVATTACK attack variants to the base dataset's artifact paths so they are skipped. `build_graphs` and `transformation` run per-variant (~10s each) to build the attack test graph (e.g. `graph_65`) which the base dataset never builds. `feat_inference` symlinks pre-computed train/val edge-embed files from the base and only embeds nodes/edges for the new attack graph. Reduces attack-variant run time from ~15 min to ~1-2 min.
@@ -111,3 +120,37 @@ Added a `PostToolUse` hook that appends a timestamped line to `CHANGES.md` after
 - [2026-03-12 18:42:14] `Edit` → `/home/ziyu/PIDSMaker-1/README for TRAINING_FULL FLOW.md`
 - [2026-03-12 18:42:25] `Edit` → `/home/ziyu/PIDSMaker-1/README for TRAINING_FULL FLOW.md`
 - [2026-03-12 20:17:32] `Write` → `/home/ziyu/PIDSMaker-1/run_pidsmaker.sh`
+- [2026-03-12 20:32:04] `Edit` → `/home/ziyu/PIDSMaker-1/run_pidsmaker.sh`
+- [2026-03-12 20:37:06] `Edit` → `/home/ziyu/PIDSMaker-1/config/default.yml`
+- [2026-03-12 20:37:12] `Edit` → `/home/ziyu/PIDSMaker-1/config/default.yml`
+- [2026-03-12 20:37:17] `Edit` → `/home/ziyu/PIDSMaker-1/config/default.yml`
+- [2026-03-12 20:37:23] `Edit` → `/home/ziyu/PIDSMaker-1/config/default.yml`
+- [2026-03-12 20:37:27] `Edit` → `/home/ziyu/PIDSMaker-1/config/default.yml`
+- [2026-03-12 20:37:33] `Edit` → `/home/ziyu/PIDSMaker-1/config/kairos.yml`
+- [2026-03-12 20:37:35] `Edit` → `/home/ziyu/PIDSMaker-1/config/orthrus.yml`
+- [2026-03-12 20:37:40] `Edit` → `/home/ziyu/PIDSMaker-1/config/orthrus.yml`
+- [2026-03-12 20:37:41] `Edit` → `/home/ziyu/PIDSMaker-1/config/nodlink.yml`
+- [2026-03-12 20:37:42] `Edit` → `/home/ziyu/PIDSMaker-1/config/flash.yml`
+- [2026-03-12 21:05:24] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/gnn_inference.py`
+- [2026-03-12 21:05:34] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation.py`
+- [2026-03-12 21:05:43] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation_methods/queue_evaluation.py`
+- [2026-03-12 21:06:44] `Edit` → `/home/ziyu/PIDSMaker-1/CHANGES.md`
+- [2026-03-12 21:07:49] `Edit` → `/home/ziyu/PIDSMaker-1/run_pidsmaker.sh`
+- [2026-03-12 21:36:46] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/gnn_inference.py`
+- [2026-03-12 21:36:48] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/gnn_inference.py`
+- [2026-03-12 21:36:51] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/gnn_inference.py`
+- [2026-03-12 21:36:54] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation.py`
+- [2026-03-12 21:36:56] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation_methods/queue_evaluation.py`
+- [2026-03-12 21:40:50] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/gnn_inference.py`
+- [2026-03-12 21:44:51] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation.py`
+- [2026-03-12 21:44:59] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation_methods/queue_evaluation.py`
+- [2026-03-12 21:45:11] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation_methods/queue_evaluation.py`
+- [2026-03-12 21:45:27] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation_methods/queue_evaluation.py`
+- [2026-03-12 22:10:48] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation.py`
+- [2026-03-12 22:12:17] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/evaluation.py`
+- [2026-03-12 22:14:43] `Write` → `/home/ziyu/PIDSMaker-1/pidsmaker/config/config.py`
+- [2026-03-12 22:21:04] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/config/pipeline.py`
+- [2026-03-13 00:16:14] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/featurization/feat_inference_methods/feat_inference_flash.py`
+- [2026-03-13 00:16:34] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/featurization/feat_inference_methods/feat_inference_flash.py`
+- [2026-03-13 19:45:49] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/featurization/feat_inference_methods/feat_inference_flash.py`
+- [2026-03-13 20:15:00] `Edit` → `/home/ziyu/PIDSMaker-1/pidsmaker/detection/gnn_inference.py`

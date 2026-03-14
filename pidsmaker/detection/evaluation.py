@@ -28,9 +28,14 @@ def standard_evaluation(cfg, evaluation_fn):
         "best_stats": None,
     }
 
-    sorted_files = (
-        listdir_sorted(test_losses_dir) if os.path.exists(test_losses_dir) else ["epoch_0"]
-    )
+    if not os.path.exists(test_losses_dir) or not os.listdir(test_losses_dir):
+        raise RuntimeError(
+            f"gnn_inference produced no test output at: {test_losses_dir}\n"
+            f"This usually means the test graphs (e.g. graph_65) were not found or are empty. "
+            f"Check that build_graphs and graph_preprocessing ran successfully for this dataset."
+        )
+    all_epoch_dirs = listdir_sorted(test_losses_dir)
+    sorted_files = [all_epoch_dirs[-1]]  # only evaluate the last epoch
     out_dir = cfg.detection.evaluation._precision_recall_dir
 
     save_files_to_wandb = cfg._experiment != "uncertainty"

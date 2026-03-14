@@ -33,7 +33,7 @@ detection:
     intra_graph_batching:
       used_methods: edges, tgn_last_neighbor
       edges:
-        intra_graph_batch_size: 1024
+        intra_graph_batch_size: 8192
       tgn_last_neighbor:
         tgn_neighbor_size: 20
         tgn_neighbor_n_hop: 1

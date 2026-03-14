@@ -23,7 +23,7 @@ featurization:
     use_seed: True
     flash:
       min_count: 1
-      workers: 15
+      workers: 24
   feat_inference:
     to_remove: True
 

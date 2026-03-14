@@ -20,6 +20,7 @@ def main(cfg):
     model_files = sorted(
         f for f in os.listdir(models_dir) if f.endswith(".pt")
     )
+    model_files = [model_files[-1]]  # only run inference on the last saved model
 
     edge_losses_dir = cfg.detection.gnn_inference._edge_losses_dir
 
@@ -36,7 +37,15 @@ def main(cfg):
         state_dict = torch.load(
             os.path.join(models_dir, model_file), map_location=device
         )
-        model.load_state_dict(state_dict)
+        # Remove memory buffers whose shape may differ when the attack dataset has more
+        # nodes than the training dataset (e.g. training_full vs training_full_phobosransomware).
+        # These buffers are zeroed by reset_state() immediately after loading anyway.
+        model_state = model.state_dict()
+        filtered = {
+            k: v for k, v in state_dict.items()
+            if k not in model_state or v.shape == model_state[k].shape
+        }
+        model.load_state_dict(filtered, strict=False)
         model.reset_state()
 
         inference_loop.main(

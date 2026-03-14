@@ -231,7 +231,7 @@ def set_task_paths(cfg, subtask_concat_value=None):
             restart_values = flatten_arg_values(subtask_cfg)
             if (
                 subtask_name == "build_graphs"
-            ):  # to restart from beginning if train files are changed
+            ):  # to restart when any split files change (build_graphs builds all splits)
                 restart_values += cfg.dataset.train_files
             if subtask_name == "gnn_inference":  # to re-run inference when test files change
                 restart_values += cfg.dataset.test_files

@@ -472,26 +472,26 @@ def create_queues_provnet(cfg):
     test_losses_dir = os.path.join(cfg.detection.gnn_inference._edge_losses_dir, "test")
     val_losses_dir = os.path.join(cfg.detection.gnn_training._edge_losses_dir, "val")
 
-    for model_epoch_dir in listdir_sorted(test_losses_dir):
-        log(f"\nEvaluation of model {model_epoch_dir}...")
-        test_tw_path = os.path.join(test_losses_dir, model_epoch_dir)
-        val_tw_path = os.path.join(val_losses_dir, model_epoch_dir)
+    model_epoch_dir = listdir_sorted(test_losses_dir)[-1]  # only evaluate the last epoch
+    log(f"\nEvaluation of model {model_epoch_dir}...")
+    test_tw_path = os.path.join(test_losses_dir, model_epoch_dir)
+    val_tw_path = os.path.join(val_losses_dir, model_epoch_dir)
 
-        # Threshold
-        val_thr = cal_val_thr(val_tw_path)
+    # Threshold
+    val_thr = cal_val_thr(val_tw_path)
 
-        # Testing date
-        queues = anomalous_queue_construction_provnet(
-            graph_dir_path=test_tw_path,
-            lof_model=lof_model,
-            nodelabels_train_val=nodelabels_train_val,
-            node2vec=None,
-            val_thr=val_thr,
-        )
+    # Testing date
+    queues = anomalous_queue_construction_provnet(
+        graph_dir_path=test_tw_path,
+        lof_model=lof_model,
+        nodelabels_train_val=nodelabels_train_val,
+        node2vec=None,
+        val_thr=val_thr,
+    )
 
-        out_dir = cfg.detection.evaluation.queue_evaluation._queues_dir
-        os.makedirs(out_dir, exist_ok=True)
-        torch.save(queues, os.path.join(out_dir, f"{model_epoch_dir}_queues.pkl"))
+    out_dir = cfg.detection.evaluation.queue_evaluation._queues_dir
+    os.makedirs(out_dir, exist_ok=True)
+    torch.save(queues, os.path.join(out_dir, f"{model_epoch_dir}_queues.pkl"))
 
 
 def predict_queues(cfg):
@@ -499,7 +499,7 @@ def predict_queues(cfg):
     test_losses_dir = os.path.join(cfg.detection.gnn_inference._edge_losses_dir, "test")
 
     best_precision, best_stats = 0.0, None
-    for model_epoch_dir in listdir_sorted(test_losses_dir):
+    for model_epoch_dir in [listdir_sorted(test_losses_dir)[-1]]:
         test_tw_path = os.path.join(test_losses_dir, model_epoch_dir)
 
         pred_label = []

@@ -7,7 +7,7 @@ import torch
 from gensim.models import Word2Vec
 
 from pidsmaker.featurization.feat_training_methods.feat_training_flash import get_node2corpus
-from pidsmaker.utils.utils import log_start, log_tqdm
+from pidsmaker.utils.utils import log, log_start, log_tqdm
 
 
 def infer(document, w2vmodel, encoder):
@@ -53,28 +53,29 @@ def main(cfg):
     cache_path = os.path.join(trained_w2v_dir, "indexid2vec.pkl")
 
     if os.path.exists(cache_path):
-        import logging
+        try:
+            with open(cache_path, "rb") as f:
+                indexid2vec = pickle.load(f)
 
-        logging.getLogger(__name__).info(f"Loading cached node embeddings from {cache_path}")
-        with open(cache_path, "rb") as f:
-            indexid2vec = pickle.load(f)
+            # For PROVATTACK attack variants the cache was built on train/val only (base dataset).
+            # Compute embeddings for any test-split nodes not yet in the cache (e.g. graph_65).
+            node2corpus_test = get_node2corpus(cfg, splits=["test"])
+            new_nodes = {
+                nid: corpus for nid, corpus in node2corpus_test.items() if nid not in indexid2vec
+            }
+            if new_nodes:
+                w2vmodel = Word2Vec.load(
+                    os.path.join(trained_w2v_dir, "word2vec_model_final.model")
+                )
+                w2v_vector_size = cfg.featurization.feat_training.emb_dim
+                encoder = PositionalEncoder(w2v_vector_size)
+                for indexid, corpus in log_tqdm(new_nodes.items(), desc="Embedding new nodes"):
+                    indexid2vec[indexid] = infer(corpus, w2vmodel, encoder)
 
-        # For PROVATTACK attack variants the cache was built on train/val only (base dataset).
-        # Compute embeddings for any test-split nodes not yet in the cache (e.g. graph_65).
-        node2corpus_test = get_node2corpus(cfg, splits=["test"])
-        new_nodes = {
-            nid: corpus for nid, corpus in node2corpus_test.items() if nid not in indexid2vec
-        }
-        if new_nodes:
-            w2vmodel = Word2Vec.load(
-                os.path.join(trained_w2v_dir, "word2vec_model_final.model")
-            )
-            w2v_vector_size = cfg.featurization.feat_training.emb_dim
-            encoder = PositionalEncoder(w2v_vector_size)
-            for indexid, corpus in log_tqdm(new_nodes.items(), desc="Embedding new nodes"):
-                indexid2vec[indexid] = infer(corpus, w2vmodel, encoder)
-
-        return indexid2vec
+            return indexid2vec
+        except (EOFError, pickle.UnpicklingError) as e:
+            log(f"WARNING: Corrupt cache at {cache_path} ({e}). Deleting and recomputing.")
+            os.remove(cache_path)
 
     w2vmodel = Word2Vec.load(os.path.join(trained_w2v_dir, "word2vec_model_final.model"))
     w2v_vector_size = cfg.featurization.feat_training.emb_dim
