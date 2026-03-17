@@ -72,6 +72,7 @@ def get_node_predictions(val_tw_path, test_tw_path, cfg, **kwargs):
     node_to_losses = defaultdict(list)
     node_to_max_loss_tw = {}
     node_to_max_loss = defaultdict(int)
+    node_to_first_time = {}
 
     filelist = listdir_sorted(test_tw_path)
     for tw, file in enumerate(log_tqdm(sorted(filelist), desc="Compute labels")):
@@ -96,6 +97,14 @@ def get_node_predictions(val_tw_path, test_tw_path, cfg, **kwargs):
                     node_to_max_loss[dstnode] = loss
                     node_to_max_loss_tw[dstnode] = tw
 
+            # Track first appearance time per node
+            t = line["time"]
+            if srcnode not in node_to_first_time or t < node_to_first_time[srcnode]:
+                node_to_first_time[srcnode] = t
+            if cfg.evaluation.node_evaluation.use_dst_node_loss:
+                if dstnode not in node_to_first_time or t < node_to_first_time[dstnode]:
+                    node_to_first_time[dstnode] = t
+
     # For plotting the scores of seen and unseen nodes
     graph_dir = cfg.transformation._graphs_dir
     train_set_paths = get_all_files_from_folders(graph_dir, cfg.dataset.train_files)
@@ -114,6 +123,7 @@ def get_node_predictions(val_tw_path, test_tw_path, cfg, **kwargs):
         results[node_id]["tw_with_max_loss"] = node_to_max_loss_tw.get(node_id, -1)
         results[node_id]["y_true"] = int(node_id in ground_truth_nids)
         results[node_id]["is_seen"] = int(str(node_id) in train_node_set)
+        results[node_id]["first_seen_time"] = node_to_first_time.get(node_id, 0)
 
         if use_kmeans:  # in this mode, we add the label after
             results[node_id]["y_hat"] = 0
@@ -339,6 +349,8 @@ def main(
                     if nid in d["nids"]:
                         attack_to_TPs[att] += 1
 
+    first_seen_times = [results[nid].get("first_seen_time", 0) for nid in nodes]
+
     attack2nodes = {k: v["nids"] for k, v in attack_to_GPs.items()}
     node2attacks = transform_attack2nodes_to_node2attacks(attack2nodes)
 
@@ -366,6 +378,18 @@ def main(
     plot_scores_neat(pred_scores, y_truth, nodes, node2attacks, neat_scores_img_file, thr)
     # plot_score_seen(pred_scores, is_seen, seen_score_img_file)
     stats = classifier_evaluation(y_truth, y_preds, pred_scores)
+
+    if cfg.evaluation.time_weighted_metrics.enabled:
+        from pidsmaker.detection.evaluation_methods.time_weighted_metrics import compute_time_weighted_metrics
+        tw_stats = compute_time_weighted_metrics(
+            y_true=y_truth,
+            y_pred=y_preds,
+            timestamps=first_seen_times,
+            scheme=cfg.evaluation.time_weighted_metrics.scheme,
+            lambda_param=cfg.evaluation.time_weighted_metrics.lambda_param,
+        )
+        stats.update(tw_stats)
+        log(f"Time-weighted metrics ({tw_stats['tw_scheme']}): P={tw_stats['tw_precision']:.5f} | R={tw_stats['tw_recall']:.5f} | F1={tw_stats['tw_f1']:.5f}")
 
     fp_in_malicious_tw_ratio = analyze_false_positives(
         y_truth,

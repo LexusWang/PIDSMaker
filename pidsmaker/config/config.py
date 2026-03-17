@@ -1966,6 +1966,11 @@ TASK_ARGS = {
             ),
             "threshold_method": Arg(str, vals=OR(THRESHOLD_METHODS)),
         },
+        "time_weighted_metrics": {
+            "enabled": Arg(bool, desc="Whether to compute time-weighted precision/recall/F1."),
+            "scheme": Arg(str, vals=OR(["linear", "exponential"]), desc="Weighting scheme: linear (1-tau) or exponential (exp(-lambda*tau))."),
+            "lambda_param": Arg(float, desc="Decay rate for exponential weighting scheme."),
+        },
     },
     "triage": {
         "used_method": Arg(

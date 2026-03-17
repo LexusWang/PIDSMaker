@@ -2,7 +2,7 @@ import os
 
 import torch
 
-from pidsmaker.detection.graph_preprocessing import get_preprocessed_graphs
+from pidsmaker.tasks.batching import get_preprocessed_graphs
 from pidsmaker.factory import build_model
 from pidsmaker.utils.utils import get_device, log, log_start, set_seed
 

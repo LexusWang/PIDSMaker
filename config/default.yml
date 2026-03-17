@@ -162,3 +162,7 @@ evaluation:
   edge_evaluation:
     malicious_edge_selection: src_node
     threshold_method: max_val_loss
+  time_weighted_metrics:
+    enabled: True
+    scheme: linear
+    lambda_param: 1.0

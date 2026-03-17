@@ -347,7 +347,8 @@ def validate_yml_file(yml_file: str, dictionary: dict):
             if key in user_config:
                 sub_config = user_config[key]
                 if isinstance(sub_tasks, dict):
-                    validate_config(sub_config, sub_tasks, path + [key])
+                    if sub_tasks:  # skip validation for tasks with no parameters
+                        validate_config(sub_config, sub_tasks, path + [key])
                 else:
                     if sub_config is None:
                         raise ValueError(
@@ -537,7 +538,8 @@ def set_subtasks_to_restart(yml_file: str, cfg):
 
     should_restart = OrderedDict()
     for task in TASK_ARGS:
-        if task in tasks_in_yml_file:
+        no_params = not TASK_ARGS[task]  # tasks with no configurable parameters (e.g. gnn_inference)
+        if task in tasks_in_yml_file or no_params:
             task_cfg = getattr(cfg, task)
             existing_files = [files for _, _, files in os.walk(task_cfg._task_path)]
             has_finished = any(
