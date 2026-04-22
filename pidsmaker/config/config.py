@@ -1397,6 +1397,25 @@ DATASET_DEFAULT_CONFIG = {
             ["PROVATTACK/d2test.csv", "2025-08-25 13:21:00", "2025-08-25 13:22:00"],
         ],
     },
+    "EAUDIT_TEST": {
+        "raw_dir": "",
+        "database": "test_eaudit",
+        "database_all_file": "test_eaudit",
+        "num_node_types": 3,
+        "num_edge_types": 10,
+        "year_month": "2026-04",
+        "start_end_day_range": (20, 21),
+        "train_files": ["graph_20"],
+        "val_files": ["graph_20"],
+        "test_files": ["graph_21"],
+        "unused_files": [],
+        "ground_truth_relative_path": [
+            "EAUDIT_TEST/node_eaudit_test_0420.csv",
+        ],
+        "attack_to_time_window": [
+            ["EAUDIT_TEST/node_eaudit_test_0420.csv", "2026-04-21 00:00:00", "2026-04-21 00:19:56"],
+        ],
+    },
 }
 
 # Arguments

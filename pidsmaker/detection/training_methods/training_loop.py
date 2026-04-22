@@ -223,7 +223,8 @@ def main(cfg):
             model.to_device(device)
 
         # Val inference + model checkpoint
-        if (epoch + 1) % 2 == 0 or epoch == 0:
+        # if (epoch + 1) % 2 == 0 or epoch == 0:  # original: run every 2 epochs
+        if True:  # run every epoch for full evaluation coverage
             test_stats = inference_loop.main(
                 cfg=cfg,
                 model=model,
